@@ -1,0 +1,310 @@
+package com.yellowsoft.education;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.os.Handler;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class AnswerActivity extends Activity {
+    String subject_id = "1";
+    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number;
+    RadioButton one,two,three,four;
+    LinearLayout submit_layout;
+    String user_correct,api_correct;
+    JSONObject user_details ;
+    int next_stage = 5;
+    int correct_count=0;
+    int question_count = 0;
+    String answertype = "-1";
+    String question_id = "-1";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.answer_screen);
+        user_correct = "-1";
+        submit_layout=(LinearLayout)findViewById(R.id.submit_ans);
+        que_count = (TextView) findViewById(R.id.que_count);
+        que_number = (TextView) findViewById(R.id.question_number);
+        que_number.setText("QUESTION "+ String.valueOf(question_count));
+        give_up = (TextView) findViewById(R.id.give_up);
+        give_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                answertype = "skipped";
+                setanswer();
+            }
+        });
+        submit_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(user_correct.equals("-1")){
+                    Toast.makeText(AnswerActivity.this, "Select An Answer", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (user_correct.equals(api_correct)) {
+                        Toast.makeText(AnswerActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                        correct_count = correct_count + 1;
+                        if (correct_count == next_stage)
+                            next_stage = next_stage + 5;
+                        que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
+                        answertype = "correct";
+                    } else {
+                        Toast.makeText(AnswerActivity.this, "Wrong Answer", Toast.LENGTH_SHORT).show();
+                        answertype = "wrong";
+                    }
+
+                    setanswer();
+                }
+            }
+        });
+        one = (RadioButton ) findViewById(R.id.one);
+        two = (RadioButton) findViewById(R.id.two);
+        three = (RadioButton) findViewById(R.id.three);
+        four = (RadioButton) findViewById(R.id.four);
+
+        question = (TextView)findViewById(R.id.question);
+        ans1 = (TextView)findViewById(R.id.ans1);
+        ans2 = (TextView)findViewById(R.id.ans2);
+        ans3 = (TextView)findViewById(R.id.ans3);
+        ans4 = (TextView)findViewById(R.id.ans4);
+
+        subject_id = getIntent().getStringExtra("subj_id");
+        try {
+            user_details = new JSONObject(Session.getUserdetails(this));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ImageView userimage = (ImageView)findViewById(R.id.user_image);
+        TextView user_name = (TextView) findViewById(R.id.username);
+        TextView user_level = (TextView) findViewById(R.id.userlevel);
+        try {
+            user_name.setText(user_details.getString("name"));
+            user_level.setText("0"+user_details.getString("grade"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user_correct = "1";
+                two.setChecked(false);
+                three.setChecked(false);
+                four.setChecked(false);
+            }
+        });
+        two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user_correct = "2";
+                one.setChecked(false);
+                three.setChecked(false);
+                four.setChecked(false);
+            }
+        });
+
+        three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user_correct = "3";
+                two.setChecked(false);
+                one.setChecked(false);
+                four.setChecked(false);
+            }
+        });
+
+        four.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user_correct = "4";
+                two.setChecked(false);
+                three.setChecked(false);
+                one.setChecked(false);
+            }
+        });
+
+        getquestion();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void getquestion(){
+        user_correct = "-1";
+        one.setChecked(false);
+        two.setChecked(false);
+        three.setChecked(false);
+        four.setChecked(false);
+        try {
+          //  JSONObject user_details = new JSONObject(Session.getUserdetails(this));
+            String url = Session.SERVERURL+"question.php?user_id="+Session.getUserid(this)+"&level="+user_details.getJSONObject("level").getString("id")
+                    +"&grade="+user_details.getString("grade")
+                    +"&semister="+user_details.getJSONObject("semister").getString("id")+"&subject="+subject_id;
+
+            Log.e("url--->", url);
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Please wait getting next question....");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject jsonObject) {
+                    progressDialog.dismiss();
+                    Log.e("response is: ", jsonObject.toString());
+                    try {
+                        question_id = jsonObject.getString("id");
+                        String questionstr = jsonObject.getString("question");
+                        question.setText(questionstr);
+                        ans1.setText(jsonObject.getString("answer1"));
+                        ans2.setText(jsonObject.getString("answer2"));
+                        ans3.setText(jsonObject.getString("answer3"));
+                        ans4.setText(jsonObject.getString("answer4"));
+                        api_correct = jsonObject.getString("correct");
+                        question_count++;
+                        que_number.setText("QUESTION "+ String.valueOf(question_count));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    // TODO Auto-generated method stub
+                    Log.e("response is:", error.toString());
+                    Toast.makeText(AnswerActivity.this, "Server not connected", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+
+            });
+
+// Access the RequestQueue through your singleton class.
+            AppController.getInstance().addToRequestQueue(jsObjRequest);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    private void setanswer(){
+
+        one.setChecked(false);
+        two.setChecked(false);
+        three.setChecked(false);
+        four.setChecked(false);
+        try {
+            JSONObject user_details = new JSONObject(Session.getUserdetails(this));
+            String url = Session.SERVERURL+"answer.php?member_id="+Session.getUserid(this)+"&level="+user_details.getJSONObject("level").getString("id")
+                    +"&grade="+user_details.getString("grade")
+                    +"&semister="+user_details.getJSONObject("semister").getString("id")
+                    +"&subject="+subject_id
+                    +"&answer="+user_correct
+                    +"&question_id="+question_id
+                    +"&ans_result="+answertype;
+
+            Log.e("url--->", url);
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Please wait submiting your answer....");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject jsonObject) {
+                    progressDialog.dismiss();
+                    Log.e("response is: ", jsonObject.toString());
+                    try {
+
+                        String response = jsonObject.getJSONArray("response").getJSONObject(0).getString("status");
+                        if(response.equals("Success"))
+                            getquestion();
+                        else
+                            Toast.makeText(AnswerActivity.this, "Your answer not submitted, please try again...", Toast.LENGTH_SHORT).show();
+//                        question.setText(questionstr);
+//                        ans1.setText(jsonObject.getString("answer1"));
+//                        ans2.setText(jsonObject.getString("answer2"));
+//                        ans3.setText(jsonObject.getString("answer3"));
+//                        ans4.setText(jsonObject.getString("answer4"));
+//                        api_correct = jsonObject.getString("correct");
+//                        question_count++;
+//                        que_number.setText("QUESTION "+ String.valueOf(question_count));
+
+
+//
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    // TODO Auto-generated method stub
+                    Log.e("response is:", error.toString());
+                    Toast.makeText(AnswerActivity.this, "Server not connected", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+
+            });
+
+// Access the RequestQueue through your singleton class.
+            AppController.getInstance().addToRequestQueue(jsObjRequest);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+}

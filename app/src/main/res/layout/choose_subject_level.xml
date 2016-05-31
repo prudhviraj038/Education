@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/answer_screen_background">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/screen_top_background"
+        android:gravity="center|bottom"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/back_sub_scr"
+            android:src="@drawable/back_arrow"
+            android:adjustViewBounds="false" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView42"
+            android:src="@drawable/logo_icon_small"
+            android:adjustViewBounds="false"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                        android:id="@+id/textView28"
+                        android:layout_gravity="center"
+                        android:textColor="#616161"
+                        android:textSize="12dp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/level">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="CHOOSE LEVEL"
+                            android:id="@+id/choose_level"
+                            android:background="#107fc9"
+                            android:layout_weight="1"
+                            android:gravity="center|left"
+                            android:layout_marginRight="1dp"
+                            android:textSize="13dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="#ffffff" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView"
+                            android:src="@drawable/down_arrow"
+                            android:background="#107fc9" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                        android:id="@+id/textView57"
+                        android:layout_gravity="center"
+                        android:textColor="#616161"
+                        android:textSize="12dp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/grade">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="CHOOSE GRADE"
+                            android:id="@+id/choose_grade"
+                            android:background="#107fc9"
+                            android:layout_weight="1"
+                            android:gravity="center|left"
+                            android:layout_marginRight="1dp"
+                            android:textSize="13dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="#ffffff" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView2"
+                            android:src="@drawable/down_arrow"
+                            android:background="#107fc9" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                        android:id="@+id/textView"
+                        android:layout_gravity="center"
+                        android:textColor="#616161"
+                        android:textSize="12dp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/semsection" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="SEMESTER SECTIONS"
+                            android:id="@+id/choose_section"
+                            android:background="#107fc9"
+                            android:layout_weight="1"
+                            android:gravity="center|left"
+                            android:layout_marginRight="1dp"
+                            android:textSize="13dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="#ffffff" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView28"
+                            android:src="@drawable/down_arrow"
+                            android:background="#107fc9" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/text_black"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/save_change">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVE CHANGES"
+            android:id="@+id/savechanges"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:layout_marginRight="5dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView44"
+            android:src="@drawable/tick_icon"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+</LinearLayout>
