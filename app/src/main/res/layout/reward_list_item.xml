@@ -11,11 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ly_h1"
-        android:showDividers="end">
+        android:showDividers="end"
+        android:background="#FFFFFF">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/reward_list_image"
             android:src="@drawable/reward_lisi_img" />
 

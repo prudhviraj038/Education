@@ -13,15 +13,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+
 public class RewardListAdapter extends BaseAdapter{
     String [] result;
     Context context;
     int [] imageId;
+    ArrayList<Rewards> rewardses;
     private static LayoutInflater inflater=null;
-    public RewardListAdapter(Activity mainActivity) {
+    public RewardListAdapter(Context mainActivity,ArrayList<Rewards> rewardses) {
         // TODO Auto-generated constructor stub
         //  result=prgmNameList;
         context=mainActivity;
+        this.rewardses = rewardses;
         //  imageId=prgmImages;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -29,7 +35,7 @@ public class RewardListAdapter extends BaseAdapter{
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 10;
+        return rewardses.size();
     }
 
     @Override
@@ -64,6 +70,7 @@ public class RewardListAdapter extends BaseAdapter{
         Holder holder=new Holder();
         View rowView;
         rowView = inflater.inflate(R.layout.reward_list_item, null);
+
         holder.tv=(TextView) rowView.findViewById(R.id.name_tv);
         holder.tv1=(TextView) rowView.findViewById(R.id.sec_tv);
         holder.tv2=(TextView) rowView.findViewById(R.id.grade_tv);
@@ -74,16 +81,13 @@ public class RewardListAdapter extends BaseAdapter{
         holder.tv7=(TextView) rowView.findViewById(R.id.wrong_tv);
         holder.tv8=(TextView) rowView.findViewById(R.id.correct_tv);
         holder.img=(ImageView) rowView.findViewById(R.id.reward_list_image);
-
-        //  holder.tv.setText(result[position]);
-        // holder.img.setImageResource(imageId[position]);
-        rowView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Toast.makeText(context, "You Clicked "+result[position], Toast.LENGTH_LONG).show();
-            }
-        });
+        Picasso.with(context).load(rewardses.get(position).image).into(holder.img);
+        holder.tv.setText(rewardses.get(position).title);
+        holder.tv1.setText(rewardses.get(position).level);
+        holder.tv2.setText(rewardses.get(position).grade);
+        holder.tv3.setText(rewardses.get(position).skiped);
+        holder.tv4.setText(rewardses.get(position).wrong);
+        holder.tv5.setText(rewardses.get(position).correctt);
         return rowView;
     }
 

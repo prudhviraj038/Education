@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 
 public class RewardActivity extends Activity {
@@ -36,19 +37,25 @@ public class RewardActivity extends Activity {
     TextView worng,total,correct,user_name;
     ImageView user_image;
     JSONObject user_details ;
+    ArrayList<Rewards> rewardses;
+    RewardListAdapter rewardListAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rewards_screen);
+        rewardses = new ArrayList<>();
         ImageView back=(ImageView)findViewById(R.id.back_rewrds);
         GridView reward_gridView=(GridView)findViewById(R.id.gridView_reward);
-        reward_gridView.setAdapter(new RewardListAdapter(this));
+        rewardListAdapter = new RewardListAdapter(this,rewardses);
+        reward_gridView.setAdapter(rewardListAdapter);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+
         worng = (TextView) findViewById(R.id.wrong_answers);
         total = (TextView) findViewById(R.id.no_of_questions);
         correct = (TextView) findViewById(R.id.correct_answers);
@@ -62,8 +69,9 @@ public class RewardActivity extends Activity {
             e.printStackTrace();
         }
 
-
         get_rewards();
+        get_toppers();
+
     }
 
     @Override
@@ -131,6 +139,48 @@ public class RewardActivity extends Activity {
 // Access the RequestQueue through your singleton class.
         AppController.getInstance().addToRequestQueue(jsObjRequest);
 
+    }
+
+    private void get_toppers() {
+        String url = Session.SERVERURL + "toppers.php";
+        Log.e("url--->", url);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait....");
+        progressDialog.setCancelable(false);
+        JsonArrayRequest jsObjRequest = new JsonArrayRequest( url, new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+
+                try {
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                    Log.e("res",jsonObject.toString());
+                    for(int i=0;i<jsonArray.length();i++){
+                        rewardses.add(new Rewards(jsonArray.getJSONObject(i),RewardActivity.this));
+                    }
+                    rewardListAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+                Log.e("response is:", error.toString());
+                Toast.makeText(RewardActivity.this, "Server not connected", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+
+        });
+
+// Access the RequestQueue through your singleton class.
+        AppController.getInstance().addToRequestQueue(jsObjRequest);
 
     }
+
+
 }
