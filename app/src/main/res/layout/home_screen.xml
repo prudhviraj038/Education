@@ -234,7 +234,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView35"
+            android:id="@+id/reward_btn"
             android:src="@drawable/reward_star_white_icon"
             android:layout_weight="1" />
 

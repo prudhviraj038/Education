@@ -2,6 +2,7 @@ package com.yellowsoft.education;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Handler;
@@ -23,6 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,8 +72,6 @@ public class AnswerActivity extends Activity {
                     if (user_correct.equals(api_correct)) {
                         Toast.makeText(AnswerActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
                         correct_count = correct_count + 1;
-                        if (correct_count == next_stage)
-                            next_stage = next_stage + 5;
                         que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
                         answertype = "correct";
                     } else {
@@ -102,11 +102,13 @@ public class AnswerActivity extends Activity {
         }
 
         ImageView userimage = (ImageView)findViewById(R.id.user_image);
+
         TextView user_name = (TextView) findViewById(R.id.username);
         TextView user_level = (TextView) findViewById(R.id.userlevel);
         try {
             user_name.setText(user_details.getString("name"));
             user_level.setText("0"+user_details.getString("grade"));
+            Picasso.with(this).load(user_details.getString("image")).into(userimage);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -265,8 +267,24 @@ public class AnswerActivity extends Activity {
                     try {
 
                         String response = jsonObject.getJSONArray("response").getJSONObject(0).getString("status");
-                        if(response.equals("Success"))
-                            getquestion();
+                        if(response.equals("Success")) {
+                            if (question_count == next_stage){
+                                if(correct_count==question_count){
+                                    show_alert();
+                                  //  Toast.makeText(AnswerActivity.this,"You have cleared a level!",Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                  //  Toast.makeText(AnswerActivity.this,"You have failed in this level!",Toast.LENGTH_SHORT).show();
+                                   // finish();
+                                    show_alert_fail();
+                                }
+                            }else{
+                                getquestion();
+                            }
+
+
+
+                        }
                         else
                             Toast.makeText(AnswerActivity.this, "Your answer not submitted, please try again...", Toast.LENGTH_SHORT).show();
 //                        question.setText(questionstr);
@@ -306,5 +324,31 @@ public class AnswerActivity extends Activity {
 
 
     }
+
+        private  void show_alert(){
+        AlertDialogManager alert = new AlertDialogManager();
+        alert.showAlertDialog(this, "Congratulations!", "You have cleared this level", false, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                next_stage = next_stage + 5;
+                question_count=0;
+                correct_count=0;
+                que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
+                getquestion();
+            }
+        });
+
+        }
+
+    private  void show_alert_fail(){
+        AlertDialogManager alert = new AlertDialogManager();
+        alert.showAlertDialog(this, "Sorry!", "You have failed in this level", false, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+    }
+
 
 }

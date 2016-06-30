@@ -39,14 +39,21 @@ public class HomeActivity extends Activity {
     ArrayList<String> sub_title;
     TextView choose_subject;
     String user_id;
-
+    ImageView reward_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
         sub_id= new ArrayList<String>();
         sub_title=new ArrayList<String>();
-
+        reward_btn = (ImageView) findViewById(R.id.reward_btn);
+        reward_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,RewardActivity.class);
+                startActivity(intent);
+            }
+        });
         Intent intent=getIntent();
         user_id=Session.getUserid(this);
 

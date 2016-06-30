@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/screen_top_background"
-        android:gravity="center|bottom"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp" >
+        android:gravity="center_vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/back_rewrds"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false"
-            android:layout_marginBottom="5dp" />
+            android:adjustViewBounds="false" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -47,9 +46,9 @@
             android:layout_marginBottom="5dp" >
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView24"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/user_image"
                 android:src="@drawable/building_icon" />
 
             <LinearLayout
@@ -58,14 +57,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:divider="@drawable/answer_divider"
-                android:showDividers="end"
-                android:layout_gravity="bottom" >
+                android:showDividers="end">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ABDULLAH AL AAZMY"
-                    android:id="@+id/textView32"
+                    android:id="@+id/user_name"
                     android:textSize="10dp"
                     android:layout_gravity="left"
                     android:layout_marginBottom="2dp"
@@ -104,14 +102,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7"
-                    android:id="@+id/textView34"
+                    android:id="@+id/wrong_answers"
                     android:background="@drawable/reward_icon"
                     android:textSize="50dp"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_marginBottom="5dp"
-                    android:textColor="#4b4b4b" />
+                    android:textColor="#4b4b4b"
+                    android:text="99" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -134,8 +132,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5"
-                    android:id="@+id/textView36"
+                    android:text="99"
+                    android:id="@+id/no_of_questions"
                     android:background="@drawable/reward_icon"
                     android:textSize="50dp"
                     android:layout_gravity="center"
@@ -164,8 +162,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9"
-                    android:id="@+id/textView39"
+                    android:text="99"
+                    android:id="@+id/correct_answers"
                     android:background="@drawable/reward_icon"
                     android:textSize="50dp"
                     android:layout_gravity="center"

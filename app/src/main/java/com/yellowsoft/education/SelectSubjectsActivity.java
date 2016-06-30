@@ -194,12 +194,21 @@ public class SelectSubjectsActivity extends Activity {
                             JSONArray jsonArray = jsonObject.getJSONArray("response");
                             jsonObject = jsonArray.getJSONObject(0);
                             if(jsonObject.getString("status").equals("Failed")){
-                                Toast.makeText(SelectSubjectsActivity.this, jsonObject.getString("mesage"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SelectSubjectsActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 // Toast.makeText(SelectSubjectsActivity.this,response , Toast.LENGTH_SHORT).show();
                                  mem_id = jsonObject.getString("member_id");
+                                if(img_path!=null)
                                 encodeImagetoString();
+                                else{
+                                    Toast.makeText(getApplicationContext(), "Register Succesfull",
+                                            Toast.LENGTH_LONG).show();
+                                    Intent in_login = new Intent(getApplicationContext(), LoginActivity.class);
+                                    startActivity(in_login);
+                                    finish();
+
+                                }
                                                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
