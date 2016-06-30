@@ -20,19 +20,22 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ChooseLevelGradeSemActivity extends Activity {
     String levels_id="0";
     String grade_id="0";
     String sem_sec_id="0";
-
+    String type;
     ArrayList<String> level_id;
     ArrayList<String> level_title;
     ArrayList<String> grade;
@@ -43,11 +46,12 @@ public class ChooseLevelGradeSemActivity extends Activity {
     ArrayList<String> mSelectedItems;
 
     TextView choose_level,choose_grade,choose_section;
-
+    String uname,pword,fullname,emaill,mobile,gove,cls,imgpath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_subject_level);
+        type = getIntent().getStringExtra("type");
         LinearLayout level_lv=(LinearLayout)findViewById(R.id.level);
         LinearLayout grade_lv=(LinearLayout)findViewById(R.id.grade);
         LinearLayout semsect_lv=(LinearLayout)findViewById(R.id.semsection);
@@ -63,16 +67,27 @@ public class ChooseLevelGradeSemActivity extends Activity {
         que_count=new ArrayList<String>();
         mSelectedItems=new ArrayList<String>();
 
+        if(type.equals("")) {
+            Intent intent = getIntent();
+             uname = intent.getStringExtra("username");
+             pword = intent.getStringExtra("password");
+            fullname = intent.getStringExtra("fname");
+            emaill = intent.getStringExtra("email");
+            mobile = intent.getStringExtra("mobile");
+            gove = intent.getStringExtra("gover");
+            cls = intent.getStringExtra("class");
+            imgpath = intent.getStringExtra("image_path");
+        }
 
-        Intent intent=getIntent();
-        final String uname=intent.getStringExtra("username");
-        final String pword=intent.getStringExtra("password");
-        final String fullname=intent.getStringExtra("fname");
-        final String emaill=intent.getStringExtra("email");
-        final String mobile=intent.getStringExtra("mobile");
-        final String gove=intent.getStringExtra("gover");
-        final String cls=intent.getStringExtra("class");
-        final String imgpath=intent.getStringExtra("image_path");
+        if(type.equals("change"))
+            try {
+                JSONObject jsonObject=new JSONObject(Session.getUserdetails(ChooseLevelGradeSemActivity.this));
+                choose_level.setText(jsonObject.getJSONObject("level").getString("title"));
+                choose_grade.setText(jsonObject.getString("grade"));
+                choose_section.setText(jsonObject.getJSONObject("semister").getString("title"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         level_lv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,22 +181,78 @@ public class ChooseLevelGradeSemActivity extends Activity {
                 else if (semsection_title.equals(""))
                     Toast.makeText(ChooseLevelGradeSemActivity.this, "Please Select Semester", Toast.LENGTH_SHORT).show();
                 else{
-                Intent intent = new Intent(getApplicationContext(), SelectSubjectsActivity.class);
-                intent.putExtra("level_id", levels_id);
-                intent.putExtra("grade_id", grade_id);
-                intent.putExtra("sem_id", sem_sec_id);
-                intent.putExtra("usname", uname);
-                intent.putExtra("psword", pword);
-                intent.putExtra("fname", fullname);
-                intent.putExtra("email", emaill);
-                intent.putExtra("mobi", mobile);
-                intent.putExtra("gover", gove);
-                intent.putExtra("clas", cls);
-                    intent.putExtra("image_path",imgpath);
-                startActivity(intent);
+                    if(type.equals("change")){
+                        edit_profile();
+                    }else{
+                        Intent intent = new Intent(getApplicationContext(), SelectSubjectsActivity.class);
+                        intent.putExtra("type","normal");
+                        intent.putExtra("level_id", levels_id);
+                        intent.putExtra("grade_id", grade_id);
+                        intent.putExtra("sem_id", sem_sec_id);
+                        intent.putExtra("usname", uname);
+                        intent.putExtra("psword", pword);
+                        intent.putExtra("fname", fullname);
+                        intent.putExtra("email", emaill);
+                        intent.putExtra("mobi", mobile);
+                        intent.putExtra("gover", gove);
+                        intent.putExtra("clas", cls);
+                        intent.putExtra("image_path",imgpath);
+                        startActivity(intent);
+                    }
+
 
             }}
       });
+    }
+    private void edit_profile(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please wait..");
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        String url = Session.SERVERURL+"edit-member.php?member_id="+Session.getUserid(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(progressDialog!=null)
+                            progressDialog.dismiss();
+                        Log.e("signup_res",response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("response");
+                            jsonObject = jsonArray.getJSONObject(0);
+                            if(jsonObject.getString("status").equals("Failed")){
+                                Toast.makeText(ChooseLevelGradeSemActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(getApplicationContext(), "Academics updated Succesfully", Toast.LENGTH_LONG).show();
+                                finish();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if(progressDialog!=null)
+                            progressDialog.dismiss();
+                        Toast.makeText(ChooseLevelGradeSemActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("level",levels_id);
+                params.put("grade",grade_id);
+                params.put("semister",sem_sec_id);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
     }
 
     @Override

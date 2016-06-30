@@ -6,27 +6,22 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.os.Handler;
-import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,10 +30,11 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,9 +42,8 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SignupActivity extends Activity {
@@ -61,14 +56,17 @@ public class SignupActivity extends Activity {
     EditText et_gove;
     EditText et_class;
     ImageView profile_image;
+    String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_screen);
         final int RESULT_LOAD_IMAGE = 1;
+        type = getIntent().getStringExtra("type");
         ImageView back=(ImageView)findViewById(R.id.back_signup_scr);
         TextView selectimg=(TextView)findViewById(R.id.select_image);
         LinearLayout signup=(LinearLayout)findViewById(R.id.ll_signup);
+        LinearLayout pass_ll=(LinearLayout)findViewById(R.id.pass_ll);
          et_uname = (EditText)findViewById(R.id.et_username);
          et_password=(EditText)findViewById(R.id.et_password);
          et_fullname=(EditText)findViewById(R.id.et_fullname);
@@ -93,7 +91,24 @@ public class SignupActivity extends Activity {
                 finish();
             }
         });
-
+        if(type.equals("change")){
+            pass_ll.setVisibility(View.GONE);
+        }else{
+            pass_ll.setVisibility(View.VISIBLE);
+        }
+        if(type.equals("change"))
+        try {
+            JSONObject jsonObject=new JSONObject(Session.getUserdetails(SignupActivity.this));
+            et_uname.setText(jsonObject.getString("username"));
+            et_fullname.setText(jsonObject.getString("name"));
+            et_email.setText(jsonObject.getString("email"));
+            et_mobile.setText(jsonObject.getString("governorate"));
+            et_gove.setText(jsonObject.getString("class"));
+            et_class.setText(jsonObject.getString("phone"));
+            Picasso.with(SignupActivity.this).load(jsonObject.getString("image")).into(profile_image);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,21 +140,21 @@ public class SignupActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    String uname,password,fullname,email,mobile,gove,classs;
     private void register() {
-        String uname = et_uname.getText().toString();
-        String password = et_password.getText().toString();
-        String fullname = et_fullname.getText().toString();
-        String email = et_email.getText().toString();
-        String mobile = et_mobile.getText().toString();
-        String gove = et_gove.getText().toString();
-        String classs = et_class.getText().toString();
+         uname = et_uname.getText().toString();
+         password = et_password.getText().toString();
+         fullname = et_fullname.getText().toString();
+         email = et_email.getText().toString();
+         mobile = et_mobile.getText().toString();
+         gove = et_gove.getText().toString();
+         classs = et_class.getText().toString();
 
         if (uname.equals(""))
             Toast.makeText(SignupActivity.this, "Please Enter UserName", Toast.LENGTH_SHORT).show();
-        else if (password.equals(""))
+        else if (type.equals("normal")&&password.equals(""))
             Toast.makeText(SignupActivity.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
-        else if (password.length() < 6)
+        else if (type.equals("normal")&&password.length() < 6)
             Toast.makeText(SignupActivity.this, "Password Lenth should be grether than 6 charcters", Toast.LENGTH_SHORT).show();
         else if (fullname.equals(""))
             Toast.makeText(SignupActivity.this, "Please Enter Fullname", Toast.LENGTH_SHORT).show();
@@ -152,7 +167,11 @@ public class SignupActivity extends Activity {
         else if (classs.equals(""))
             Toast.makeText(SignupActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
         else {
+            if(type.equals("change")){
+                edit_profile();
+            }else{
             Intent signup_intent = new Intent(getApplicationContext(), ChooseLevelGradeSemActivity.class);
+                signup_intent.putExtra("type","normal");
             signup_intent.putExtra("username", uname);
             signup_intent.putExtra("password", password);
             signup_intent.putExtra("fname", fullname);
@@ -162,9 +181,72 @@ public class SignupActivity extends Activity {
             signup_intent.putExtra("class", classs);
             signup_intent.putExtra("image_path", imgPath);
             startActivity(signup_intent);
+            }
         }
 
     }
+    private void edit_profile(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please wait..");
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        String url = Session.SERVERURL+"edit-member.php?member_id="+Session.getUserid(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(progressDialog!=null)
+                            progressDialog.dismiss();
+                        Log.e("signup_res",response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("response");
+                            jsonObject = jsonArray.getJSONObject(0);
+                            if(jsonObject.getString("status").equals("Failed")){
+                                Toast.makeText(SignupActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                // Toast.makeText(SelectSubjectsActivity.this,response , Toast.LENGTH_SHORT).show();
+                                String mem_id = jsonObject.getString("member_id");
+                                if(imgPath!=null)
+                                    encodeImagetoString();
+                                else{
+                                    Toast.makeText(getApplicationContext(), "Profile updated Succesfully", Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if(progressDialog!=null)
+                            progressDialog.dismiss();
+                        Toast.makeText(SignupActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("username",uname);
+                params.put("name",fullname);
+                params.put("email",email);
+                params.put("phone",mobile);
+                params.put("governorate",gove);
+                params.put("class",classs);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
+    }
+
+
+
     Bitmap bitmap;
     String encodedString;
     private Uri mImageCaptureUri;

@@ -32,8 +32,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +42,7 @@ public class SelectSubjectsActivity extends Activity {
     HashMap<String, String> choices;
     ArrayList<String> sub_id;
     ArrayList<String> sub_title;
-
+    String type;
     Intent intent=getIntent();
     String level,semister,grade,uname,password,fullname,email,mobile,gove,classs;
     String img_path;
@@ -58,25 +56,33 @@ public class SelectSubjectsActivity extends Activity {
         sub_id = new ArrayList<String>();
         sub_title = new ArrayList<String>();
          Intent intent=getIntent();
-         level=intent.getStringExtra("level_id");
-         grade=intent.getStringExtra("grade_id");
-         semister=intent.getStringExtra("sem_id");
-         uname=intent.getStringExtra("usname");
-         password=intent.getStringExtra("psword");
-         fullname=intent.getStringExtra("fname");
-         email=intent.getStringExtra("email");
-         mobile=intent.getStringExtra("mobi");
-         gove=intent.getStringExtra("gover");
-         classs=intent.getStringExtra("clas");
+        type = getIntent().getStringExtra("type");
+         if(type.equals("")) {
+            level = intent.getStringExtra("level_id");
+            grade = intent.getStringExtra("grade_id");
+            semister = intent.getStringExtra("sem_id");
+            uname = intent.getStringExtra("usname");
+            password = intent.getStringExtra("psword");
+            fullname = intent.getStringExtra("fname");
+            email = intent.getStringExtra("email");
+            mobile = intent.getStringExtra("mobi");
+            gove = intent.getStringExtra("gover");
+            classs = intent.getStringExtra("clas");
             img_path = intent.getStringExtra("image_path");
+        }
         LinearLayout save_changes=(LinearLayout)findViewById(R.id.save_change_fin);
         save_changes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(choices.size()>5)
-                    Toast.makeText(SelectSubjectsActivity.this,"you can't select more than 5 subjects",Toast.LENGTH_SHORT).show();
-                else
-                register();
+                if(type.equals("change")){
+                    edit_profile();
+                }else{
+                    if(choices.size()>5)
+                        Toast.makeText(SelectSubjectsActivity.this,"you can't select more than 5 subjects",Toast.LENGTH_SHORT).show();
+                    else
+                        register();
+                }
+
             }
         });
 
@@ -171,16 +177,12 @@ public class SelectSubjectsActivity extends Activity {
         AppController.getInstance().addToRequestQueue(jsObjRequest);
 
     }
-
-    private void register(){
-
-        final JSONObject jsonObject = new JSONObject(choices);
-        Log.e("sub_arra", jsonObject.toString());
+    private void edit_profile(){
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("please wait..");
         progressDialog.show();
         progressDialog.setCancelable(false);
-        String url = Session.SERVERURL+"add-member.php?";
+        String url = Session.SERVERURL+"edit-member.php?member_id="+Session.getUserid(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -198,18 +200,14 @@ public class SelectSubjectsActivity extends Activity {
                             }
                             else {
                                 // Toast.makeText(SelectSubjectsActivity.this,response , Toast.LENGTH_SHORT).show();
-                                 mem_id = jsonObject.getString("member_id");
+                                String mem_id = jsonObject.getString("member_id");
                                 if(img_path!=null)
-                                encodeImagetoString();
+                                    encodeImagetoString();
                                 else{
-                                    Toast.makeText(getApplicationContext(), "Register Succesfull",
-                                            Toast.LENGTH_LONG).show();
-                                    Intent in_login = new Intent(getApplicationContext(), LoginActivity.class);
-                                    startActivity(in_login);
+                                    Toast.makeText(getApplicationContext(), "Profile updated Succesfully", Toast.LENGTH_LONG).show();
                                     finish();
-
                                 }
-                                                            }
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -227,27 +225,109 @@ public class SelectSubjectsActivity extends Activity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("username",uname);
-                params.put("password",password);
-                params.put("name",fullname);
-                params.put("email",email);
-                params.put("phone",mobile);
-                params.put("governorate",gove);
-                params.put("class",classs);
-                params.put("level",level);
-                params.put("grade",grade);
-                params.put("semister",semister);
                 String csv = "-1";
-                for (Map.Entry<String, String> entry : choices.entrySet()){
-                    if(csv.equals("-1"))
-                        csv  = entry.getValue();
+                for (Map.Entry<String, String> entry : choices.entrySet()) {
+                    if (csv.equals("-1"))
+                        csv = entry.getValue();
                     else
-                        csv=csv+","+entry.getValue();
+                        csv = csv + "," + entry.getValue();
                 }
                 params.put("subject", csv);
-
                 return params;
             }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
+        String csv = "-1";
+        for (Map.Entry<String, String> entry : choices.entrySet()){
+            if(csv.equals("-1"))
+                csv  = entry.getValue();
+            else
+                csv=csv+","+entry.getValue();
+        }
+        Log.e("subjects", csv);
+
+    }
+
+
+    private void register(){
+
+        final JSONObject jsonObject = new JSONObject(choices);
+        Log.e("sub_arra", jsonObject.toString());
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please wait..");
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        String url = Session.SERVERURL+"add-member.php?";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(progressDialog!=null)
+                            progressDialog.dismiss();
+                        Log.e("signup_res",response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("response");
+                            jsonObject = jsonArray.getJSONObject(0);
+                            if(jsonObject.getString("status").equals("Failed")){
+                                Toast.makeText(SelectSubjectsActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                if(type.equals("change")){
+                                    Toast.makeText(getApplicationContext(), "Subjects updated Succesfully", Toast.LENGTH_LONG).show();
+                                    finish();
+                                }else {
+                                    // Toast.makeText(SelectSubjectsActivity.this,response , Toast.LENGTH_SHORT).show();
+                                    mem_id = jsonObject.getString("member_id");
+                                    if (img_path != null)
+                                        encodeImagetoString();
+                                    else {
+                                        Toast.makeText(getApplicationContext(), "Register Succesfull",
+                                                Toast.LENGTH_LONG).show();
+                                        Intent in_login = new Intent(getApplicationContext(), LoginActivity.class);
+                                        startActivity(in_login);
+                                        finish();
+
+                                    }
+                                }                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if(progressDialog!=null)
+                            progressDialog.dismiss();
+                        Toast.makeText(SelectSubjectsActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                    params.put("username", uname);
+                    params.put("password", password);
+                    params.put("name", fullname);
+                    params.put("email", email);
+                    params.put("phone", mobile);
+                    params.put("governorate", gove);
+                    params.put("class", classs);
+                    params.put("level", level);
+                    params.put("grade", grade);
+                    params.put("semister", semister);
+                    String csv = "-1";
+                    for (Map.Entry<String, String> entry : choices.entrySet()) {
+                        if (csv.equals("-1"))
+                            csv = entry.getValue();
+                        else
+                            csv = csv + "," + entry.getValue();
+                    }
+                    params.put("subject", csv);
+                return params;
+            }
+
         };
       AppController.getInstance().addToRequestQueue(stringRequest);
         String csv = "-1";
