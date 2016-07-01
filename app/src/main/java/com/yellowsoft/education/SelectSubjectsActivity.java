@@ -193,20 +193,13 @@ public class SelectSubjectsActivity extends Activity {
                         Log.e("signup_res",response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArray = jsonObject.getJSONArray("response");
-                            jsonObject = jsonArray.getJSONObject(0);
                             if(jsonObject.getString("status").equals("Failed")){
                                 Toast.makeText(SelectSubjectsActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 // Toast.makeText(SelectSubjectsActivity.this,response , Toast.LENGTH_SHORT).show();
-                                String mem_id = jsonObject.getString("member_id");
-                                if(img_path!=null)
-                                    encodeImagetoString();
-                                else{
                                     Toast.makeText(getApplicationContext(), "Profile updated Succesfully", Toast.LENGTH_LONG).show();
                                     finish();
-                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -236,6 +229,7 @@ public class SelectSubjectsActivity extends Activity {
                 return params;
             }
         };
+
         AppController.getInstance().addToRequestQueue(stringRequest);
         String csv = "-1";
         for (Map.Entry<String, String> entry : choices.entrySet()){

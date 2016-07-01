@@ -152,7 +152,7 @@ public class ChooseLevelGradeSemActivity extends Activity {
                         // Toast.makeText(ChooseSubjectActivity.this, semsection_title.get(which), Toast.LENGTH_SHORT).show();
                         sem_sec_id = semsect_id.get(which);
                         choose_section.setText(semsection_title.get(which));
-                        save_changes.performClick();
+                        //save_changes.performClick();
 
                     }
                 });
@@ -220,8 +220,7 @@ public class ChooseLevelGradeSemActivity extends Activity {
                         Log.e("signup_res",response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArray = jsonObject.getJSONArray("response");
-                            jsonObject = jsonArray.getJSONObject(0);
+
                             if(jsonObject.getString("status").equals("Failed")){
                                 Toast.makeText(ChooseLevelGradeSemActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             }

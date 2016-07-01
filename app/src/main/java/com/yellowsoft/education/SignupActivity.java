@@ -60,6 +60,7 @@ public class SignupActivity extends Activity {
     EditText et_class;
     ImageView profile_image;
     String type;
+    TextView signup_txt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,10 @@ public class SignupActivity extends Activity {
         TextView selectimg=(TextView)findViewById(R.id.select_image);
         LinearLayout signup=(LinearLayout)findViewById(R.id.ll_signup);
         LinearLayout pass_ll=(LinearLayout)findViewById(R.id.pass_ll);
+        LinearLayout user_ll=(LinearLayout)findViewById(R.id.user_name_ll);
+        LinearLayout email_ll=(LinearLayout)findViewById(R.id.email_ll);
+        signup_txt = (TextView) findViewById(R.id.signup2);
+
          et_uname = (EditText)findViewById(R.id.et_username);
          et_password=(EditText)findViewById(R.id.et_password);
          et_fullname=(EditText)findViewById(R.id.et_fullname);
@@ -96,8 +101,16 @@ public class SignupActivity extends Activity {
         });
         if(type.equals("change")){
             pass_ll.setVisibility(View.GONE);
+            user_ll.setVisibility(View.GONE);
+            email_ll.setVisibility(View.GONE);
+            signup_txt.setText("SAVE");
+
         }else{
             pass_ll.setVisibility(View.VISIBLE);
+            user_ll.setVisibility(View.VISIBLE);
+            email_ll.setVisibility(View.VISIBLE);
+            signup_txt.setText("SIGN UP");
+
         }
         if(type.equals("change"))
         try {
@@ -105,9 +118,9 @@ public class SignupActivity extends Activity {
             et_uname.setText(jsonObject.getString("username"));
             et_fullname.setText(jsonObject.getString("name"));
             et_email.setText(jsonObject.getString("email"));
-            et_mobile.setText(jsonObject.getString("governorate"));
-            et_gove.setText(jsonObject.getString("class"));
-            et_class.setText(jsonObject.getString("phone"));
+            et_mobile.setText(jsonObject.getString("phone"));
+            et_gove.setText(jsonObject.getString("governorate"));
+            et_class.setText(jsonObject.getString("class"));
             Picasso.with(SignupActivity.this).load(jsonObject.getString("image")).into(profile_image);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -194,7 +207,7 @@ public class SignupActivity extends Activity {
         progressDialog.setMessage("please wait..");
         progressDialog.show();
         progressDialog.setCancelable(false);
-        String url = Session.SERVERURL+"edit-member.php?member_id="+Session.getUserid(this);
+        String url = Session.SERVERURL+"edit-member.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -205,14 +218,14 @@ public class SignupActivity extends Activity {
                         Log.e("signup_res",response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArray = jsonObject.getJSONArray("response");
-                            jsonObject = jsonArray.getJSONObject(0);
+
                             if(jsonObject.getString("status").equals("Failed")){
                                 Toast.makeText(SignupActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 // Toast.makeText(SelectSubjectsActivity.this,response , Toast.LENGTH_SHORT).show();
-                                String mem_id = jsonObject.getString("member_id");
+                               // String mem_id = jsonObject.getString("member_id");
+
                                 if(imgPath!=null)
                                     encodeImagetoString();
                                 else{
@@ -238,9 +251,8 @@ public class SignupActivity extends Activity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("username",uname);
+                params.put("member_id",Session.getUserid(SignupActivity.this));
                 params.put("name",fullname);
-                params.put("email",email);
                 params.put("phone",mobile);
                 params.put("governorate",gove);
                 params.put("class",classs);

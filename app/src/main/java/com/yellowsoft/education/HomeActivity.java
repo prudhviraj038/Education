@@ -281,6 +281,7 @@ public class HomeActivity extends Activity {
                 try {
                     JSONObject jsonObject = jsonArray.getJSONObject(0);
                     Session.setUserdetails(HomeActivity.this,jsonObject.toString());
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
