@@ -272,7 +272,7 @@
                 android:layout_alignParentEnd="false"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="55dp"
+                android:layout_marginBottom="60dp"
                 android:background="#ffffff"
                 android:gravity="center"
                 android:paddingTop="5dp"
@@ -305,6 +305,16 @@
                     android:layout_height="wrap_content"
                     android:text="Change Subjects"
                     android:id="@+id/change_subjects"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="15dp"
+                    android:padding="5dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Change Password"
+                    android:id="@+id/change_pass"
                     android:gravity="center"
                     android:textColor="#000000"
                     android:textSize="15dp"

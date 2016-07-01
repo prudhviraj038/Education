@@ -37,7 +37,7 @@ public class HomeActivity extends Activity {
     String subect_id="0";
     ArrayList<String> sub_id;
     ArrayList<String> sub_title;
-    TextView choose_subject,edit_profile,change_academics,change_sub,lang,logout;
+    TextView choose_subject,edit_profile,change_academics,change_sub,lang,logout,change_pass;
     LinearLayout sett_popup;
     String user_id;
     ImageView reward_btn,settings_btn;
@@ -50,6 +50,7 @@ public class HomeActivity extends Activity {
         edit_profile = (TextView) findViewById(R.id.edit_profile);
         change_academics = (TextView) findViewById(R.id.change_academics);
         change_sub = (TextView) findViewById(R.id.change_subjects);
+        change_pass = (TextView) findViewById(R.id.change_pass);
         lang = (TextView) findViewById(R.id.language);
         logout = (TextView) findViewById(R.id.logout);
         sett_popup=(LinearLayout)findViewById(R.id.sett_popup);
@@ -87,6 +88,15 @@ public class HomeActivity extends Activity {
                 startActivity(intent);
             }
         });
+        change_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sett_popup.setVisibility(View.GONE);
+                Intent intent = new Intent(HomeActivity.this,ChangePasswordActivity.class);
+                intent.putExtra("type","change");
+                startActivity(intent);
+            }
+        });
         lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +110,9 @@ public class HomeActivity extends Activity {
             public void onClick(View v) {
                 Session.setUserid(HomeActivity.this,"-1","name");
                 sett_popup.setVisibility(View.GONE);
+                Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 

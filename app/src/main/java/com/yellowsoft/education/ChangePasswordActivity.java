@@ -2,7 +2,6 @@ package com.yellowsoft.education;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -25,43 +24,24 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 
-public class LoginActivity extends Activity {
-    EditText et_uname;
-    EditText et_password;
+public class ChangePasswordActivity extends Activity {
+    EditText new_pass,conf_pass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_screen);
-        TextView signup=(TextView)findViewById(R.id.signup);
-        TextView forgotpassword=(TextView)findViewById(R.id.forgotpass);
-        LinearLayout signin=(LinearLayout)findViewById(R.id.ll_submit_pass);
-         et_uname=(EditText)findViewById(R.id.et_login_uname);
-         et_password=(EditText)findViewById(R.id.et_login_pass);
+        setContentView(R.layout.change_password_screen);
+        TextView submit=(TextView)findViewById(R.id.submit_change_pass);
+        LinearLayout submit_ll=(LinearLayout)findViewById(R.id.ll_submit_pass);
+        new_pass=(EditText)findViewById(R.id.new_password);
+        conf_pass=(EditText)findViewById(R.id.confirm_password);
 
-        signin.setOnClickListener(new View.OnClickListener() {
+        submit_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            logindetails();
+                change_password();
             }
         });
-
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                intent.putExtra("type","normal");
-                startActivity(intent);
-            }
-        });
-
-        forgotpassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
     }
 
     @Override
@@ -85,20 +65,22 @@ public class LoginActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    private void logindetails() {
-        String uname = et_uname.getText().toString();
-        String password = et_password.getText().toString();
-        if (uname.equals(""))
-            Toast.makeText(LoginActivity.this, "Please Enter UserName", Toast.LENGTH_SHORT).show();
-        else if (password.equals(""))
-            Toast.makeText(LoginActivity.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
-        else if (password.length() < 6)
-            Toast.makeText(LoginActivity.this, "Password Lenth should be grether than 6 charcters", Toast.LENGTH_SHORT).show();
+    private void change_password() {
+        String n_pass = new_pass.getText().toString();
+        Log.e("pass",n_pass);
+        String c_pass = conf_pass.getText().toString();
+        if (n_pass.equals(""))
+            Toast.makeText(ChangePasswordActivity.this, "Please Enter New Password", Toast.LENGTH_SHORT).show();
+        else if (n_pass.length() < 6)
+            Toast.makeText(ChangePasswordActivity.this, "Password Lenth should be grether than 6 charcters", Toast.LENGTH_SHORT).show();
+        else if (!c_pass.equals(n_pass))
+            Toast.makeText(ChangePasswordActivity.this, "Please Enter Same Password", Toast.LENGTH_SHORT).show();
+
         else {
-            String url = Session.SERVERURL+"login.php?";
+            String url = Session.SERVERURL+"change-password.php?";
             try {
-                url = url + "username="+ URLEncoder.encode(uname, "utf-8")+
-                        "&password="+URLEncoder.encode(password,"utf-8");
+                url = url +"member_id="+ URLEncoder.encode(Session.getUserid(this), "utf-8")+"&password="+ URLEncoder.encode(n_pass, "utf-8")+
+                        "&cpassword="+URLEncoder.encode(c_pass,"utf-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -113,18 +95,14 @@ public class LoginActivity extends Activity {
                     progressDialog.dismiss();
                     Log.e("response is: ", jsonObject.toString());
                     try {
-                        String reply=jsonObject.getJSONArray("response").getJSONObject(0).getString("status");
-                        if(reply.equals("Failure")) {
-                            String msg = jsonObject.getJSONArray("response").getJSONObject(0).getString("message");
-                            Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        String reply=jsonObject.getString("status");
+                        if(reply.equals("Failed")) {
+                            String msg = jsonObject.getString("message");
+                            Toast.makeText(ChangePasswordActivity.this, msg, Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            String mem_id=jsonObject.getJSONArray("response").getJSONObject(0).getString("member_id");
-                            String name=jsonObject.getJSONArray("response").getJSONObject(0).getString("name");
-                            Session.setUserid(LoginActivity.this,mem_id,name);
-                            Intent mainIntent= new Intent(getApplicationContext(),HomeActivity.class);
-                            mainIntent.putExtra("uid",mem_id);
-                            startActivity(mainIntent);
+                            String msg=jsonObject.getString("message");
+                            Toast.makeText(ChangePasswordActivity.this, msg, Toast.LENGTH_SHORT).show();
                             finish();
                             }
 
@@ -139,7 +117,7 @@ public class LoginActivity extends Activity {
                 public void onErrorResponse(VolleyError error) {
                     // TODO Auto-generated method stub
                     Log.e("response is:", error.toString());
-                    Toast.makeText(LoginActivity.this, "Server not connected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePasswordActivity.this, "Server not connected", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
 
