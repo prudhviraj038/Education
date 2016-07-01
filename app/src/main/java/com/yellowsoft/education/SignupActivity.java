@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -42,6 +43,8 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -118,6 +121,7 @@ public class SignupActivity extends Activity {
         });
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -213,7 +217,8 @@ public class SignupActivity extends Activity {
                                     encodeImagetoString();
                                 else{
                                     Toast.makeText(getApplicationContext(), "Profile updated Succesfully", Toast.LENGTH_LONG).show();
-                                    finish();
+                                    get_user_details();
+
                                 }
                             }
                         } catch (JSONException e) {
@@ -244,6 +249,49 @@ public class SignupActivity extends Activity {
         };
         AppController.getInstance().addToRequestQueue(stringRequest);
     }
+    private void get_user_details() {
+        String url = Session.SERVERURL + "members-list.php?";
+        try {
+            url = url + "member_id="+ URLEncoder.encode(Session.getUserid(this), "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        Log.e("url--->", url);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait....");
+        progressDialog.setCancelable(false);
+        JsonArrayRequest jsObjRequest = new JsonArrayRequest( url, new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+
+                try {
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                    Session.setUserdetails(SignupActivity.this,jsonObject.toString());
+                    finish();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+                Log.e("response is:", error.toString());
+                Toast.makeText(SignupActivity.this, "Server not connected", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+
+        });
+
+// Access the RequestQueue through your singleton class.
+        AppController.getInstance().addToRequestQueue(jsObjRequest);
+
+    }
+
 
 
 
