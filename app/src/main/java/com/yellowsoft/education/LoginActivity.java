@@ -35,6 +35,7 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.login_screen);
         TextView signup=(TextView)findViewById(R.id.signup);
         TextView forgotpassword=(TextView)findViewById(R.id.forgotpass);

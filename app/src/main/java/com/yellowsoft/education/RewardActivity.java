@@ -38,6 +38,7 @@ public class RewardActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.rewards_screen);
         rewardses = new ArrayList<>();
         ImageView back=(ImageView)findViewById(R.id.back_rewrds);

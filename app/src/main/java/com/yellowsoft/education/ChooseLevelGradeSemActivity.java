@@ -53,6 +53,7 @@ public class ChooseLevelGradeSemActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.choose_subject_level);
         type = getIntent().getStringExtra("type");
         LinearLayout level_lv=(LinearLayout)findViewById(R.id.level);

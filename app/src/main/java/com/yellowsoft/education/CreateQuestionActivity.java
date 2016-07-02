@@ -50,6 +50,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.create_question);
         getSupportActionBar().hide();
 

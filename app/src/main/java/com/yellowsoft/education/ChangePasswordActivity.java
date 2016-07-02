@@ -30,6 +30,7 @@ public class ChangePasswordActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.change_password_screen);
         TextView submit=(TextView)findViewById(R.id.submit_change_pass);
         LinearLayout submit_ll=(LinearLayout)findViewById(R.id.ll_submit_pass);

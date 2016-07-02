@@ -64,6 +64,7 @@ public class SignupActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.signup_screen);
         final int RESULT_LOAD_IMAGE = 1;
         type = getIntent().getStringExtra("type");

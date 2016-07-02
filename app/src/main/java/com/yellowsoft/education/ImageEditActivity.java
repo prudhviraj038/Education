@@ -40,7 +40,7 @@ public class ImageEditActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // Session.forceRTLIfSupported(this);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.image_edit_view);
 
         photopath = getIntent().getStringExtra("image_path");

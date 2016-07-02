@@ -1,13 +1,19 @@
 package com.yellowsoft.education;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class SettingsActivity extends Activity {
@@ -15,6 +21,7 @@ public class SettingsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.settings_screen);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         edit_profile = (TextView) findViewById(R.id.edit_profile);
@@ -59,9 +66,7 @@ public class SettingsActivity extends Activity {
         lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity.this,RewardActivity.class);
-//                startActivity(intent);
-
+                show_alert();
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +79,38 @@ public class SettingsActivity extends Activity {
             }
         });
 
+    }
+    ArrayList<String> langs;
+    public void show_alert(){
+        langs = new ArrayList<>();
+        langs.add("English");
+        langs.add("Arabic");
+        AlertDialog.Builder alert1 = new AlertDialog.Builder(this);
+        alert1.setTitle("Choose Language");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, langs);
+        alert1.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0) {
+                    Session.set_user_language(SettingsActivity.this, "en");
+                    Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+
+
+                } else {
+                    Session.set_user_language(SettingsActivity.this, "ar");
+                    Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+
+
+                }
+            }
+
+        });
+        final AlertDialog dialog = alert1.create();
+        dialog.show();
     }
 
     @Override

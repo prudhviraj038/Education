@@ -46,7 +46,7 @@ public class AnswerActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.answer_screen);
         user_correct = "-1";
         submit_layout=(LinearLayout)findViewById(R.id.submit_ans);

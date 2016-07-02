@@ -43,6 +43,7 @@ public class HomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.home_screen);
         sub_id= new ArrayList<String>();
         sub_title=new ArrayList<String>();

@@ -43,6 +43,7 @@ public class ChooseQuestionaireActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_questionaire);
+        Session.forceRTLIfSupported(this);
         quer_id= new ArrayList<String>();
         que_count= new ArrayList<String>();
         LinearLayout choose_qr=(LinearLayout)findViewById(R.id.choose_qur);

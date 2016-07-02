@@ -33,6 +33,7 @@ public class AnswerAQuestionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.questionarie_silding_activity);
         getSupportActionBar().hide();
         Intent intent=getIntent();

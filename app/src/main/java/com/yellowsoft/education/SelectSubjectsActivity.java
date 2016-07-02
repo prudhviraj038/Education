@@ -54,6 +54,7 @@ public class SelectSubjectsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.select_subjects);
         choices = new HashMap<>();
         sub_id = new ArrayList<String>();

@@ -61,6 +61,7 @@ public class CreateChooseSubjectActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.choose_level_grade_for_create);
         LinearLayout sub_lv=(LinearLayout)findViewById(R.id.cre_choose_subject);
         LinearLayout level_lv=(LinearLayout)findViewById(R.id.cre_choose_level);

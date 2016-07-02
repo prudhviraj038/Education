@@ -41,11 +41,19 @@
                     android:id="@+id/name_tv"
                     android:textSize="10dp"
                     android:textColor="#474747"
-                    android:gravity="left" />
+                    android:gravity="left"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"></LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:showDividers="middle"
                     android:divider="@drawable/reward_grade_divider"
@@ -59,7 +67,8 @@
                         android:id="@+id/sec_tv"
                         android:textSize="10dp"
                         android:textColor="#474747"
-                        android:layout_marginRight="5dp" />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -68,7 +77,8 @@
                         android:id="@+id/grade_tv"
                         android:textSize="10dp"
                         android:textColor="#474747"
-                        android:layout_marginLeft="5dp" />
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp" />
                 </LinearLayout>
 
             </LinearLayout>

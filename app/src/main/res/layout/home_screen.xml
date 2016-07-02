@@ -17,18 +17,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/screen_top_background"
-                android:gravity="center|bottom"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingBottom="5dp" >
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/back_home_scr"
                     android:src="@drawable/back_arrow"
-                    android:adjustViewBounds="false"
-                    android:layout_marginBottom="5dp" />
+                    android:adjustViewBounds="false" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -82,22 +80,23 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:gravity="center|center_horizontal">
+                    android:gravity="center|center_horizontal"
+                    android:baselineAligned="false">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginRight="5dp"
-                        android:id="@+id/answer_a_question_layout">
+                        android:id="@+id/answer_a_question_layout"
+                        android:layout_marginLeft="5dp">
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
                             android:layout_alignParentTop="true"
                             android:paddingTop="30dp"
                             android:paddingLeft="10dp"
@@ -105,7 +104,8 @@
                             android:paddingBottom="20dp"
                             android:layout_centerVertical="true"
                             android:layout_marginTop="20dp"
-                            android:background="#ffffff">
+                            android:background="#ffffff"
+                            android:gravity="center">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -113,8 +113,9 @@
                                 android:text="Answer Questions"
                                 android:id="@+id/answer_question"
                                 android:textColor="#107fc9"
-                                android:textSize="15dp"
-                                android:layout_marginBottom="5dp" />
+                                android:textSize="14sp"
+                                android:layout_marginBottom="5dp"
+                                android:minLines="2" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -133,9 +134,7 @@
                             android:src="@drawable/tick_blue_icon"
                             android:layout_alignParentEnd="false"
                             android:layout_alignParentStart="false"
-                            android:layout_alignParentTop="false"
-                            android:layout_alignParentRight="false"
-                            android:layout_marginLeft="65dp" />
+                            android:layout_centerHorizontal="true" />
 
                     </RelativeLayout>
 
@@ -144,7 +143,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginLeft="5dp"
-                        android:id="@+id/make_question">
+                        android:id="@+id/make_question"
+                        android:layout_marginRight="5dp">
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -168,8 +168,9 @@
                                 android:text="Make a Questionaire"
                                 android:id="@+id/make_questiona"
                                 android:textColor="#107fc9"
-                                android:textSize="15dp"
-                                android:layout_marginBottom="5dp" />
+                                android:textSize="14sp"
+                                android:layout_marginBottom="5dp"
+                                android:minLines="2" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -188,9 +189,7 @@
                             android:src="@drawable/questionmark_icon"
                             android:layout_alignParentEnd="false"
                             android:layout_alignParentStart="false"
-                            android:layout_alignParentTop="false"
-                            android:layout_alignParentRight="false"
-                            android:layout_marginLeft="65dp" />
+                            android:layout_centerHorizontal="true" />
                     </RelativeLayout>
 
                 </LinearLayout>
