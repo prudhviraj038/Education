@@ -37,8 +37,7 @@ public class HomeActivity extends Activity {
     String subect_id="0";
     ArrayList<String> sub_id;
     ArrayList<String> sub_title;
-    TextView choose_subject,edit_profile,change_academics,change_sub,lang,logout,change_pass;
-    LinearLayout sett_popup;
+    TextView choose_subject;
     String user_id;
     ImageView reward_btn,settings_btn;
     @Override
@@ -47,71 +46,11 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.home_screen);
         sub_id= new ArrayList<String>();
         sub_title=new ArrayList<String>();
-        edit_profile = (TextView) findViewById(R.id.edit_profile);
-        change_academics = (TextView) findViewById(R.id.change_academics);
-        change_sub = (TextView) findViewById(R.id.change_subjects);
-        change_pass = (TextView) findViewById(R.id.change_pass);
-        lang = (TextView) findViewById(R.id.language);
-        logout = (TextView) findViewById(R.id.logout);
-        sett_popup=(LinearLayout)findViewById(R.id.sett_popup);
         settings_btn = (ImageView) findViewById(R.id.settings_btn);
         settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sett_popup.setVisibility(View.VISIBLE);
-            }
-        });
-        edit_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sett_popup.setVisibility(View.GONE);
-                Intent intent = new Intent(HomeActivity.this,SignupActivity.class);
-                intent.putExtra("type","change");
-                startActivity(intent);
-            }
-        });
-        change_sub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sett_popup.setVisibility(View.GONE);
-                Intent intent = new Intent(HomeActivity.this,SelectSubjectsActivity.class);
-                intent.putExtra("type","change");
-                startActivity(intent);
-            }
-        });
-        change_academics.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sett_popup.setVisibility(View.GONE);
-                Intent intent = new Intent(HomeActivity.this,ChooseLevelGradeSemActivity.class);
-                intent.putExtra("type","change");
-                startActivity(intent);
-            }
-        });
-        change_pass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sett_popup.setVisibility(View.GONE);
-                Intent intent = new Intent(HomeActivity.this,ChangePasswordActivity.class);
-                intent.putExtra("type","change");
-                startActivity(intent);
-            }
-        });
-        lang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity.this,RewardActivity.class);
-//                startActivity(intent);
-                sett_popup.setVisibility(View.GONE);
-            }
-        });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Session.setUserid(HomeActivity.this,"-1","name");
-                sett_popup.setVisibility(View.GONE);
-                Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent = new Intent(HomeActivity.this,SettingsActivity.class);
                 startActivity(intent);
             }
         });
