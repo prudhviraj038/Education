@@ -3,15 +3,11 @@ package com.yellowsoft.education;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,7 +31,7 @@ import java.util.ArrayList;
 public class RewardActivity extends Activity {
 
     TextView worng,total,correct,user_name;
-    ImageView user_image;
+    ImageView user_image,settings_btn,reward_home;
     JSONObject user_details ;
     ArrayList<Rewards> rewardses;
     RewardListAdapter rewardListAdapter;
@@ -54,7 +50,21 @@ public class RewardActivity extends Activity {
                 finish();
             }
         });
-
+        reward_home = (ImageView) findViewById(R.id.reward_home);
+        reward_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        settings_btn = (ImageView) findViewById(R.id.reward_settings);
+        settings_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RewardActivity.this,SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         worng = (TextView) findViewById(R.id.wrong_answers);
         total = (TextView) findViewById(R.id.no_of_questions);

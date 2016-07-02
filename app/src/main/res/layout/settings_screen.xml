@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView22"
+        android:src="@drawable/login_background"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView6"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:layout_marginBottom="50dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/ll_submit_pass"
+                android:layout_marginBottom="50dp"
+                android:gravity="center|bottom">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:showDividers="middle"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Edit Profile"
+                        android:id="@+id/edit_profile"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:padding="10dp"
+                        android:background="@drawable/login_divider_shadow" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Change Academics"
+                        android:id="@+id/change_academics"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:padding="10dp"
+                        android:background="@drawable/login_divider_shadow" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Change Subjects"
+                        android:id="@+id/change_subjects"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:padding="10dp"
+                        android:background="@drawable/login_divider_shadow" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Change Password"
+                        android:id="@+id/change_pass"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:padding="10dp"
+                        android:background="@drawable/login_divider_shadow" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Language"
+                        android:id="@+id/language"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:padding="10dp"
+                        android:background="@drawable/login_divider_shadow" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Logout"
+                        android:id="@+id/logout"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:padding="10dp"
+                        android:background="@drawable/login_divider_shadow" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>
