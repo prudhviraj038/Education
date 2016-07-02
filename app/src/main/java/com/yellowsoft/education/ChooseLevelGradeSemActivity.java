@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
@@ -26,6 +27,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,7 +70,7 @@ public class ChooseLevelGradeSemActivity extends Activity {
         que_count=new ArrayList<String>();
         mSelectedItems=new ArrayList<String>();
 
-        if(type.equals("")) {
+        if(type.equals("normal")) {
             Intent intent = getIntent();
              uname = intent.getStringExtra("username");
              pword = intent.getStringExtra("password");
@@ -184,7 +187,7 @@ public class ChooseLevelGradeSemActivity extends Activity {
                     if(type.equals("change")){
                         edit_profile();
                     }else{
-                        Intent intent = new Intent(getApplicationContext(), SelectSubjectsActivity.class);
+                        Intent intent = new Intent(ChooseLevelGradeSemActivity.this, SelectSubjectsActivity.class);
                         intent.putExtra("type","normal");
                         intent.putExtra("level_id", levels_id);
                         intent.putExtra("grade_id", grade_id);
@@ -226,7 +229,7 @@ public class ChooseLevelGradeSemActivity extends Activity {
                             }
                             else {
                                 Toast.makeText(getApplicationContext(), "Academics updated Succesfully", Toast.LENGTH_LONG).show();
-                                finish();
+                                get_user_details();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -362,9 +365,49 @@ public class ChooseLevelGradeSemActivity extends Activity {
 
     }
 
-    private void get_questionaries(){
+
+        private void get_user_details() {
+            String url = Session.SERVERURL + "members-list.php?";
+            try {
+                url = url + "member_id="+ URLEncoder.encode(Session.getUserid(this), "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            Log.e("url--->", url);
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Please wait....");
+            progressDialog.setCancelable(false);
+            JsonArrayRequest jsObjRequest = new JsonArrayRequest( url, new Response.Listener<JSONArray>() {
+
+                @Override
+                public void onResponse(JSONArray jsonArray) {
+
+                    try {
+                        JSONObject jsonObject = jsonArray.getJSONObject(0);
+                        Session.setUserdetails(ChooseLevelGradeSemActivity.this,jsonObject.toString());
+                        finish();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
 
-    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    // TODO Auto-generated method stub
+                    Log.e("response is:", error.toString());
+                    Toast.makeText(ChooseLevelGradeSemActivity.this, "Server not connected", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+
+            });
+
+// Access the RequestQueue through your singleton class.
+            AppController.getInstance().addToRequestQueue(jsObjRequest);
+
+        }
+
 }
 

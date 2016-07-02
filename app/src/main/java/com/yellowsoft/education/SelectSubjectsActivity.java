@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.loopj.android.http.AsyncHttpClient;
@@ -32,6 +33,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +60,7 @@ public class SelectSubjectsActivity extends Activity {
         sub_title = new ArrayList<String>();
          Intent intent=getIntent();
         type = getIntent().getStringExtra("type");
-         if(type.equals("")) {
+         if(type.equals("normal")) {
             level = intent.getStringExtra("level_id");
             grade = intent.getStringExtra("grade_id");
             semister = intent.getStringExtra("sem_id");
@@ -259,6 +262,7 @@ public class SelectSubjectsActivity extends Activity {
                         if(progressDialog!=null)
                             progressDialog.dismiss();
                         Log.e("signup_res",response);
+
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("response");
@@ -267,10 +271,6 @@ public class SelectSubjectsActivity extends Activity {
                                 Toast.makeText(SelectSubjectsActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                if(type.equals("change")){
-                                    Toast.makeText(getApplicationContext(), "Subjects updated Succesfully", Toast.LENGTH_LONG).show();
-                                    finish();
-                                }else {
                                     // Toast.makeText(SelectSubjectsActivity.this,response , Toast.LENGTH_SHORT).show();
                                     mem_id = jsonObject.getString("member_id");
                                     if (img_path != null)
@@ -283,7 +283,7 @@ public class SelectSubjectsActivity extends Activity {
                                         finish();
 
                                     }
-                                }                             }
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -324,14 +324,25 @@ public class SelectSubjectsActivity extends Activity {
 
         };
       AppController.getInstance().addToRequestQueue(stringRequest);
+        Log.e("username", uname);
+        Log.e("password", password);
+        Log.e("name", fullname);
+        Log.e("email", email);
+        Log.e("phone", mobile);
+        Log.e("governorate", gove);
+        Log.e("class", classs);
+        Log.e("level", level);
+        Log.e("grade", grade);
+        Log.e("semister", semister);
         String csv = "-1";
-        for (Map.Entry<String, String> entry : choices.entrySet()){
-            if(csv.equals("-1"))
-                csv  = entry.getValue();
+        for (Map.Entry<String, String> entry : choices.entrySet()) {
+            if (csv.equals("-1"))
+                csv = entry.getValue();
             else
-                csv=csv+","+entry.getValue();
+                csv = csv + "," + entry.getValue();
         }
-        Log.e("subjects", csv);
+        Log.e("subject", csv);
+
 
     }
 
@@ -433,6 +444,51 @@ public class SelectSubjectsActivity extends Activity {
             }
         }.execute(null, null, null);
     }
+
+
+    private void get_user_details() {
+        String url = Session.SERVERURL + "members-list.php?";
+        try {
+            url = url + "member_id="+ URLEncoder.encode(Session.getUserid(this), "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        Log.e("url--->", url);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait....");
+        progressDialog.setCancelable(false);
+        JsonArrayRequest jsObjRequest = new JsonArrayRequest( url, new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+
+                try {
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                    Session.setUserdetails(SelectSubjectsActivity.this,jsonObject.toString());
+                    finish();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+                Log.e("response is:", error.toString());
+                Toast.makeText(SelectSubjectsActivity.this, "Server not connected", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+
+        });
+
+// Access the RequestQueue through your singleton class.
+        AppController.getInstance().addToRequestQueue(jsObjRequest);
+
+    }
+
 
 }
 

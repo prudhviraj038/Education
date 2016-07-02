@@ -478,22 +478,22 @@ public class SignupActivity extends Activity {
         // Don't forget to change the IP address to your LAN address. Port no as well.
         params.put("file", encodedString);
         params.put("ext_str", "jpg");
-        params.put("member_id", "1");
+        params.put("member_id", Session.getUserid(this));
 
-        client.post(Session.SERVERURL+"add-member-image.php",
+        client.post(Session.SERVERURL + "add-member-image.php",
                 params, new AsyncHttpResponseHandler() {
                     // When the response returned by REST has Http
                     // response code '200'
                     @Override
                     public void onSuccess(String response) {
                         // Hide Progress Dialog
-                        Log.e("success",response);
+                        Log.e("success", response);
 
-                                Toast.makeText(getApplicationContext(),"Register Succesfull",
-                                        Toast.LENGTH_LONG).show();
-                                finish();
+                        Toast.makeText(getApplicationContext(), "Updated Succesfully",
+                                Toast.LENGTH_LONG).show();
+                        get_user_details();
 
-                            }
+                    }
 
 
                     // When the response returned by REST has Http
