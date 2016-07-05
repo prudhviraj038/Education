@@ -41,6 +41,7 @@ import java.util.Map;
 
 
 public class CreateQuestionActivity extends AppCompatActivity {
+    TextView write_que,book_ref,upload_video,submit;
 
     ArrayList<Questiondetails> questions;
     String correct="-1";
@@ -52,6 +53,10 @@ public class CreateQuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.create_question);
+        write_que = (TextView)findViewById(R.id.write_que_heading);
+        book_ref = (TextView)findViewById(R.id.book_ref_heading);
+        upload_video = (TextView)findViewById(R.id.upload_vid_heading);
+        submit = (TextView)findViewById(R.id.create_submit);
         getSupportActionBar().hide();
 
         one = (RadioButton ) findViewById(R.id.one);
@@ -112,6 +117,8 @@ public class CreateQuestionActivity extends AppCompatActivity {
         String answ1 = answer1.getText().toString();
         String answ2 = answer2.getText().toString();
         String answ3 = answer3.getText().toString();
+        String answ4 = answer4.getText().toString();
+
 
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.submit);
         linearLayout.setOnClickListener(new View.OnClickListener() {

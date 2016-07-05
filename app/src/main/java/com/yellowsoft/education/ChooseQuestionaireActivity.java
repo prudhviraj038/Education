@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 
 public class ChooseQuestionaireActivity extends Activity {
     HomeActivity homeActivity=new HomeActivity();
+    TextView choosequestion;
     String sub_id=homeActivity.subect_id;
     ArrayList<String> que_count;
     ArrayList<String> quer_id;
@@ -42,10 +44,11 @@ public class ChooseQuestionaireActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choose_questionaire);
         Session.forceRTLIfSupported(this);
+        setContentView(R.layout.choose_questionaire);
         quer_id= new ArrayList<String>();
         que_count= new ArrayList<String>();
+        choosequestion = (TextView)findViewById(R.id.choose_que_heading);
         LinearLayout choose_qr=(LinearLayout)findViewById(R.id.choose_qur);
         choose_qr.setOnClickListener(new View.OnClickListener() {
             @Override

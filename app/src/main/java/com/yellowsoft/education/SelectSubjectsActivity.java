@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -50,6 +51,7 @@ public class SelectSubjectsActivity extends Activity {
     String level,semister,grade,uname,password,fullname,email,mobile,gove,classs;
     String img_path;
     String mem_id;
+    TextView chose_subject,save_changes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,8 @@ public class SelectSubjectsActivity extends Activity {
         choices = new HashMap<>();
         sub_id = new ArrayList<String>();
         sub_title = new ArrayList<String>();
+        chose_subject = (TextView)findViewById(R.id.choose_sub_heading);
+        save_changes = (TextView)findViewById(R.id.select_changes);
          Intent intent=getIntent();
         type = getIntent().getStringExtra("type");
          if(type.equals("normal")) {

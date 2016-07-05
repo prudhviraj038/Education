@@ -33,7 +33,7 @@ import org.json.JSONObject;
 
 public class AnswerActivity extends Activity {
     String subject_id = "1";
-    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number;
+    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,answer;
     RadioButton one,two,three,four;
     LinearLayout submit_layout;
     String user_correct,api_correct;
@@ -53,6 +53,7 @@ public class AnswerActivity extends Activity {
         que_count = (TextView) findViewById(R.id.que_count);
         que_number = (TextView) findViewById(R.id.question_number);
         que_number.setText("QUESTION "+ String.valueOf(question_count));
+        answer = (TextView)findViewById(R.id.choose_ans_heading);
         give_up = (TextView) findViewById(R.id.give_up);
         give_up.setOnClickListener(new View.OnClickListener() {
             @Override

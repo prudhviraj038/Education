@@ -132,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="New here?"
-                        android:id="@+id/textView5"
+                        android:id="@+id/new_here"
                         android:textSize="15dp" />
 
                     <TextView
