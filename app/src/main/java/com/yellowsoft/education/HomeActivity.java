@@ -52,10 +52,11 @@ public class HomeActivity extends Activity {
         answer.setText(Session.getword(this, "answer_questions"));
 
         make_que= (TextView)findViewById(R.id.make_questiona);
-        make_que.setText(Session.getword(this, "make_question"));
+        make_que.setText(Session.getword(this, "make_a_questionaire"));
 
 
         books = (TextView)findViewById(R.id.books_reviews);
+        books.setText(Session.getword(this, "books_and_reviews"));
         settings_btn = (ImageView) findViewById(R.id.settings_btn);
         settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +79,7 @@ public class HomeActivity extends Activity {
 
         LinearLayout choose_sub=(LinearLayout)findViewById(R.id.choose_sub);
         choose_subject = (TextView) findViewById(R.id.tv1);
+        choose_subject.setText(Session.getword(this,"choose_subjects"));
         choose_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

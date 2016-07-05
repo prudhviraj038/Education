@@ -25,11 +25,17 @@ public class SettingsActivity extends Activity {
         setContentView(R.layout.settings_screen);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         edit_profile = (TextView) findViewById(R.id.edit_profile);
+        edit_profile.setText(Session.getword(this, "Edit_profile "));
         change_academics = (TextView) findViewById(R.id.change_academics);
+        change_academics.setText(Session.getword(this,"change_academics "));
         change_sub = (TextView) findViewById(R.id.change_subjects);
+        change_sub.setText(Session.getword(this,"change_subjects "));
         change_pass = (TextView) findViewById(R.id.change_pass);
+        change_pass.setText(Session.getword(this,"change_password "));
         lang = (TextView) findViewById(R.id.language);
+        lang.setText(Session.getword(this,"language "));
         logout = (TextView) findViewById(R.id.logout);
+        logout.setText(Session.getword(this,"logout "));
 
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override

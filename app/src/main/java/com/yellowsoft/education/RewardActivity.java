@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class RewardActivity extends Activity {
 
     TextView worng,total,correct,user_name;
-    TextView wrong,correctt,questions;
+    TextView wrong,correctt,questions,top_stud;
     ImageView user_image,settings_btn,reward_home;
     JSONObject user_details ;
     ArrayList<Rewards> rewardses;
@@ -42,6 +42,15 @@ public class RewardActivity extends Activity {
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.rewards_screen);
         rewardses = new ArrayList<>();
+        wrong = (TextView)findViewById(R.id.wrong_ans);
+        wrong.setText(Session.getword(this, "wrong_answers"));
+
+        questions = (TextView)findViewById(R.id.no_ques);
+        questions.setText(Session.getword(this, "no_of_questions"));
+
+        correctt = (TextView)findViewById(R.id.correct_ans);
+        correctt.setText(Session.getword(this, "correct_answers"));
+
         ImageView back=(ImageView)findViewById(R.id.back_rewrds);
         GridView reward_gridView=(GridView)findViewById(R.id.gridView_reward);
         rewardListAdapter = new RewardListAdapter(this,rewardses);
