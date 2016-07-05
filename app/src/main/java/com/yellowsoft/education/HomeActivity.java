@@ -49,7 +49,12 @@ public class HomeActivity extends Activity {
         sub_id= new ArrayList<String>();
         sub_title=new ArrayList<String>();
         answer = (TextView)findViewById(R.id.answer_question);
+        answer.setText(Session.getword(this, "answer_questions"));
+
         make_que= (TextView)findViewById(R.id.make_questiona);
+        make_que.setText(Session.getword(this, "make_question"));
+
+
         books = (TextView)findViewById(R.id.books_reviews);
         settings_btn = (ImageView) findViewById(R.id.settings_btn);
         settings_btn.setOnClickListener(new View.OnClickListener() {
