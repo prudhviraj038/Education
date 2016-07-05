@@ -6,11 +6,19 @@ import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.AnimationUtils;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONObject;
 
 
 public class MainActivity extends Activity {
@@ -24,18 +32,8 @@ public class MainActivity extends Activity {
         imageView.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animation));
         new Handler().postDelayed(new Runnable() {
             @Override
-            public void run() {
-                String abc= Session.getUserid(MainActivity.this);
-                if(abc.equals("-1")) {
-                    Intent mainIntent = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(mainIntent);
-                    finish();
+            public void run() {get_language_words();
                 }
-                else{
-                        Intent mainIntent= new Intent(getApplicationContext(),HomeActivity.class);
-                        startActivity(mainIntent);
-                        finish();
-                }}
 
         },2000);
 
@@ -63,4 +61,52 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void get_language_words(){
+        String url = Session.SERVERURL+"words-json.php";
+        Log.e("url", url);
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+
+                Log.e("response is: ", jsonObject.toString());
+                Session.set_user_language_words(MainActivity.this, jsonObject.toString());
+                String abc= Session.getUserid(MainActivity.this);
+                if(abc.equals("-1")) {
+                    Intent mainIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(mainIntent);
+                    finish();
+                }
+                else{
+                    Intent mainIntent= new Intent(getApplicationContext(),HomeActivity.class);
+                    startActivity(mainIntent);
+                    finish();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error", error.toString());
+                String abc= Session.getUserid(MainActivity.this);
+                if(abc.equals("-1")) {
+                    Intent mainIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(mainIntent);
+                    finish();
+                }
+                else{
+                    Intent mainIntent= new Intent(getApplicationContext(),HomeActivity.class);
+                    startActivity(mainIntent);
+                    finish();
+                }
+            }
+        });
+
+// Access the RequestQueue through your singleton class.
+        AppController.getInstance().addToRequestQueue(jsObjRequest);
+
+    }
+
 }
