@@ -75,7 +75,6 @@ public class SignupActivity extends Activity {
         LinearLayout user_ll=(LinearLayout)findViewById(R.id.user_name_ll);
         LinearLayout email_ll=(LinearLayout)findViewById(R.id.email_ll);
         signup_txt = (TextView) findViewById(R.id.signup2);
-
          et_uname = (EditText)findViewById(R.id.et_username);
          et_password=(EditText)findViewById(R.id.et_password);
          et_fullname=(EditText)findViewById(R.id.et_fullname);

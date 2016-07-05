@@ -26,16 +26,21 @@ import java.net.URLEncoder;
 
 public class ChangePasswordActivity extends Activity {
     EditText new_pass,conf_pass;
+    TextView sub_pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.change_password_screen);
-        TextView submit=(TextView)findViewById(R.id.submit_change_pass);
         LinearLayout submit_ll=(LinearLayout)findViewById(R.id.ll_submit_pass);
         new_pass=(EditText)findViewById(R.id.new_password);
+        new_pass.setText(Session.getword(this, "updatePassword"));
         conf_pass=(EditText)findViewById(R.id.confirm_password);
+        conf_pass.setText(Session.getword(this,"change_password"));
+        sub_pass=(TextView)findViewById(R.id.submit_change_pass);
+        sub_pass.setText(Session.getword(this,"submit"));
+
 
         submit_ll.setOnClickListener(new View.OnClickListener() {
             @Override

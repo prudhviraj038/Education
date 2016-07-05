@@ -56,7 +56,7 @@ public class CreateChooseSubjectActivity extends Activity {
     ArrayList<String> quer_id;
     ArrayList<String> que_count;
 
-    TextView choose_subject,choose_level,choose_grade,choose_section;
+    TextView choose_subject,choose_level,choose_grade,choose_section,choose_savechanges;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +68,16 @@ public class CreateChooseSubjectActivity extends Activity {
         LinearLayout grade_lv=(LinearLayout)findViewById(R.id.cre_choose_grade);
         LinearLayout semsect_lv=(LinearLayout)findViewById(R.id.cre_choose_section);
         choose_subject = (TextView) findViewById(R.id.cre_subject);
+        choose_subject.setText(Session.getword(this,"choose_subject"));
         choose_level = (TextView) findViewById(R.id.cre_level);
+        choose_level.setText(Session.getword(this, "choose_levels"));
         choose_grade = (TextView) findViewById(R.id.cre_grade);
+        choose_grade.setText(Session.getword(this,"choose_grade"));
         choose_section = (TextView) findViewById(R.id.cre_section);
+        choose_section.setText(Session.getword(this, "semester_section"));
+        choose_savechanges =(TextView)findViewById(R.id.savechanges);
+        choose_savechanges.setText(Session.getword(this,"savechanges"));
+
         final LinearLayout save_changes=(LinearLayout)findViewById(R.id.cre_save);
         sub_id= new ArrayList<String>();
         sub_title=new ArrayList<String>();

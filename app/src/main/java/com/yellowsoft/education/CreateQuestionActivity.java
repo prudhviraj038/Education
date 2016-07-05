@@ -41,7 +41,7 @@ import java.util.Map;
 
 
 public class CreateQuestionActivity extends AppCompatActivity {
-    TextView write_que,book_ref,upload_video,submit;
+    TextView write_que,book_ref,upload_video,write_ans,submit;
 
     ArrayList<Questiondetails> questions;
     String correct="-1";
@@ -54,9 +54,17 @@ public class CreateQuestionActivity extends AppCompatActivity {
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.create_question);
         write_que = (TextView)findViewById(R.id.write_que_heading);
+        write_que.setText(Session.getword(this, "write_y_question"));
         book_ref = (TextView)findViewById(R.id.book_ref_heading);
+        book_ref.setText(Session.getword(this,"reference"));
         upload_video = (TextView)findViewById(R.id.upload_vid_heading);
+        upload_video.setText(Session.getword(this,""));
+        write_ans = (TextView)findViewById(R.id.write_answer_heading);
+        write_ans.setText(Session.getword(this,"write_y_answer"));
+
         submit = (TextView)findViewById(R.id.create_submit);
+        submit.setText(Session.getword(this, "submit"));
+
         getSupportActionBar().hide();
 
         one = (RadioButton ) findViewById(R.id.one);

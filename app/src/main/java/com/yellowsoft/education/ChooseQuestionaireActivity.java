@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public class ChooseQuestionaireActivity extends Activity {
     HomeActivity homeActivity=new HomeActivity();
-    TextView choosequestion;
+    TextView choosequestion,save_changes;
     String sub_id=homeActivity.subect_id;
     ArrayList<String> que_count;
     ArrayList<String> quer_id;
@@ -49,6 +49,9 @@ public class ChooseQuestionaireActivity extends Activity {
         quer_id= new ArrayList<String>();
         que_count= new ArrayList<String>();
         choosequestion = (TextView)findViewById(R.id.choose_que_heading);
+        choosequestion.setText(Session.getword(this," "));
+        save_changes = (TextView)findViewById(R.id.save_changes_tv);
+        save_changes.setText(Session.getword(this, "savechanges"));
         LinearLayout choose_qr=(LinearLayout)findViewById(R.id.choose_qur);
         choose_qr.setOnClickListener(new View.OnClickListener() {
             @Override

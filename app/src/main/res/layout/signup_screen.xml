@@ -81,7 +81,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="CHOOSE YOUR SCHOOL  IMAGE ONLY"
-                            android:id="@+id/textView2"
+                            android:id="@+id/choose_image_heading"
                             android:textSize="10dp"
                             android:textColor="@color/text_black"
                             android:gravity="right" />

@@ -62,8 +62,11 @@ public class SelectSubjectsActivity extends Activity {
         sub_id = new ArrayList<String>();
         sub_title = new ArrayList<String>();
         chose_subject = (TextView)findViewById(R.id.choose_sub_heading);
+        chose_subject.setText(Session.getword(this,"choose_subject"));
         save_changes = (TextView)findViewById(R.id.select_changes);
-         Intent intent=getIntent();
+        save_changes.setText(Session.getword(this,"savechanges"));
+
+        Intent intent=getIntent();
         type = getIntent().getStringExtra("type");
          if(type.equals("normal")) {
             level = intent.getStringExtra("level_id");

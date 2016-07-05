@@ -38,18 +38,24 @@ public class LoginActivity extends Activity {
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.login_screen);
         TextView signup=(TextView)findViewById(R.id.signup);
+        signup.setText(Session.getword(this,"signUp"));
         TextView forgotpassword=(TextView)findViewById(R.id.forgotpass);
+        forgotpassword.setText(Session.getword(this, "forgot_Password"));
         LinearLayout signin=(LinearLayout)findViewById(R.id.ll_submit_pass);
          et_uname=(EditText)findViewById(R.id.et_login_uname);
-         et_password=(EditText)findViewById(R.id.et_login_pass);
-
+        et_uname.setText(Session.getword(this,"username"));
+        et_password=(EditText)findViewById(R.id.et_login_pass);
+        et_password.setText(Session.getword(this, "password"));
+        TextView new_here = (TextView)findViewById(R.id.new_here);
+        new_here.setText(Session.getword(this, "newhere"));
+        TextView sign_in = (TextView)findViewById(R.id.signin);
+        sign_in.setText(Session.getword(this,"signin"));
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             logindetails();
             }
         });
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -60,8 +60,12 @@ public class ChooseLevelGradeSemActivity extends Activity {
         LinearLayout grade_lv=(LinearLayout)findViewById(R.id.grade);
         LinearLayout semsect_lv=(LinearLayout)findViewById(R.id.semsection);
         choose_level = (TextView) findViewById(R.id.choose_level);
+        choose_level.setText(Session.getword(this," choose_levels"));
         choose_grade = (TextView) findViewById(R.id.choose_grade);
+        choose_grade.setText(Session.getword(this," choose_grade"));
         choose_section = (TextView) findViewById(R.id.choose_section);
+        choose_section.setText(Session.getword(this,"semester_section"));
+
         final LinearLayout save_changes=(LinearLayout)findViewById(R.id.save_change);
         level_id= new ArrayList<String>();
         level_title=new ArrayList<String>();

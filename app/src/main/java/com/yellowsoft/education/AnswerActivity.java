@@ -34,7 +34,7 @@ import org.json.JSONObject;
 public class AnswerActivity extends Activity {
     boolean cansubmit;
     String subject_id = "1";
-    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number;
+    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,choose_ans,submit_tv;
     RadioButton one,two,three,four;
     LinearLayout submit_layout;
     String user_correct,api_correct;
@@ -51,9 +51,14 @@ public class AnswerActivity extends Activity {
         setContentView(R.layout.answer_screen);
         user_correct = "-1";
         submit_layout=(LinearLayout)findViewById(R.id.submit_ans);
+        submit_tv =(TextView)findViewById(R.id.submit_answer);
+        submit_tv.setText(Session.getword(this,"submit_answer "));
         que_count = (TextView) findViewById(R.id.que_count);
         que_number = (TextView) findViewById(R.id.question_number);
+        que_number.setText(Session.getword(this, "question_no"));
         que_number.setText("QUESTION "+ String.valueOf(question_count));
+        choose_ans=(TextView)findViewById(R.id.choose_ans_heading);
+        choose_ans.setText(Session.getword(this,"choose_your_answer "));
         give_up = (TextView) findViewById(R.id.give_up);
         give_up.setOnClickListener(new View.OnClickListener() {
             @Override
