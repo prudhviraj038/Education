@@ -31,6 +31,7 @@ import java.util.ArrayList;
 public class RewardActivity extends Activity {
 
     TextView worng,total,correct,user_name;
+    TextView wrong,correctt,questions;
     ImageView user_image,settings_btn,reward_home;
     JSONObject user_details ;
     ArrayList<Rewards> rewardses;

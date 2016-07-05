@@ -98,6 +98,18 @@ public class Session {
         }
         return jsonObject;
     }
+    public static String getword(Context context,String word)
+    {
+
+        JSONObject words = get_user_language_words(context);
+
+        try {
+            return words.getString(word);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return word;
+        }
+    }
 
     public static void set_user_language_words(Context context,String user_id){
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

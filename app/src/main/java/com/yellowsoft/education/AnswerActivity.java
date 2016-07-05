@@ -35,7 +35,7 @@ public class AnswerActivity extends Activity {
     boolean cansubmit;
     String subject_id = "1";
     TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number;
-    ImageView one,two,three,four;
+    RadioButton one,two,three,four;
     LinearLayout submit_layout;
     String user_correct,api_correct;
     JSONObject user_details ;
@@ -73,7 +73,7 @@ public class AnswerActivity extends Activity {
                     if (user_correct.equals(api_correct)) {
                         Toast.makeText(AnswerActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
                         correct_count = correct_count + 1;
-                      //  que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
+                        que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
                         answertype = "correct";
                     } else {
                         Toast.makeText(AnswerActivity.this, "Wrong Answer", Toast.LENGTH_SHORT).show();
@@ -84,10 +84,10 @@ public class AnswerActivity extends Activity {
                 }
             }
         });
-        one = (ImageView ) findViewById(R.id.one);
-        two = (ImageView) findViewById(R.id.two);
-        three = (ImageView) findViewById(R.id.three);
-        four = (ImageView) findViewById(R.id.four);
+        one = (RadioButton ) findViewById(R.id.one);
+        two = (RadioButton) findViewById(R.id.two);
+        three = (RadioButton) findViewById(R.id.three);
+        four = (RadioButton) findViewById(R.id.four);
 
         question = (TextView)findViewById(R.id.question);
         ans1 = (TextView)findViewById(R.id.ans1);
@@ -119,20 +119,18 @@ public class AnswerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 user_correct = "1";
-                one.setImageResource(R.drawable.radio_btn_selected);;
-                two.setImageResource(R.drawable.radio_btn_unselected);
-                three.setImageResource(R.drawable.radio_btn_unselected);;
-                four.setImageResource(R.drawable.radio_btn_unselected);;
+                two.setChecked(false);
+                three.setChecked(false);
+                four.setChecked(false);
             }
         });
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user_correct = "2";
-                two.setImageResource(R.drawable.radio_btn_selected);;
-                one.setImageResource(R.drawable.radio_btn_unselected);;
-                three.setImageResource(R.drawable.radio_btn_unselected);;
-                four.setImageResource(R.drawable.radio_btn_unselected);;
+                one.setChecked(false);
+                three.setChecked(false);
+                four.setChecked(false);
             }
         });
 
@@ -140,10 +138,9 @@ public class AnswerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 user_correct = "3";
-                three.setImageResource(R.drawable.radio_btn_selected);;
-                two.setImageResource(R.drawable.radio_btn_unselected);;
-                one.setImageResource(R.drawable.radio_btn_unselected);;
-                four.setImageResource(R.drawable.radio_btn_unselected);;
+                two.setChecked(false);
+                one.setChecked(false);
+                four.setChecked(false);
             }
         });
 
@@ -151,10 +148,9 @@ public class AnswerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 user_correct = "4";
-                four.setImageResource(R.drawable.radio_btn_selected);;
-                two.setImageResource(R.drawable.radio_btn_unselected);;
-                three.setImageResource(R.drawable.radio_btn_unselected);;
-                one.setImageResource(R.drawable.radio_btn_unselected);;
+                two.setChecked(false);
+                three.setChecked(false);
+                one.setChecked(false);
             }
         });
 
@@ -185,10 +181,10 @@ public class AnswerActivity extends Activity {
 
     private void getquestion(){
         user_correct = "-1";
-        one.setImageResource(R.drawable.radio_btn_unselected);;
-        two.setImageResource(R.drawable.radio_btn_unselected);;
-        three.setImageResource(R.drawable.radio_btn_unselected);;
-        four.setImageResource(R.drawable.radio_btn_unselected);;
+        one.setChecked(false);
+        two.setChecked(false);
+        three.setChecked(false);
+        four.setChecked(false);
         try {
           //  JSONObject user_details = new JSONObject(Session.getUserdetails(this));
             String url = Session.SERVERURL+"question.php?user_id="+Session.getUserid(this)+"&level="+user_details.getJSONObject("level").getString("id")
@@ -216,7 +212,7 @@ public class AnswerActivity extends Activity {
                         api_correct = jsonObject.getString("correct");
                         question_count++;
                         que_number.setText("QUESTION "+ String.valueOf(question_count));
-                        que_count.setText(String.valueOf(question_count) + " / " + String.valueOf(next_stage));
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -245,10 +241,10 @@ public class AnswerActivity extends Activity {
     }
     private void setanswer(){
 
-        one.setImageResource(R.drawable.radio_btn_unselected);;;
-        two.setImageResource(R.drawable.radio_btn_unselected);;;
-        three.setImageResource(R.drawable.radio_btn_unselected);;;
-        four.setImageResource(R.drawable.radio_btn_unselected);;;
+        one.setChecked(false);
+        two.setChecked(false);
+        three.setChecked(false);
+        four.setChecked(false);
         try {
             JSONObject user_details = new JSONObject(Session.getUserdetails(this));
             String url = Session.SERVERURL+"answer.php?member_id="+Session.getUserid(this)+"&level="+user_details.getJSONObject("level").getString("id")
@@ -338,7 +334,7 @@ public class AnswerActivity extends Activity {
                 next_stage = next_stage + 5;
                 question_count=0;
                 correct_count=0;
-           //     que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
+                que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
                 getquestion();
             }
         });

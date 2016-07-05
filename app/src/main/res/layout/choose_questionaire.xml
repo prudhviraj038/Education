@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="CHOOSEYOUR QUESTION"
-                android:id="@+id/textView13"
+                android:id="@+id/choose_que_heading"
                 android:background="#107fc9"
                 android:layout_weight="1"
                 android:gravity="center|left"

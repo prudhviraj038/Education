@@ -40,6 +40,7 @@ public class HomeActivity extends Activity {
     TextView choose_subject;
     String user_id;
     ImageView reward_btn,settings_btn;
+    TextView answer,make_que,books;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,14 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.home_screen);
         sub_id= new ArrayList<String>();
         sub_title=new ArrayList<String>();
+        answer = (TextView)findViewById(R.id.answer_question);
+        answer.setText(Session.getword(this, "answer_questions"));
+
+        make_que= (TextView)findViewById(R.id.make_questiona);
+        make_que.setText(Session.getword(this, "make_question"));
+
+
+        books = (TextView)findViewById(R.id.books_reviews);
         settings_btn = (ImageView) findViewById(R.id.settings_btn);
         settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
