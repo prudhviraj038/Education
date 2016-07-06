@@ -312,6 +312,8 @@ public class AnswerActivity extends Activity {
                                 else
                                 {
                                     getquestion();
+
+
                                 }
 
                             }
