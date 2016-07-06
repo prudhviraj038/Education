@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,8 +35,8 @@ import org.json.JSONObject;
 public class AnswerActivity extends Activity {
     boolean cansubmit;
     String subject_id = "1";
-    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,choose_ans,submit_tv;
-    RadioButton one,two,three,four;
+    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,submit_answer;
+    ImageView one,two,three,four;
     LinearLayout submit_layout;
     String user_correct,api_correct;
     JSONObject user_details ;
@@ -50,15 +51,12 @@ public class AnswerActivity extends Activity {
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.answer_screen);
         user_correct = "-1";
+        cansubmit=true;
         submit_layout=(LinearLayout)findViewById(R.id.submit_ans);
-        submit_tv =(TextView)findViewById(R.id.submit_answer);
-        submit_tv.setText(Session.getword(this,"submit_answer "));
+        submit_answer = (TextView) findViewById(R.id.submit_answer);
         que_count = (TextView) findViewById(R.id.que_count);
         que_number = (TextView) findViewById(R.id.question_number);
-        que_number.setText(Session.getword(this, "question_no"));
         que_number.setText("QUESTION "+ String.valueOf(question_count));
-        choose_ans=(TextView)findViewById(R.id.choose_ans_heading);
-        choose_ans.setText(Session.getword(this,"choose_your_answer "));
         give_up = (TextView) findViewById(R.id.give_up);
         give_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,29 +68,34 @@ public class AnswerActivity extends Activity {
         submit_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(user_correct.equals("-1")){
-                    Toast.makeText(AnswerActivity.this, "Select An Answer", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    if (user_correct.equals(api_correct)) {
-                        Toast.makeText(AnswerActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
-                        correct_count = correct_count + 1;
-                        que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
-                        answertype = "correct";
+                if (cansubmit) {
+                    if (user_correct.equals("-1")) {
+                        Toast.makeText(AnswerActivity.this, "Select An Answer", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(AnswerActivity.this, "Wrong Answer", Toast.LENGTH_SHORT).show();
-                        answertype = "wrong";
-                    }
+                        if (user_correct.equals(api_correct)) {
+                            Toast.makeText(AnswerActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                            correct_count = correct_count + 1;
 
-                    setanswer();
+                            answertype = "correct";
+                        } else {
+                            Toast.makeText(AnswerActivity.this, "Wrong Answer", Toast.LENGTH_SHORT).show();
+                            answertype = "wrong";
+                        }
+
+                        setanswer();
+                    }
+                }
+                else{
+                    cansubmit=true;
+                    getquestion();
+                    submit_answer.setText("SUBMIT ANSWER");
                 }
             }
         });
-        one = (RadioButton ) findViewById(R.id.one);
-        two = (RadioButton) findViewById(R.id.two);
-        three = (RadioButton) findViewById(R.id.three);
-        four = (RadioButton) findViewById(R.id.four);
+        one = (ImageView) findViewById(R.id.one);
+        two = (ImageView) findViewById(R.id.two);
+        three = (ImageView) findViewById(R.id.three);
+        four = (ImageView) findViewById(R.id.four);
 
         question = (TextView)findViewById(R.id.question);
         ans1 = (TextView)findViewById(R.id.ans1);
@@ -124,18 +127,20 @@ public class AnswerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 user_correct = "1";
-                two.setChecked(false);
-                three.setChecked(false);
-                four.setChecked(false);
+                one.setImageResource(R.drawable.radio_btn_selected);
+                two.setImageResource(R.drawable.radio_btn_unselected);
+                three.setImageResource(R.drawable.radio_btn_unselected);
+                four.setImageResource(R.drawable.radio_btn_unselected);
             }
         });
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user_correct = "2";
-                one.setChecked(false);
-                three.setChecked(false);
-                four.setChecked(false);
+                two.setImageResource(R.drawable.radio_btn_selected);
+                one.setImageResource(R.drawable.radio_btn_unselected);
+                three.setImageResource(R.drawable.radio_btn_unselected);
+                four.setImageResource(R.drawable.radio_btn_unselected);
             }
         });
 
@@ -143,9 +148,10 @@ public class AnswerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 user_correct = "3";
-                two.setChecked(false);
-                one.setChecked(false);
-                four.setChecked(false);
+                three.setImageResource(R.drawable.radio_btn_selected);
+                two.setImageResource(R.drawable.radio_btn_unselected);
+                one.setImageResource(R.drawable.radio_btn_unselected);
+                four.setImageResource(R.drawable.radio_btn_unselected);
             }
         });
 
@@ -153,9 +159,10 @@ public class AnswerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 user_correct = "4";
-                two.setChecked(false);
-                three.setChecked(false);
-                one.setChecked(false);
+                four.setImageResource(R.drawable.radio_btn_selected);
+                two.setImageResource(R.drawable.radio_btn_unselected);
+                three.setImageResource(R.drawable.radio_btn_unselected);
+                one.setImageResource(R.drawable.radio_btn_unselected);
             }
         });
 
@@ -186,10 +193,10 @@ public class AnswerActivity extends Activity {
 
     private void getquestion(){
         user_correct = "-1";
-        one.setChecked(false);
-        two.setChecked(false);
-        three.setChecked(false);
-        four.setChecked(false);
+        one.setImageResource(R.drawable.radio_btn_unselected);
+        two.setImageResource(R.drawable.radio_btn_unselected);
+        three.setImageResource(R.drawable.radio_btn_unselected);
+        four.setImageResource(R.drawable.radio_btn_unselected);
         try {
           //  JSONObject user_details = new JSONObject(Session.getUserdetails(this));
             String url = Session.SERVERURL+"question.php?user_id="+Session.getUserid(this)+"&level="+user_details.getJSONObject("level").getString("id")
@@ -217,7 +224,7 @@ public class AnswerActivity extends Activity {
                         api_correct = jsonObject.getString("correct");
                         question_count++;
                         que_number.setText("QUESTION "+ String.valueOf(question_count));
-
+                        que_count.setText(String.valueOf(question_count)+ "/" + String.valueOf(next_stage));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -246,10 +253,10 @@ public class AnswerActivity extends Activity {
     }
     private void setanswer(){
 
-        one.setChecked(false);
-        two.setChecked(false);
-        three.setChecked(false);
-        four.setChecked(false);
+        one.setImageResource(R.drawable.radio_btn_unselected);;
+        two.setImageResource(R.drawable.radio_btn_unselected);;
+        three.setImageResource(R.drawable.radio_btn_unselected);;
+        four.setImageResource(R.drawable.radio_btn_unselected);;
         try {
             JSONObject user_details = new JSONObject(Session.getUserdetails(this));
             String url = Session.SERVERURL+"answer.php?member_id="+Session.getUserid(this)+"&level="+user_details.getJSONObject("level").getString("id")
@@ -285,7 +292,14 @@ public class AnswerActivity extends Activity {
                                     show_alert_fail();
                                 }
                             }else{
-                                getquestion();
+                                if(answertype.equals("wrong")|| answertype.equals("skipped")){
+                                    show_alert_wrong();
+                                }
+                                else
+                                {
+                                    getquestion();
+                                }
+
                             }
 
 
@@ -337,9 +351,9 @@ public class AnswerActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 next_stage = next_stage + 5;
-                question_count=0;
-                correct_count=0;
-                que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
+                question_count = 0;
+                correct_count = 0;
+                //que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
                 getquestion();
             }
         });
@@ -354,6 +368,54 @@ public class AnswerActivity extends Activity {
                 finish();
             }
         });
+    }
+
+    public void show_alert_wrong(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Wrong answer!");
+        alertDialogBuilder.setMessage("Do You want to know the correct answer?");
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                show_correct_answer();
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton("No, Continue Exam", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getquestion();
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+
+    private  void show_correct_answer(){
+    cansubmit=false;
+        submit_answer.setText("NEXT QUESTION");
+        if(user_correct.equals("1"))
+            one.setImageResource(R.drawable.radio_btn_wrong);
+            else if(user_correct.equals("2"))
+                two.setImageResource(R.drawable.radio_btn_wrong);
+        else if(user_correct.equals("3"))
+            three.setImageResource(R.drawable.radio_btn_wrong);
+        else if(user_correct.equals("4"))
+            four.setImageResource(R.drawable.radio_btn_wrong);
+
+
+        if(api_correct.equals("1"))
+            one.setImageResource(R.drawable.radio_btn_correct);
+        else if(api_correct.equals("2"))
+            two.setImageResource(R.drawable.radio_btn_correct);
+        else if(api_correct.equals("3"))
+            three.setImageResource(R.drawable.radio_btn_correct);
+        else if(api_correct.equals("4"))
+            four.setImageResource(R.drawable.radio_btn_correct);
+
+
     }
 
 
