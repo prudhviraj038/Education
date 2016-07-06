@@ -59,12 +59,15 @@ public class ChooseLevelGradeSemActivity extends Activity {
         LinearLayout level_lv=(LinearLayout)findViewById(R.id.level);
         LinearLayout grade_lv=(LinearLayout)findViewById(R.id.grade);
         LinearLayout semsect_lv=(LinearLayout)findViewById(R.id.semsection);
-        choose_level = (TextView) findViewById(R.id.choose_level);
-        choose_level.setText(Session.getword(this," choose_levels"));
-        choose_grade = (TextView) findViewById(R.id.choose_grade);
-        choose_grade.setText(Session.getword(this," choose_grade"));
-        choose_section = (TextView) findViewById(R.id.choose_section);
-        choose_section.setText(Session.getword(this,"semester_section"));
+        choose_level = (TextView) findViewById(R.id.choose_level_heading);
+        choose_level.setText(Session.getword(this,"choose_levels"));
+        choose_grade = (TextView) findViewById(R.id.choose_grade_heading);
+        choose_grade.setText(Session.getword(this,"choose_grade"));
+        choose_section = (TextView) findViewById(R.id.choose_section_heading);
+        choose_section.setText(Session.getword(this,"choose_subject"));
+        TextView sav_chnges = (TextView)findViewById(R.id.savechanges);
+        sav_chnges.setText(Session.getword(this,"savechanges"));
+
 
         final LinearLayout save_changes=(LinearLayout)findViewById(R.id.save_change);
         level_id= new ArrayList<String>();
@@ -85,6 +88,7 @@ public class ChooseLevelGradeSemActivity extends Activity {
             gove = intent.getStringExtra("gover");
             cls = intent.getStringExtra("class");
             imgpath = intent.getStringExtra("image_path");
+
         }
 
         if(type.equals("change"))

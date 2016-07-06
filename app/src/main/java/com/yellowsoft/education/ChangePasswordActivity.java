@@ -35,9 +35,8 @@ public class ChangePasswordActivity extends Activity {
         setContentView(R.layout.change_password_screen);
         LinearLayout submit_ll=(LinearLayout)findViewById(R.id.ll_submit_pass);
         new_pass=(EditText)findViewById(R.id.new_password);
-        new_pass.setText(Session.getword(this, "updatePassword"));
+        new_pass.setText(Session.getword(this,"new_password"));
         conf_pass=(EditText)findViewById(R.id.confirm_password);
-        conf_pass.setText(Session.getword(this,"change_password"));
         sub_pass=(TextView)findViewById(R.id.submit_change_pass);
         sub_pass.setText(Session.getword(this,"submit"));
 
@@ -76,11 +75,11 @@ public class ChangePasswordActivity extends Activity {
         Log.e("pass",n_pass);
         String c_pass = conf_pass.getText().toString();
         if (n_pass.equals(""))
-            Toast.makeText(ChangePasswordActivity.this, "Please Enter New Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChangePasswordActivity.this, Session.getword(ChangePasswordActivity.this,"new_password"), Toast.LENGTH_SHORT).show();
         else if (n_pass.length() < 6)
             Toast.makeText(ChangePasswordActivity.this, "Password Lenth should be grether than 6 charcters", Toast.LENGTH_SHORT).show();
         else if (!c_pass.equals(n_pass))
-            Toast.makeText(ChangePasswordActivity.this, "Please Enter Same Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChangePasswordActivity.this,Session.getword(ChangePasswordActivity.this,"Please Enter Same Password"), Toast.LENGTH_SHORT).show();
 
         else {
             String url = Session.SERVERURL+"change-password.php?";

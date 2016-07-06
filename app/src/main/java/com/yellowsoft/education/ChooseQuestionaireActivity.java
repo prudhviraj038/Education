@@ -49,9 +49,9 @@ public class ChooseQuestionaireActivity extends Activity {
         quer_id= new ArrayList<String>();
         que_count= new ArrayList<String>();
         choosequestion = (TextView)findViewById(R.id.choose_que_heading);
-        choosequestion.setText(Session.getword(this," "));
+        choosequestion.setText(Session.getword(this,"Type your Question"));
         save_changes = (TextView)findViewById(R.id.save_changes_tv);
-        save_changes.setText(Session.getword(this, "savechanges"));
+        save_changes.setText(Session.getword(this,"savechanges"));
         LinearLayout choose_qr=(LinearLayout)findViewById(R.id.choose_qur);
         choose_qr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +115,7 @@ public class ChooseQuestionaireActivity extends Activity {
         }
         Log.e("url--->", url);
         final ProgressDialog progressDialog = new ProgressDialog(ChooseQuestionaireActivity.this);
-        progressDialog.setMessage("Please wait....");
+        progressDialog.setMessage(Session.getword(this,"loading"));
         progressDialog.setCancelable(false);
         progressDialog.show();
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

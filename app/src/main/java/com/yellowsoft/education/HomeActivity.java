@@ -84,7 +84,7 @@ public class HomeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
-                builder.setTitle("CHOOSE SUBJECT");
+                builder.setTitle(Session.getword(HomeActivity.this,"CHOOSE SUBJECT"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.select_dialog_item, sub_title);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
@@ -107,7 +107,7 @@ public class HomeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (subect_id.equals("0")) {
-                    Toast.makeText(HomeActivity.this, "Please Select Subject", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, Session.getword(HomeActivity.this, "please_select_subjects"), Toast.LENGTH_SHORT).show();
                 } else {
 
                     Intent intent = new Intent(getApplicationContext(), CreateQuestionActivity.class);
@@ -122,7 +122,7 @@ public class HomeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(subect_id.equals("0")){
-                    Toast.makeText(HomeActivity.this,"Please Select Subject", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, Session.getword(HomeActivity.this,"please_select_subjects"), Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(getApplicationContext(), AnswerActivity.class);
                     intent.putExtra("subj_id",subect_id);

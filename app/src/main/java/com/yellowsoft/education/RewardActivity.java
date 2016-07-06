@@ -50,6 +50,8 @@ public class RewardActivity extends Activity {
 
         correctt = (TextView)findViewById(R.id.correct_ans);
         correctt.setText(Session.getword(this, "correct_answers"));
+        top_stud=(TextView)findViewById(R.id.top_students);
+        top_stud.setText(Session.getword(this,"top_students"));
 
         ImageView back=(ImageView)findViewById(R.id.back_rewrds);
         GridView reward_gridView=(GridView)findViewById(R.id.gridView_reward);

@@ -70,19 +70,31 @@ public class SignupActivity extends Activity {
         type = getIntent().getStringExtra("type");
         ImageView back=(ImageView)findViewById(R.id.back_signup_scr);
         TextView selectimg=(TextView)findViewById(R.id.select_image);
+        selectimg.setText(Session.getword(this,"selct_image"));
+        TextView choose_sch_img = (TextView)findViewById(R.id.choose_image_heading);
+        choose_sch_img.setText(Session.getword(this,"choose_your_school_image_only"));
         LinearLayout signup=(LinearLayout)findViewById(R.id.ll_signup);
         LinearLayout pass_ll=(LinearLayout)findViewById(R.id.pass_ll);
         LinearLayout user_ll=(LinearLayout)findViewById(R.id.user_name_ll);
         LinearLayout email_ll=(LinearLayout)findViewById(R.id.email_ll);
         signup_txt = (TextView) findViewById(R.id.signup2);
+        signup_txt.setText(Session.getword(this,"signUp"));
          et_uname = (EditText)findViewById(R.id.et_username);
+         et_uname.setText(Session.getword(this,"username"));
          et_password=(EditText)findViewById(R.id.et_password);
+        et_password.setText(Session.getword(this,"password"));
          et_fullname=(EditText)findViewById(R.id.et_fullname);
+        et_fullname.setText(Session.getword(this,"fullname"));
          et_email=(EditText)findViewById(R.id.et_email);
+        et_email.setText(Session.getword(this,"email"));
          et_mobile=(EditText)findViewById(R.id.et_mobile);
+        et_mobile.setText(Session.getword(this,"mobile"));
          et_gove=(EditText)findViewById(R.id.et_gove);
+        et_gove.setText(Session.getword(this,"governorate"));
          et_class=(EditText)findViewById(R.id.et_class);
+        et_class.setText(Session.getword(this,"class"));
             profile_image = (ImageView) findViewById(R.id.profile_image);
+
         selectimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

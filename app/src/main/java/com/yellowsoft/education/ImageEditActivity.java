@@ -51,15 +51,16 @@ public class ImageEditActivity extends Activity {
         imageView = (CropImageView) findViewById(R.id.imageView38);
         imageView.setGuidelines(2);
         imageView.setImageBitmap(BitmapFactory.decodeFile(photopath));
-        imageView.setAspectRatio(4,3);
+        imageView.setAspectRatio(4, 3);
         imageView.setFixedAspectRatio(true);
         TextView save_btn = (TextView) findViewById(R.id.save_btn);
+        save_btn.setText(Session.getword(this,"save"));
         TextView crop_btn = (TextView) findViewById(R.id.crop_btn);
-
-
+        crop_btn.setText(Session.getword(this,"crop"));
         ImageView rotate_right_btn = (ImageView) findViewById(R.id.rotate_right);
         ImageView rotate_left_btn = (ImageView) findViewById(R.id.rotate_left);
         TextView cancel_btn = (TextView) findViewById(R.id.cancel_btn);
+        cancel_btn.setText(Session.getword(this,"cancel"));
         //angle = 90f;
         //new DownloadFilesTask().execute(photopath);
         rotate_right_btn.setOnClickListener(new View.OnClickListener() {

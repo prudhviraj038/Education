@@ -118,6 +118,13 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/user_name_ll">
 
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageView4"
+                            android:src="@drawable/name_icon"
+                            android:adjustViewBounds="true" />
+
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -127,15 +134,8 @@
                             android:layout_weight="1"
                             android:textSize="15dp"
                             android:background="@color/signup_field_bg"
-                            android:gravity="center|right"
-                            android:paddingRight="10dp" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView4"
-                            android:src="@drawable/name_icon"
-                            android:adjustViewBounds="true" />
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp" />
 
                     </LinearLayout>
 
@@ -145,23 +145,24 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/pass_ll">
 
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageView5"
+                            android:src="@drawable/lock_icon" />
+
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:inputType="textPassword"
                             android:id="@+id/et_password"
                             android:layout_weight="1"
-                            android:gravity="center|right"
                             android:hint="Password"
                             android:textSize="15dp"
                             android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp" />
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView5"
-                            android:src="@drawable/lock_icon" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -169,23 +170,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" >
 
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageView6"
+                            android:src="@drawable/name_icon" />
+
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:inputType="textPersonName"
                             android:id="@+id/et_fullname"
                             android:hint="Full Name"
-                            android:gravity="center|right"
                             android:layout_weight="1"
                             android:textSize="15dp"
                             android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp" />
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView6"
-                            android:src="@drawable/name_icon" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -194,23 +196,23 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/email_ll">
 
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:inputType="textEmailAddress"
-                            android:id="@+id/et_email"
-                            android:gravity="center|right"
-                            android:hint="E-Mail"
-                            android:layout_weight="1"
-                            android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp" />
-
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:id="@+id/imageView7"
                             android:src="@drawable/email_icon" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:inputType="textEmailAddress"
+                            android:id="@+id/et_email"
+                            android:hint="E-Mail"
+                            android:layout_weight="1"
+                            android:textSize="15dp"
+                            android:background="@color/signup_field_bg"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp" />
 
                     </LinearLayout>
 
@@ -218,18 +220,6 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" >
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:inputType="phone"
-                            android:id="@+id/et_mobile"
-                            android:gravity="center|right"
-                            android:hint="Mobile"
-                            android:textSize="15dp"
-                            android:layout_weight="1"
-                            android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -237,12 +227,30 @@
                             android:id="@+id/imageView8"
                             android:src="@drawable/mobile_icon" />
 
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:inputType="phone"
+                            android:id="@+id/et_mobile"
+                            android:hint="Mobile"
+                            android:textSize="15dp"
+                            android:layout_weight="1"
+                            android:background="@color/signup_field_bg"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp" />
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageView9"
+                            android:src="@drawable/gove_icon" />
 
                         <EditText
                             android:layout_width="wrap_content"
@@ -250,17 +258,12 @@
                             android:inputType="textPersonName"
                             android:id="@+id/et_gove"
                             android:hint="Governorate"
-                            android:gravity="center|right"
                             android:layout_weight="1"
                             android:textSize="15dp"
                             android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp" />
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView9"
-                            android:src="@drawable/gove_icon" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -268,23 +271,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" >
 
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageView10"
+                            android:src="@drawable/class_icon" />
+
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:inputType="textPersonName"
                             android:id="@+id/et_class"
                             android:hint="Class"
-                            android:gravity="center|right"
                             android:layout_weight="1"
                             android:textSize="15dp"
                             android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp" />
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView10"
-                            android:src="@drawable/class_icon" />
                     </LinearLayout>
 
                 </LinearLayout>

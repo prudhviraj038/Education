@@ -79,8 +79,11 @@ public class RewardListAdapter extends BaseAdapter{
         holder.tv4=(TextView) rowView.findViewById(R.id.number_wrong_tv);
         holder.tv5=(TextView) rowView.findViewById(R.id.number_correct_tv);
         holder.tv6=(TextView) rowView.findViewById(R.id.gave_tv);
+        holder.tv6.setText(Session.getword(context,"giveup"));
         holder.tv7=(TextView) rowView.findViewById(R.id.wrong_tv);
+        holder.tv7.setText(Session.getword(context,"wrong_answers"));
         holder.tv8=(TextView) rowView.findViewById(R.id.correct_tv);
+        holder.tv8.setText(Session.getword(context,"correct_answers"));
 
         holder.img=(ImageView) rowView.findViewById(R.id.reward_list_image);
         Picasso.with(context).load(rewardses.get(position).image).into(holder.img);

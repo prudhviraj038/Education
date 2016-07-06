@@ -1,41 +1,45 @@
 package com.yellowsoft.education;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.app.AlertDialog;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+        import android.app.ProgressDialog;
+        import android.content.DialogInterface;
+        import android.content.Intent;
+        import android.content.pm.ActivityInfo;
+        import android.os.Handler;
+        import android.support.v7.app.ActionBarActivity;
+        import android.os.Bundle;
+
+        import android.util.Log;
+        import android.view.Menu;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.view.animation.AnimationUtils;
+        import android.widget.GridView;
+        import android.widget.ImageView;
+        import android.widget.LinearLayout;
+        import android.widget.RadioButton;
+        import android.widget.TextView;
+        import android.widget.Toast;
+
+        import com.android.volley.Request;
+        import com.android.volley.Response;
+        import com.android.volley.VolleyError;
+        import com.android.volley.toolbox.JsonObjectRequest;
+        import com.squareup.picasso.Picasso;
+
+        import org.json.JSONArray;
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
 
 public class AnswerActivity extends Activity {
     boolean cansubmit;
     String subject_id = "1";
-    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,choose_ans,submit_tv;
-    RadioButton one,two,three,four;
+    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,submit_answer;
+    ImageView one,two,three,four;
     LinearLayout submit_layout;
     String user_correct,api_correct;
     JSONObject user_details ;
@@ -50,16 +54,21 @@ public class AnswerActivity extends Activity {
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.answer_screen);
         user_correct = "-1";
+        cansubmit=true;
+        TextView give_pass = (TextView)findViewById(R.id.give_pass);
+        give_pass.setText(Session.getword(this,"give_or_pass"));
+        TextView refference = (TextView)findViewById(R.id.reference_sub);
+        refference.setText(Session.getword(this,"reference"));
+        TextView choose_ans = (TextView)findViewById(R.id.choose_ans_heading);
+        choose_ans.setText(Session.getword(this,"choose_your_answer"));
         submit_layout=(LinearLayout)findViewById(R.id.submit_ans);
-        submit_tv =(TextView)findViewById(R.id.submit_answer);
-        submit_tv.setText(Session.getword(this,"submit_answer "));
+        submit_answer = (TextView) findViewById(R.id.submit_answer);
+
         que_count = (TextView) findViewById(R.id.que_count);
         que_number = (TextView) findViewById(R.id.question_number);
-        que_number.setText(Session.getword(this, "question_no"));
-        que_number.setText("QUESTION "+ String.valueOf(question_count));
-        choose_ans=(TextView)findViewById(R.id.choose_ans_heading);
-        choose_ans.setText(Session.getword(this,"choose_your_answer "));
+        que_number.setText(Session.getword(this,"question"+ String.valueOf(question_count)));
         give_up = (TextView) findViewById(R.id.give_up);
+        give_up.setText(Session.getword(this,"giveup"));
         give_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,29 +79,34 @@ public class AnswerActivity extends Activity {
         submit_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(user_correct.equals("-1")){
-                    Toast.makeText(AnswerActivity.this, "Select An Answer", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    if (user_correct.equals(api_correct)) {
-                        Toast.makeText(AnswerActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
-                        correct_count = correct_count + 1;
-                        que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
-                        answertype = "correct";
+                if (cansubmit) {
+                    if (user_correct.equals("-1")) {
+                        Toast.makeText(AnswerActivity.this, Session.getword(AnswerActivity.this,"Pls_sel_corr_ans"), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(AnswerActivity.this, "Wrong Answer", Toast.LENGTH_SHORT).show();
-                        answertype = "wrong";
-                    }
+                        if (user_correct.equals(api_correct)) {
+                            Toast.makeText(AnswerActivity.this, Session.getword(AnswerActivity.this,"correct_answers"), Toast.LENGTH_SHORT).show();
+                            correct_count = correct_count + 1;
 
-                    setanswer();
+                            answertype = "correct";
+                        } else {
+                            Toast.makeText(AnswerActivity.this, Session.getword(AnswerActivity.this,"wrong_answers"), Toast.LENGTH_SHORT).show();
+                            answertype = "wrong";
+                        }
+
+                        setanswer();
+                    }
+                }
+                else{
+                    cansubmit=true;
+                    getquestion();
+
                 }
             }
         });
-        one = (RadioButton ) findViewById(R.id.one);
-        two = (RadioButton) findViewById(R.id.two);
-        three = (RadioButton) findViewById(R.id.three);
-        four = (RadioButton) findViewById(R.id.four);
+        one = (ImageView) findViewById(R.id.one);
+        two = (ImageView) findViewById(R.id.two);
+        three = (ImageView) findViewById(R.id.three);
+        four = (ImageView) findViewById(R.id.four);
 
         question = (TextView)findViewById(R.id.question);
         ans1 = (TextView)findViewById(R.id.ans1);
@@ -124,18 +138,20 @@ public class AnswerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 user_correct = "1";
-                two.setChecked(false);
-                three.setChecked(false);
-                four.setChecked(false);
+                one.setImageResource(R.drawable.radio_btn_selected);
+                two.setImageResource(R.drawable.radio_btn_unselected);
+                three.setImageResource(R.drawable.radio_btn_unselected);
+                four.setImageResource(R.drawable.radio_btn_unselected);
             }
         });
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user_correct = "2";
-                one.setChecked(false);
-                three.setChecked(false);
-                four.setChecked(false);
+                two.setImageResource(R.drawable.radio_btn_selected);
+                one.setImageResource(R.drawable.radio_btn_unselected);
+                three.setImageResource(R.drawable.radio_btn_unselected);
+                four.setImageResource(R.drawable.radio_btn_unselected);
             }
         });
 
@@ -143,9 +159,10 @@ public class AnswerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 user_correct = "3";
-                two.setChecked(false);
-                one.setChecked(false);
-                four.setChecked(false);
+                three.setImageResource(R.drawable.radio_btn_selected);
+                two.setImageResource(R.drawable.radio_btn_unselected);
+                one.setImageResource(R.drawable.radio_btn_unselected);
+                four.setImageResource(R.drawable.radio_btn_unselected);
             }
         });
 
@@ -153,9 +170,10 @@ public class AnswerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 user_correct = "4";
-                two.setChecked(false);
-                three.setChecked(false);
-                one.setChecked(false);
+                four.setImageResource(R.drawable.radio_btn_selected);
+                two.setImageResource(R.drawable.radio_btn_unselected);
+                three.setImageResource(R.drawable.radio_btn_unselected);
+                one.setImageResource(R.drawable.radio_btn_unselected);
             }
         });
 
@@ -185,20 +203,23 @@ public class AnswerActivity extends Activity {
     }
 
     private void getquestion(){
+        submit_answer.setText(Session.getword(AnswerActivity.this,"submit_answer"));
         user_correct = "-1";
-        one.setChecked(false);
-        two.setChecked(false);
-        three.setChecked(false);
-        four.setChecked(false);
+        one.setImageResource(R.drawable.radio_btn_unselected);
+        two.setImageResource(R.drawable.radio_btn_unselected);
+        three.setImageResource(R.drawable.radio_btn_unselected);
+        four.setImageResource(R.drawable.radio_btn_unselected);
         try {
-          //  JSONObject user_details = new JSONObject(Session.getUserdetails(this));
+            //  JSONObject user_details = new JSONObject(Session.getUserdetails(this));
             String url = Session.SERVERURL+"question.php?user_id="+Session.getUserid(this)+"&level="+user_details.getJSONObject("level").getString("id")
                     +"&grade="+user_details.getString("grade")
                     +"&semister="+user_details.getJSONObject("semister").getString("id")+"&subject="+subject_id;
 
             Log.e("url--->", url);
             final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Please wait getting next question....");
+            progressDialog.setMessage(Session.getword(getApplicationContext(),"please_wait"));
+            progressDialog.setMessage(Session.getword(getApplicationContext(),"loading"));
+
             progressDialog.setCancelable(false);
             progressDialog.show();
             JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -216,8 +237,8 @@ public class AnswerActivity extends Activity {
                         ans4.setText(jsonObject.getString("answer4"));
                         api_correct = jsonObject.getString("correct");
                         question_count++;
-                        que_number.setText("QUESTION "+ String.valueOf(question_count));
-
+                        que_number.setText(Session.getword(getApplicationContext(),"question_no") + String.valueOf(question_count));
+                        que_count.setText(String.valueOf(question_count)+ "/" + String.valueOf(next_stage));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -246,10 +267,10 @@ public class AnswerActivity extends Activity {
     }
     private void setanswer(){
 
-        one.setChecked(false);
-        two.setChecked(false);
-        three.setChecked(false);
-        four.setChecked(false);
+        one.setImageResource(R.drawable.radio_btn_unselected);;
+        two.setImageResource(R.drawable.radio_btn_unselected);;
+        three.setImageResource(R.drawable.radio_btn_unselected);;
+        four.setImageResource(R.drawable.radio_btn_unselected);;
         try {
             JSONObject user_details = new JSONObject(Session.getUserdetails(this));
             String url = Session.SERVERURL+"answer.php?member_id="+Session.getUserid(this)+"&level="+user_details.getJSONObject("level").getString("id")
@@ -262,7 +283,7 @@ public class AnswerActivity extends Activity {
 
             Log.e("url--->", url);
             final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Please wait submiting your answer....");
+            progressDialog.setMessage(Session.getword(getApplicationContext(),"submitting_answer"));
             progressDialog.setCancelable(false);
             progressDialog.show();
             JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -277,22 +298,29 @@ public class AnswerActivity extends Activity {
                             if (question_count == next_stage){
                                 if(correct_count==question_count){
                                     show_alert();
-                                  //  Toast.makeText(AnswerActivity.this,"You have cleared a level!",Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(AnswerActivity.this,"You have cleared a level!",Toast.LENGTH_SHORT).show();
                                 }
                                 else{
-                                  //  Toast.makeText(AnswerActivity.this,"You have failed in this level!",Toast.LENGTH_SHORT).show();
-                                   // finish();
+                                    //  Toast.makeText(AnswerActivity.this,"You have failed in this level!",Toast.LENGTH_SHORT).show();
+                                    // finish();
                                     show_alert_fail();
                                 }
                             }else{
-                                getquestion();
+                                if(answertype.equals("wrong")|| answertype.equals("skipped")){
+                                    show_alert_wrong();
+                                }
+                                else
+                                {
+                                    getquestion();
+                                }
+
                             }
 
 
 
                         }
                         else
-                            Toast.makeText(AnswerActivity.this, "Your answer not submitted, please try again...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AnswerActivity.this,"Your answer not submitted, please try again...", Toast.LENGTH_SHORT).show();
 //                        question.setText(questionstr);
 //                        ans1.setText(jsonObject.getString("answer1"));
 //                        ans2.setText(jsonObject.getString("answer2"));
@@ -331,29 +359,78 @@ public class AnswerActivity extends Activity {
 
     }
 
-        private  void show_alert(){
+    private  void show_alert(){
         AlertDialogManager alert = new AlertDialogManager();
-        alert.showAlertDialog(this, "Congratulations!", "You have cleared this level", false, new DialogInterface.OnClickListener() {
+        alert.showAlertDialog(this,Session.getword(AnswerActivity.this,"Congratulations"),Session.getword(AnswerActivity.this,"cleared_level"), false, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 next_stage = next_stage + 5;
-                question_count=0;
-                correct_count=0;
-                que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
+                question_count = 0;
+                correct_count = 0;
+                //que_count.setText(String.valueOf(correct_count) + " / " + String.valueOf(next_stage));
                 getquestion();
             }
         });
 
-        }
+    }
 
     private  void show_alert_fail(){
         AlertDialogManager alert = new AlertDialogManager();
-        alert.showAlertDialog(this, "Sorry!", "You have failed in this level", false, new DialogInterface.OnClickListener() {
+        alert.showAlertDialog(this, Session.getword(AnswerActivity.this,"Sorry!"),Session.getword(AnswerActivity.this,"failed_exam"), false, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
             }
         });
+    }
+
+    public void show_alert_wrong(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle(Session.getword(this, "wrong_answers"));
+        alertDialogBuilder.setMessage("Do You want to know the correct answer?");
+        alertDialogBuilder.setMessage(Session.getword(this,"know_correct_answer"));
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                show_correct_answer();
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton("No, Continue Exam", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getquestion();
+            }
+        });
+
+        android.app.AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+
+    private  void show_correct_answer(){
+        cansubmit=false;
+        submit_answer.setText(Session.getword(this,"next_question"));
+        if(user_correct.equals("1"))
+            one.setImageResource(R.drawable.radio_btn_wrong);
+        else if(user_correct.equals("2"))
+            two.setImageResource(R.drawable.radio_btn_wrong);
+        else if(user_correct.equals("3"))
+            three.setImageResource(R.drawable.radio_btn_wrong);
+        else if(user_correct.equals("4"))
+            four.setImageResource(R.drawable.radio_btn_wrong);
+
+
+        if(api_correct.equals("1"))
+            one.setImageResource(R.drawable.radio_btn_correct);
+        else if(api_correct.equals("2"))
+            two.setImageResource(R.drawable.radio_btn_correct);
+        else if(api_correct.equals("3"))
+            three.setImageResource(R.drawable.radio_btn_correct);
+        else if(api_correct.equals("4"))
+            four.setImageResource(R.drawable.radio_btn_correct);
+
+
     }
 
 

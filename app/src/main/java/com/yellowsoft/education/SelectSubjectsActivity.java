@@ -89,7 +89,8 @@ public class SelectSubjectsActivity extends Activity {
                     edit_profile();
                 }else{
                     if(choices.size()>5)
-                        Toast.makeText(SelectSubjectsActivity.this,"you can't select more than 5 subjects",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectSubjectsActivity.this, Session.getword(SelectSubjectsActivity.this,"select_minimum5"), Toast.LENGTH_SHORT).show();
+
                     else
                         register();
                 }
@@ -209,8 +210,8 @@ public class SelectSubjectsActivity extends Activity {
                             }
                             else {
                                 // Toast.makeText(SelectSubjectsActivity.this,response , Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(getApplicationContext(), "Profile updated Succesfully", Toast.LENGTH_LONG).show();
-                                    finish();
+                                    Toast.makeText(getApplicationContext(), Session.getword(SelectSubjectsActivity.this,"updated_successfully"), Toast.LENGTH_LONG).show();
+                                finish();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -284,7 +285,7 @@ public class SelectSubjectsActivity extends Activity {
                                     if (img_path != null)
                                         encodeImagetoString();
                                     else {
-                                        Toast.makeText(getApplicationContext(), "Register Succesfull",
+                                        Toast.makeText(getApplicationContext(), Session.getword(SelectSubjectsActivity.this,"register_successfull"),
                                                 Toast.LENGTH_LONG).show();
                                         Intent in_login = new Intent(getApplicationContext(), LoginActivity.class);
                                         startActivity(in_login);
@@ -375,7 +376,7 @@ public class SelectSubjectsActivity extends Activity {
                         // Hide Progress Dialog
                         Log.e("success", response);
 
-                        Toast.makeText(getApplicationContext(), "Register Succesfull",
+                        Toast.makeText(getApplicationContext(), Session.getword(SelectSubjectsActivity.this,"register_successfull"),
                                 Toast.LENGTH_LONG).show();
                         Intent in_login = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(in_login);

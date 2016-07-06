@@ -76,21 +76,24 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
                 alert.setTitle("forgot_password_sent");
+                alert.setTitle(Session.getword(LoginActivity.this, "forgot_Password"));
                 final EditText input = new EditText(LoginActivity.this);
                 input.setHint("Enter your email id");
+                input.setHint(Session.getword(LoginActivity.this,"Please enter EmailID"));
+
                 input.setMinLines(5);
                 input.setVerticalScrollBarEnabled(true);
 //                input.setBackgroundResource(R.drawable.comments_bg);
                 input.setPadding(10, 10, 10, 10);
                 alert.setView(input);
-                alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton(Session.getword(LoginActivity.this,"submit"), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         write = input.getText().toString();
                         if (write.equals(""))
-                            Toast.makeText(LoginActivity.this, "please_enter_email", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, Session.getword(LoginActivity.this,"Please enter EmailID"), Toast.LENGTH_SHORT).show();
                         else if (!write.matches(emailPattern))
-                            Toast.makeText(LoginActivity.this, "Please Enter Valid Email id", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, Session.getword(LoginActivity.this,"valid_email"), Toast.LENGTH_SHORT).show();
                         else
                             forgot_pass();
                     }
@@ -124,9 +127,9 @@ public class LoginActivity extends Activity {
         String uname = et_uname.getText().toString();
         String password = et_password.getText().toString();
         if (uname.equals(""))
-            Toast.makeText(LoginActivity.this, "Please Enter UserName", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, Session.getword(LoginActivity.this,"Pls_ent_username"), Toast.LENGTH_SHORT).show();
         else if (password.equals(""))
-            Toast.makeText(LoginActivity.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this,Session.getword(LoginActivity.this,"Pls_ent_Password"), Toast.LENGTH_SHORT).show();
         else if (password.length() < 6)
             Toast.makeText(LoginActivity.this, "Password Lenth should be grether than 6 charcters", Toast.LENGTH_SHORT).show();
         else {
