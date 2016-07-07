@@ -41,7 +41,7 @@ import java.util.Map;
 
 
 public class CreateQuestionActivity extends AppCompatActivity {
-    TextView write_que,book_ref,upload_video,write_ans,submit;
+    TextView write_que,book_ref,upload_video,write_ans,submit,book_rev;
     EditText type_question;
 
     ArrayList<Questiondetails> questions;
@@ -58,10 +58,12 @@ public class CreateQuestionActivity extends AppCompatActivity {
         write_que.setText(Session.getword(this, "write_y_question"));
         type_question=(EditText)findViewById(R.id.et_que);
         type_question.setText(Session.getword(this,"type_your_ques"));
-        book_ref = (TextView)findViewById(R.id.book_ref_heading);
-        book_ref.setText(Session.getword(this,"reference"));
-        upload_video = (TextView)findViewById(R.id.upload_vid_heading);
-        upload_video.setText(Session.getword(this,""));
+        book_rev = (TextView)findViewById(R.id.books_rev_heading);
+        book_rev.setText(Session.getword(this,"books_and_reviews"));
+       // book_ref = (TextView)findViewById(R.id.book_ref_heading);
+       // book_ref.setText(Session.getword(this,"reference"));
+       // upload_video = (TextView)findViewById(R.id.upload_vid_heading);
+       // upload_video.setText(Session.getword(this,""));
         write_ans = (TextView)findViewById(R.id.write_answer_heading);
         write_ans.setText(Session.getword(this,"write_y_answer"));
 

@@ -99,29 +99,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#21a6e0"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:gravity="center"
-                android:paddingTop="7dp"
-                android:paddingBottom="7dp"
-                android:layout_marginBottom="5dp"
-                android:id="@+id/book_ref">
+                android:id="@+id/linearLayout3" >
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView19"
+                    android:id="@+id/imageView33"
+                    android:contentDescription=""
                     android:src="@drawable/book"
-                    android:layout_marginRight="5dp" />
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" BOOK REFERENCE"
-                    android:id="@+id/book_ref_heading"
-                    android:textSize="15dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
+                    android:text="BOOKS AND REVIEWS"
+                    android:id="@+id/books_rev_heading"
+                    android:textSize="16dp"
                     android:textColor="#ffffff"
-                    android:layout_marginLeft="5dp" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
             </LinearLayout>
 
             <RelativeLayout
@@ -133,37 +133,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView3"
                     android:src="@drawable/horizontal_shadow"
-                    android:layout_below="@+id/video"
                     android:layout_marginTop="-2dp" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#21a6e0"
-                    android:gravity="center"
-                    android:id="@+id/video">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView20"
-                        android:src="@drawable/play"
-                        android:layout_marginRight="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/upload_vid_heading"
-                        android:textSize="15dp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="UPLOAD VIDEO"
-                        android:textColor="#ffffff"
-                        android:layout_marginLeft="5dp"
-                        android:paddingBottom="7dp"
-                        android:paddingTop="7dp" />
-                </LinearLayout>
             </RelativeLayout>
 
             <TextView

@@ -237,7 +237,7 @@ public class AnswerActivity extends Activity {
                         ans4.setText(jsonObject.getString("answer4"));
                         api_correct = jsonObject.getString("correct");
                         question_count++;
-                        que_number.setText(Session.getword(getApplicationContext(),"question_no") + String.valueOf(question_count));
+                        que_number.setText(Session.getword(AnswerActivity.this,"question_no") + String.valueOf(question_count));
                         que_count.setText(String.valueOf(question_count)+ "/" + String.valueOf(next_stage));
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -391,14 +391,14 @@ public class AnswerActivity extends Activity {
         alertDialogBuilder.setTitle(Session.getword(this, "wrong_answers"));
         alertDialogBuilder.setMessage("Do You want to know the correct answer?");
         alertDialogBuilder.setMessage(Session.getword(this,"know_correct_answer"));
-        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton(Session.getword(this, "yes"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 show_correct_answer();
             }
         });
 
-        alertDialogBuilder.setNegativeButton("No, Continue Exam", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton(Session.getword(this, "no_continue_exam"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 getquestion();

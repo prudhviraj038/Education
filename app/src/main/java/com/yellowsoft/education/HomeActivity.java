@@ -55,8 +55,8 @@ public class HomeActivity extends Activity {
         make_que.setText(Session.getword(this, "make_a_questionaire"));
 
 
-        books = (TextView)findViewById(R.id.books_reviews);
-        books.setText(Session.getword(this, "books_and_reviews"));
+        // books = (TextView)findViewById(R.id.books_reviews);
+        // books.setText(Session.getword(this, "books_and_reviews"));
         settings_btn = (ImageView) findViewById(R.id.settings_btn);
         settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class HomeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
-                builder.setTitle(Session.getword(HomeActivity.this,"CHOOSE SUBJECT"));
+                builder.setTitle(Session.getword(HomeActivity.this,"choose_subjects"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.select_dialog_item, sub_title);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override

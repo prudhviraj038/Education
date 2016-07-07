@@ -194,35 +194,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#21a6e0"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:gravity="center"
-                    android:id="@+id/linearlayout">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView33"
-                        android:contentDescription=""
-                        android:src="@drawable/book"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="BOOKS AND REVIEWS"
-                        android:id="@+id/books_reviews"
-                        android:textSize="16dp"
-                        android:textColor="#ffffff"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp" />
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
