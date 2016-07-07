@@ -40,7 +40,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
     String subject_id = "1";
     ArrayList<String> book_id;
     ArrayList<String> book_title;
-    String book_id_id="0";
+    String book_id_id="-1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +51,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
         write_que = (TextView)findViewById(R.id.write_que_heading);
         write_que.setText(Session.getword(this, "write_y_question"));
         type_question=(EditText)findViewById(R.id.et_que);
-        type_question.setText(Session.getword(this,"type_your_ques"));
+        type_question.setHint(Session.getword(this,"type_your_ques"));
         book_rev = (TextView)findViewById(R.id.books_rev_heading);
         book_rev.setText(Session.getword(this,"books_and_reviews"));
        // book_ref = (TextView)findViewById(R.id.book_ref_heading);
@@ -184,6 +184,8 @@ public class CreateQuestionActivity extends AppCompatActivity {
             Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_fourth_ans"), Toast.LENGTH_SHORT).show();
         else if (correct.equals("-1"))
             Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_corr_ans"), Toast.LENGTH_SHORT).show();
+        else if (book_id_id.equals("-1"))
+            Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_corr_ans"), Toast.LENGTH_SHORT).show();
 
 
         else {
@@ -231,7 +233,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
                         params.put("answer2", answ2);
                         params.put("answer3", answ3);
                         params.put("answer4", answ4);
-                        params.put("reference", "ref");
+                        params.put("reference", book_id_id);
                         params.put("correct", correct);
                         params.put("youtube", "youtube");
 
@@ -310,6 +312,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
                         three.setChecked(false);
                         four.setChecked(false);
                         correct = "-1";
+                        book_id_id= "-1";
 
                     }
                 })

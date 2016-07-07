@@ -431,8 +431,6 @@ public class AnswerActivity extends Activity {
             three.setImageResource(R.drawable.radio_btn_correct);
         else if(api_correct.equals("4"))
             four.setImageResource(R.drawable.radio_btn_correct);
-
-
     }
 
 
