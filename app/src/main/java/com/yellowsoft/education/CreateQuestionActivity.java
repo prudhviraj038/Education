@@ -1,23 +1,14 @@
 package com.yellowsoft.education;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -26,15 +17,13 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,17 +32,22 @@ import java.util.Map;
 public class CreateQuestionActivity extends AppCompatActivity {
     TextView write_que,book_ref,upload_video,write_ans,submit,book_rev;
     EditText type_question;
-
+    LinearLayout book_ll;
     ArrayList<Questiondetails> questions;
     String correct="-1";
     RadioButton one,two,three,four;
     JSONObject user_details ;
     String subject_id = "1";
+    ArrayList<String> book_id;
+    ArrayList<String> book_title;
+    String book_id_id="0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.create_question);
+        book_id=new ArrayList<>();
+        book_title=new ArrayList<>();
         write_que = (TextView)findViewById(R.id.write_que_heading);
         write_que.setText(Session.getword(this, "write_y_question"));
         type_question=(EditText)findViewById(R.id.et_que);
@@ -69,9 +63,31 @@ public class CreateQuestionActivity extends AppCompatActivity {
 
         submit = (TextView)findViewById(R.id.create_submit);
         submit.setText(Session.getword(this, "submit"));
-
+        book_ll=(LinearLayout)findViewById(R.id.book_ll);
         getSupportActionBar().hide();
+        book_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CreateQuestionActivity.this);
+                builder.setTitle("Books");
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CreateQuestionActivity.this, android.R.layout.select_dialog_item, book_title);
+                builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                         Toast.makeText(CreateQuestionActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
+                        book_id_id = book_id.get(which);
+//                        choose_section.setText(book_title.get(which));
+                        //save_changes.performClick();
 
+                    }
+                });
+
+                final android.app.AlertDialog dialog = builder.create();
+                dialog.show();
+
+            }
+        });
+        get_book();
         one = (RadioButton ) findViewById(R.id.one);
         two = (RadioButton) findViewById(R.id.two);
         three = (RadioButton) findViewById(R.id.three);
@@ -229,6 +245,46 @@ public class CreateQuestionActivity extends AppCompatActivity {
             AppController.getInstance().addToRequestQueue(stringRequest);
         }
 
+
+    }
+    private void get_book(){
+        String url=Session.SERVERURL+"books.php";
+        Log.e("url--->", url);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait....");
+        progressDialog.setCancelable(false);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                progressDialog.dismiss();
+                Log.e("response is: ", jsonArray.toString());
+                try {
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject sub = jsonArray.getJSONObject(i);
+                        String semsec_name = sub.getString("title"+Session.get_append(CreateQuestionActivity.this));
+                        String semsec_id = sub.getString("id");
+                        book_id.add(semsec_id);
+                        book_title.add(semsec_name);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+                Log.e("response is:", error.toString());
+                Toast.makeText(CreateQuestionActivity.this,"Server not connected",Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+
+        });
+
+// Access the RequestQueue through your singleton class.
+        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
 
     }
 

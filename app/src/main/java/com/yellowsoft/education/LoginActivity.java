@@ -43,9 +43,9 @@ public class LoginActivity extends Activity {
         forgotpassword.setText(Session.getword(this, "forgot_Password"));
         LinearLayout signin=(LinearLayout)findViewById(R.id.ll_submit_pass);
          et_uname=(EditText)findViewById(R.id.et_login_uname);
-        et_uname.setText(Session.getword(this,"username"));
+        et_uname.setHint(Session.getword(this,"username"));
         et_password=(EditText)findViewById(R.id.et_login_pass);
-        et_password.setText(Session.getword(this, "password"));
+        et_password.setHint(Session.getword(this, "password"));
         TextView new_here = (TextView)findViewById(R.id.new_here);
         new_here.setText(Session.getword(this, "newhere"));
         TextView sign_in = (TextView)findViewById(R.id.signin);

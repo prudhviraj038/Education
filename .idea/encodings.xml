@@ -6,12 +6,14 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/CommonUtilities.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/ConnectionDetector.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/GCMIntentService.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/Governorate.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/ImageEditActivity.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/ServerUtilities.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/SplashScreen.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/WakeLocker.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/comments_bg.9.png" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/delete.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/down_arrow_black.png" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/sample.png" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/image_edit_view.xml" charset="windows-1252" />

@@ -45,6 +45,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,11 +57,17 @@ public class SignupActivity extends Activity {
     EditText et_fullname;
     EditText et_email;
     EditText et_mobile;
-    EditText et_gove;
+    TextView et_gove,area_tv;
     EditText et_class;
     ImageView profile_image;
+    LinearLayout gove_ll,area_ll;
     String type;
     TextView signup_txt;
+    String area_id,gove_id;
+    int posi;
+    ArrayList<Governorate> governorates;
+    ArrayList<String> gove_titles;
+    ArrayList<String> area_titles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +75,11 @@ public class SignupActivity extends Activity {
         setContentView(R.layout.signup_screen);
         final int RESULT_LOAD_IMAGE = 1;
         type = getIntent().getStringExtra("type");
+        governorates=new ArrayList<>();
+        gove_titles=new ArrayList<>();
+        area_titles=new ArrayList<>();
+        gove_ll=(LinearLayout)findViewById(R.id.gove_ll);
+        area_ll=(LinearLayout)findViewById(R.id.area_ll);
         ImageView back=(ImageView)findViewById(R.id.back_signup_scr);
         TextView selectimg=(TextView)findViewById(R.id.select_image);
         selectimg.setText(Session.getword(this,"selct_image"));
@@ -80,30 +92,77 @@ public class SignupActivity extends Activity {
         signup_txt = (TextView) findViewById(R.id.signup2);
         signup_txt.setText(Session.getword(this,"signUp"));
          et_uname = (EditText)findViewById(R.id.et_username);
-         et_uname.setText(Session.getword(this,"username"));
+         et_uname.setHint(Session.getword(this, "username"));
          et_password=(EditText)findViewById(R.id.et_password);
-        et_password.setText(Session.getword(this,"password"));
+        et_password.setHint(Session.getword(this, "password"));
          et_fullname=(EditText)findViewById(R.id.et_fullname);
-        et_fullname.setText(Session.getword(this,"fullname"));
+        et_fullname.setHint(Session.getword(this, "fullname"));
          et_email=(EditText)findViewById(R.id.et_email);
-        et_email.setText(Session.getword(this,"email"));
+        et_email.setHint(Session.getword(this, "email"));
          et_mobile=(EditText)findViewById(R.id.et_mobile);
-        et_mobile.setText(Session.getword(this,"mobile"));
-         et_gove=(EditText)findViewById(R.id.et_gove);
-        et_gove.setText(Session.getword(this,"governorate"));
+        et_mobile.setHint(Session.getword(this, "mobile"));
+         et_gove=(TextView)findViewById(R.id.et_gove);
+        et_gove.setText(Session.getword(this, "governorate"));
+        area_tv=(TextView)findViewById(R.id.area_tv);
+        area_tv.setText(Session.getword(this,"area"));
          et_class=(EditText)findViewById(R.id.et_class);
-        et_class.setText(Session.getword(this,"class"));
+        et_class.setHint(Session.getword(this, "class"));
             profile_image = (ImageView) findViewById(R.id.profile_image);
 
         selectimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                // Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 //startActivityForResult(i, RESULT_LOAD_IMAGE);
                 selectphotos();
 
             }
         });
+        get_area();
+        gove_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SignupActivity.this);
+                builder.setTitle("Governorates");
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SignupActivity.this, android.R.layout.select_dialog_item, gove_titles);
+                builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(SignupActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
+                        posi=which;
+                        gove_id= governorates.get(which).id;
+                        et_gove.setText(governorates.get(which).getTitle(SignupActivity.this));
+                        area_titles.clear();
+                        for(int i=0;i<governorates.get(which).are.size();i++) {
+                            area_titles.add(governorates.get(which).are.get(i).getATitle(SignupActivity.this));
+                        }
+                    }
+                });
+                final android.app.AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+        area_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SignupActivity.this);
+                builder.setTitle("Areas");
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SignupActivity.this, android.R.layout.select_dialog_item, area_titles);
+                builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(SignupActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
+                        area_id= governorates.get(posi).are.get(which).a_id;
+                        area_tv.setText(governorates.get(posi).are.get(which).getATitle(SignupActivity.this));
+                    }
+                });
+                final android.app.AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -313,11 +372,49 @@ public class SignupActivity extends Activity {
 
 // Access the RequestQueue through your singleton class.
         AppController.getInstance().addToRequestQueue(jsObjRequest);
-
     }
+    private void get_area() {
+        String url = null;
+        try {
+            url = Session.SERVERURL+"areas.php?";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Log.e("url--->", url);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please_wait");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url,new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                progressDialog.dismiss();
+                Log.e("orders response is: ", jsonArray.toString());
+                for(int i=0;i<jsonArray.length();i++){
+                    Governorate governorate= null;
+                    try {
+                        governorate = new Governorate(jsonArray.getJSONObject(i));
+                        governorates.add(governorate);
+                        gove_titles.add(governorates.get(i).getTitle(SignupActivity.this));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
 
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+                Log.e("response is:", error.toString());
+//                Toast.makeText(getActivity(), Settings.getword(getActivity(), "server_not_connected"), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
 
-
+        });
+// Access the RequestQueue through your singleton class.
+        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+    }
 
     Bitmap bitmap;
     String encodedString;

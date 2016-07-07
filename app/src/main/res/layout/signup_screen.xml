@@ -244,7 +244,8 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="wrap_content"
+                        android:id="@+id/gove_ll">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -252,18 +253,74 @@
                             android:id="@+id/imageView9"
                             android:src="@drawable/gove_icon" />
 
-                        <EditText
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@color/signup_field_bg">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:inputType="textPersonName"
+                                android:id="@+id/et_gove"
+                                android:hint="Governorate"
+                                android:layout_weight="1"
+                                android:textSize="15dp"
+                                android:paddingRight="10dp"
+                                android:paddingLeft="10dp"
+                                android:gravity="center_vertical" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:id="@+id/imageView12"
+                                android:src="@drawable/down_arrow_black"
+                                android:layout_margin="5dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/area_ll" >
+
+                        <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:inputType="textPersonName"
-                            android:id="@+id/et_gove"
-                            android:hint="Governorate"
-                            android:layout_weight="1"
-                            android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp"
-                            android:paddingLeft="10dp" />
+                            android:id="@+id/imageView15"
+                            android:src="@drawable/gove_icon" />
 
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@color/signup_field_bg" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/area_tv"
+                                android:layout_weight="1"
+                                android:textSize="15dp"
+                                android:paddingRight="10dp"
+                                android:paddingLeft="10dp"
+                                android:gravity="center_vertical"
+                                android:text="Area" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:id="@+id/imageView19"
+                                android:src="@drawable/down_arrow_black"
+                                android:layout_margin="5dp" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
