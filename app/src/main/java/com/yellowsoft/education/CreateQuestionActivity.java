@@ -42,6 +42,7 @@ import java.util.Map;
 
 public class CreateQuestionActivity extends AppCompatActivity {
     TextView write_que,book_ref,upload_video,write_ans,submit;
+    EditText type_question;
 
     ArrayList<Questiondetails> questions;
     String correct="-1";
@@ -55,6 +56,8 @@ public class CreateQuestionActivity extends AppCompatActivity {
         setContentView(R.layout.create_question);
         write_que = (TextView)findViewById(R.id.write_que_heading);
         write_que.setText(Session.getword(this, "write_y_question"));
+        type_question=(EditText)findViewById(R.id.et_que);
+        type_question.setText(Session.getword(this,"type_your_ques"));
         book_ref = (TextView)findViewById(R.id.book_ref_heading);
         book_ref.setText(Session.getword(this,"reference"));
         upload_video = (TextView)findViewById(R.id.upload_vid_heading);
@@ -152,17 +155,17 @@ public class CreateQuestionActivity extends AppCompatActivity {
         final String answ4 = answer4.getText().toString();
 
         if (questions.equals(""))
-            Toast.makeText(CreateQuestionActivity.this, "Please Enter Question", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_ent_question"), Toast.LENGTH_SHORT).show();
         else if (answ1.equals(""))
-            Toast.makeText(CreateQuestionActivity.this, "Please Enter Option 1", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_first_ans"), Toast.LENGTH_SHORT).show();
         else if (answ2.equals(""))
-            Toast.makeText(CreateQuestionActivity.this, "Please Enter Option 2", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_sec_ans"), Toast.LENGTH_SHORT).show();
         else if (answ3.equals(""))
-            Toast.makeText(CreateQuestionActivity.this, "Please Enter Option 3", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_ent_third_ans"), Toast.LENGTH_SHORT).show();
         else if (answ4.equals(""))
-            Toast.makeText(CreateQuestionActivity.this, "Please Enter Option 4", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_fourth_ans"), Toast.LENGTH_SHORT).show();
         else if (correct.equals("-1"))
-            Toast.makeText(CreateQuestionActivity.this, "Please Select Correct Answer", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_corr_ans"), Toast.LENGTH_SHORT).show();
 
 
         else {
@@ -229,9 +232,9 @@ public class CreateQuestionActivity extends AppCompatActivity {
 
     private void after_question(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Do you want to Add Another Question?")
+        builder.setMessage(Session.getword(this,"add_another_ques"))
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(Session.getword(this, "yes"), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         EditText question = (EditText) findViewById(R.id.et_que);
@@ -248,11 +251,11 @@ public class CreateQuestionActivity extends AppCompatActivity {
                         two.setChecked(false);
                         three.setChecked(false);
                         four.setChecked(false);
-                        correct="-1";
+                        correct = "-1";
 
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(Session.getword(this, "no"), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                         finish();
