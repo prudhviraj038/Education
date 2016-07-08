@@ -105,7 +105,7 @@ public class ChooseLevelGradeSemActivity extends Activity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChooseLevelGradeSemActivity.this);
-                builder.setTitle("CHOOSE LEVELS");
+                builder.setTitle(Session.getword(ChooseLevelGradeSemActivity.this,"choose_levels"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChooseLevelGradeSemActivity.this, android.R.layout.simple_dropdown_item_1line, level_title);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
@@ -156,7 +156,7 @@ public class ChooseLevelGradeSemActivity extends Activity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChooseLevelGradeSemActivity.this);
-                builder.setTitle("SEMESTER SECTIONS");
+                builder.setTitle(Session.getword(ChooseLevelGradeSemActivity.this,"semester_section"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChooseLevelGradeSemActivity.this, android.R.layout.select_dialog_item, semsection_title);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
@@ -187,11 +187,11 @@ public class ChooseLevelGradeSemActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (levels_id.equals(""))
-                    Toast.makeText(ChooseLevelGradeSemActivity.this, "Please Select Level", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChooseLevelGradeSemActivity.this,Session.getword(ChooseLevelGradeSemActivity.this,"Pls_sele_level"), Toast.LENGTH_SHORT).show();
                 else if (grade_id.equals(""))
-                    Toast.makeText(ChooseLevelGradeSemActivity.this, "Please Select Grade", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChooseLevelGradeSemActivity.this, Session.getword(ChooseLevelGradeSemActivity.this,"Pls_sele_grade"), Toast.LENGTH_SHORT).show();
                 else if (semsection_title.equals(""))
-                    Toast.makeText(ChooseLevelGradeSemActivity.this, "Please Select Semester", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChooseLevelGradeSemActivity.this, Session.getword(ChooseLevelGradeSemActivity.this,"Pls_sele_semester"), Toast.LENGTH_SHORT).show();
                 else{
                     if(type.equals("change")){
                         edit_profile();
@@ -237,7 +237,7 @@ public class ChooseLevelGradeSemActivity extends Activity {
                                 Toast.makeText(ChooseLevelGradeSemActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                Toast.makeText(getApplicationContext(), "Academics updated Succesfully", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), Session.getword(ChooseLevelGradeSemActivity.this,"Academics updated Succesfully"), Toast.LENGTH_LONG).show();
                                 get_user_details();
                             }
                         } catch (JSONException e) {

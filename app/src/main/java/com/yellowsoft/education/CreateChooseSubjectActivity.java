@@ -117,7 +117,7 @@ public class CreateChooseSubjectActivity extends Activity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(CreateChooseSubjectActivity.this);
-                builder.setTitle("CHOOSE LEVELS");
+                builder.setTitle(Session.getword(CreateChooseSubjectActivity.this,"choose_levels"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CreateChooseSubjectActivity.this, android.R.layout.select_dialog_item, level_title);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
@@ -168,7 +168,7 @@ public class CreateChooseSubjectActivity extends Activity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(CreateChooseSubjectActivity.this);
-                builder.setTitle("SEMESTER SECTIONS");
+                builder.setTitle(Session.getword(CreateChooseSubjectActivity.this,"semester_section"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CreateChooseSubjectActivity.this, android.R.layout.select_dialog_item, semsection_title);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override

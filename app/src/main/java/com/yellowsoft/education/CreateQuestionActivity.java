@@ -69,7 +69,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CreateQuestionActivity.this);
-                builder.setTitle("Books");
+                builder.setTitle(Session.getword(CreateQuestionActivity.this,"books"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CreateQuestionActivity.this, android.R.layout.select_dialog_item, book_title);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override

@@ -92,7 +92,7 @@ public class SettingsActivity extends Activity {
         langs.add("English");
         langs.add("Arabic");
         AlertDialog.Builder alert1 = new AlertDialog.Builder(this);
-        alert1.setTitle("Choose Language");
+        alert1.setTitle(Session.getword(this,"choose_lang"));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, langs);
         alert1.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override

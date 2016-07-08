@@ -49,7 +49,7 @@ public class AnswerAQuestionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait....");
+        progressDialog.setMessage(Session.getword(this,"loading"));
         progressDialog.setCancelable(false);
         progressDialog.show();
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

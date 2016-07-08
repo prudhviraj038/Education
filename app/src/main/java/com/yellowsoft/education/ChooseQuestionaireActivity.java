@@ -57,7 +57,7 @@ public class ChooseQuestionaireActivity extends Activity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChooseQuestionaireActivity.this);
-                builder.setTitle("CHOOSE QUESTIONAIRE");
+                builder.setTitle(Session.getword(ChooseQuestionaireActivity.this,"choose_question"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChooseQuestionaireActivity.this, android.R.layout.select_dialog_item, quer_id);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override

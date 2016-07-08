@@ -35,7 +35,7 @@ public class ChangePasswordActivity extends Activity {
         setContentView(R.layout.change_password_screen);
         LinearLayout submit_ll=(LinearLayout)findViewById(R.id.ll_submit_pass);
         new_pass=(EditText)findViewById(R.id.new_password);
-        new_pass.setText(Session.getword(this,"new_password"));
+
         conf_pass=(EditText)findViewById(R.id.confirm_password);
         sub_pass=(TextView)findViewById(R.id.submit_change_pass);
         sub_pass.setText(Session.getword(this,"submit"));
@@ -72,6 +72,7 @@ public class ChangePasswordActivity extends Activity {
     }
     private void change_password() {
         String n_pass = new_pass.getText().toString();
+        new_pass.setText(Session.getword(this,"new_password"));
         Log.e("pass",n_pass);
         String c_pass = conf_pass.getText().toString();
         if (n_pass.equals(""))
@@ -79,7 +80,7 @@ public class ChangePasswordActivity extends Activity {
         else if (n_pass.length() < 6)
             Toast.makeText(ChangePasswordActivity.this, "Password Lenth should be grether than 6 charcters", Toast.LENGTH_SHORT).show();
         else if (!c_pass.equals(n_pass))
-            Toast.makeText(ChangePasswordActivity.this,Session.getword(ChangePasswordActivity.this,"Please Enter Same Password"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChangePasswordActivity.this,Session.getword(ChangePasswordActivity.this,"confirm_password"), Toast.LENGTH_SHORT).show();
 
         else {
             String url = Session.SERVERURL+"change-password.php?";
@@ -91,7 +92,7 @@ public class ChangePasswordActivity extends Activity {
             }
             Log.e("url--->", url);
             final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Please wait....");
+            progressDialog.setMessage(Session.getword(this,"loading"));
             progressDialog.setCancelable(false);
             JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 

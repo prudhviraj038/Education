@@ -175,7 +175,7 @@ public class RewardActivity extends Activity {
         String url = Session.SERVERURL + "toppers.php";
         Log.e("url--->", url);
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait....");
+        progressDialog.setMessage(Session.getword(this,"loading"));
         progressDialog.setCancelable(false);
         JsonArrayRequest jsObjRequest = new JsonArrayRequest( url, new Response.Listener<JSONArray>() {
 

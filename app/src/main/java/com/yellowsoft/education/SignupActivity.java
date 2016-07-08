@@ -92,7 +92,7 @@ public class SignupActivity extends Activity {
         LinearLayout user_ll=(LinearLayout)findViewById(R.id.user_name_ll);
         LinearLayout email_ll=(LinearLayout)findViewById(R.id.email_ll);
         signup_txt = (TextView) findViewById(R.id.signup2);
-        signup_txt.setText(Session.getword(this,"signUp"));
+
          et_uname = (EditText)findViewById(R.id.et_username);
          et_uname.setHint(Session.getword(this, "username"));
          et_password=(EditText)findViewById(R.id.et_password);
@@ -184,13 +184,13 @@ public class SignupActivity extends Activity {
             pass_ll.setVisibility(View.GONE);
             user_ll.setVisibility(View.GONE);
             email_ll.setVisibility(View.GONE);
-            signup_txt.setText("SAVE");
+            signup_txt.setText(Session.getword(this,"save"));
 
         }else{
             pass_ll.setVisibility(View.VISIBLE);
             user_ll.setVisibility(View.VISIBLE);
             email_ll.setVisibility(View.VISIBLE);
-            signup_txt.setText("SIGN UP");
+            signup_txt.setText(Session.getword(this,"signUp"));
 
         }
         if(type.equals("change"))
@@ -249,23 +249,23 @@ public class SignupActivity extends Activity {
          classs = et_class.getText().toString();
 
         if (uname.equals(""))
-            Toast.makeText(SignupActivity.this, "Please Enter UserName", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_username"), Toast.LENGTH_SHORT).show();
         else if (type.equals("normal")&&password.equals(""))
-            Toast.makeText(SignupActivity.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_Password"),Toast.LENGTH_SHORT).show();
         else if (type.equals("normal")&&password.length() < 6)
-            Toast.makeText(SignupActivity.this, "Password Lenth should be grether than 6 charcters", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this, Session.getword(this,"Password Lenth should be grether than 6 charcters"), Toast.LENGTH_SHORT).show();
         else if (fullname.equals(""))
-            Toast.makeText(SignupActivity.this, "Please Enter Fullname", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this,Session.getword(this,"Please Enter Fullname"), Toast.LENGTH_SHORT).show();
         else if (email.equals(""))
-            Toast.makeText(SignupActivity.this, "Please Enter Email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this, Session.getword(this,"Please enter EmailID"), Toast.LENGTH_SHORT).show();
         else if (mobile.equals(""))
-            Toast.makeText(SignupActivity.this, "Please Enter Mobile", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_ent_Mob_Num"), Toast.LENGTH_SHORT).show();
         else if (gove_id.equals(""))
-            Toast.makeText(SignupActivity.this, "Please Select Govenerate", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_gover"), Toast.LENGTH_SHORT).show();
         else if (area_id.equals(""))
-            Toast.makeText(SignupActivity.this, "Please Select Area", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_sel_area"), Toast.LENGTH_SHORT).show();
         else if (classs.equals(""))
-            Toast.makeText(SignupActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_ent_class"), Toast.LENGTH_SHORT).show();
         else {
             if(type.equals("change")){
                 edit_profile();
@@ -312,7 +312,7 @@ public class SignupActivity extends Activity {
                                 if(imgPath!=null)
                                     encodeImagetoString();
                                 else{
-                                    Toast.makeText(getApplicationContext(), "Profile updated Succesfully", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), Session.getword(SignupActivity.this,"profile_updated"), Toast.LENGTH_LONG).show();
                                     get_user_details();
 
                                 }
@@ -610,7 +610,7 @@ public class SignupActivity extends Activity {
                         // Hide Progress Dialog
                         Log.e("success", response);
 
-                        Toast.makeText(getApplicationContext(), "Updated Succesfully",
+                        Toast.makeText(getApplicationContext(), Session.getword(SignupActivity.this,"updated_successfully"),
                                 Toast.LENGTH_LONG).show();
                         get_user_details();
 
