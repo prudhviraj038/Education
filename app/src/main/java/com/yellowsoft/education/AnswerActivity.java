@@ -42,7 +42,7 @@ public class AnswerActivity extends Activity {
     ImageView one,two,three,four;
     LinearLayout submit_layout;
     String user_correct,api_correct;
-    JSONObject user_details ;
+    JSONObject user_details;
     int next_stage = 5;
     int correct_count=0;
     int question_count = 0;
@@ -66,7 +66,7 @@ public class AnswerActivity extends Activity {
 
         que_count = (TextView) findViewById(R.id.que_count);
         que_number = (TextView) findViewById(R.id.question_number);
-        que_number.setText(Session.getword(this,"question"+ String.valueOf(question_count)));
+      //  que_number.setText(Session.getword(this,"question"+ String.valueOf(question_count)));
         give_up = (TextView) findViewById(R.id.give_up);
         give_up.setText(Session.getword(this,"giveup"));
         give_up.setOnClickListener(new View.OnClickListener() {
@@ -123,11 +123,14 @@ public class AnswerActivity extends Activity {
 
         ImageView userimage = (ImageView)findViewById(R.id.user_image);
         TextView user_name = (TextView) findViewById(R.id.username);
+        TextView user_adress = (TextView) findViewById(R.id.user_adr);
 
         TextView user_level = (TextView) findViewById(R.id.userlevel);
         try {
             user_name.setText(user_details.getString("name"));
-
+            user_adress.setText(user_details.getJSONObject("area").getString("governate"+Session.get_append(this))
+            +" , "+ user_details.getJSONObject("area").getString("title"+Session.get_append(this))
+            );
             user_level.setText("0"+user_details.getString("grade"));
             Picasso.with(this).load(user_details.getString("image")).into(userimage);
         } catch (JSONException e) {

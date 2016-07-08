@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Salmiya,Hawalli"
-                    android:id="@+id/textView33"
+                    android:id="@+id/reward_user_adr"
                     android:layout_gravity="left"
                     android:layout_marginBottom="5dp"
                     android:paddingLeft="5dp"

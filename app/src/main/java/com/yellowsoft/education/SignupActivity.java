@@ -198,7 +198,8 @@ public class SignupActivity extends Activity {
             et_fullname.setText(jsonObject.getString("name"));
             et_email.setText(jsonObject.getString("email"));
             et_mobile.setText(jsonObject.getString("phone"));
-            et_gove.setText(jsonObject.getString("governorate"));
+            et_gove.setText(jsonObject.getJSONObject("area").getString("governate" + Session.get_append(this)));
+            area_tv.setText(jsonObject.getJSONObject("area").getString("title" + Session.get_append(this)));
             et_class.setText(jsonObject.getString("class"));
             Picasso.with(SignupActivity.this).load(jsonObject.getString("image")).into(profile_image);
         } catch (JSONException e) {

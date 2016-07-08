@@ -30,10 +30,11 @@ import java.util.ArrayList;
 
 public class RewardActivity extends Activity {
 
-    TextView worng,total,correct,user_name;
+    TextView worng,total,correct,user_name,user_adrress;
     TextView wrong,correctt,questions,top_stud;
     ImageView user_image,settings_btn,reward_home;
     JSONObject user_details ;
+
     ArrayList<Rewards> rewardses;
     RewardListAdapter rewardListAdapter;
     @Override
@@ -83,11 +84,16 @@ public class RewardActivity extends Activity {
         total = (TextView) findViewById(R.id.no_of_questions);
         correct = (TextView) findViewById(R.id.correct_answers);
         user_name = (TextView) findViewById(R.id.user_name);
+        user_adrress = (TextView) findViewById(R.id.reward_user_adr);
+
         user_image = (ImageView) findViewById(R.id.user_image);
         try {
             user_details = new JSONObject(Session.getUserdetails(this));
             user_name.setText(user_details.getString("name"));
-
+            user_name.setText(user_details.getString("name"));
+            user_adrress.setText(user_details.getJSONObject("area").getString("governate"+Session.get_append(this))
+                            +" , "+ user_details.getJSONObject("area").getString("title"+Session.get_append(this))
+            );
             Picasso.with(this).load(user_details.getString("image")).into(user_image);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -130,7 +136,7 @@ public class RewardActivity extends Activity {
         }
         Log.e("url--->", url);
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait....");
+        progressDialog.setMessage(Session.getword(this,"loading"));
         progressDialog.setCancelable(false);
         JsonObjectRequest jsObjRequest = new JsonObjectRequest( url,null, new Response.Listener<JSONObject>() {
 
