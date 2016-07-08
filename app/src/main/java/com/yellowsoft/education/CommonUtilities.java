@@ -6,7 +6,7 @@ import android.content.Intent;
 public final class CommonUtilities {
 
     // give your server registration url here
-    static final String SERVER_URL    = Session.SERVERURL+"token-register-android.php";
+    static final String SERVER_URL    = Session.SERVERURL+"android-token-register.php";
 
 
     // Google project id
