@@ -122,11 +122,12 @@ public class AnswerActivity extends Activity {
         }
 
         ImageView userimage = (ImageView)findViewById(R.id.user_image);
-
         TextView user_name = (TextView) findViewById(R.id.username);
+
         TextView user_level = (TextView) findViewById(R.id.userlevel);
         try {
             user_name.setText(user_details.getString("name"));
+
             user_level.setText("0"+user_details.getString("grade"));
             Picasso.with(this).load(user_details.getString("image")).into(userimage);
         } catch (JSONException e) {

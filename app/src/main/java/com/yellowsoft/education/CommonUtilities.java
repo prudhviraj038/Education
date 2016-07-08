@@ -6,7 +6,7 @@ import android.content.Intent;
 public final class CommonUtilities {
 
     // give your server registration url here
-    static final String SERVER_URL    = "http://hatbee3.com/api/token-register-android.php";
+    static final String SERVER_URL    = Session.SERVERURL+"token-register-android.php";
 
 
     // Google project id
@@ -15,6 +15,7 @@ public final class CommonUtilities {
     /**
      * Tag used on log messages.
      */
+
     static final String TAG = "Education GCM";
 
     static final String DISPLAY_MESSAGE_ACTION =
@@ -36,4 +37,6 @@ public final class CommonUtilities {
         intent.putExtra(EXTRA_MESSAGE, message);
         context.sendBroadcast(intent);
     }
+
+
 }

@@ -87,6 +87,7 @@ public class RewardActivity extends Activity {
         try {
             user_details = new JSONObject(Session.getUserdetails(this));
             user_name.setText(user_details.getString("name"));
+
             Picasso.with(this).load(user_details.getString("image")).into(user_image);
         } catch (JSONException e) {
             e.printStackTrace();
