@@ -78,6 +78,8 @@ public class SignupActivity extends Activity {
         governorates=new ArrayList<>();
         gove_titles=new ArrayList<>();
         area_titles=new ArrayList<>();
+        gove_id = "";
+        area_id= "";
         gove_ll=(LinearLayout)findViewById(R.id.gove_ll);
         area_ll=(LinearLayout)findViewById(R.id.area_ll);
         ImageView back=(ImageView)findViewById(R.id.back_signup_scr);

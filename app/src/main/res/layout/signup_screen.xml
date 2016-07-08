@@ -39,9 +39,9 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:id="@+id/scrollView3"
-            android:fillViewport="false"
+            android:fillViewport="true"
             android:layout_weight="1">
 
             <LinearLayout
@@ -110,7 +110,8 @@
                     android:showDividers="middle"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
-                    android:gravity="start">
+                    android:gravity="start"
+                    android:layout_weight="1">
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -255,20 +256,19 @@
 
                         <LinearLayout
                             android:orientation="horizontal"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:layout_weight="1"
                             android:background="@color/signup_field_bg">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:inputType="textPersonName"
                                 android:id="@+id/et_gove"
                                 android:hint="Governorate"
                                 android:layout_weight="1"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:paddingRight="10dp"
                                 android:paddingLeft="10dp"
                                 android:gravity="center_vertical" />
@@ -304,11 +304,11 @@
                             android:background="@color/signup_field_bg" >
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:id="@+id/area_tv"
                                 android:layout_weight="1"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:paddingRight="10dp"
                                 android:paddingLeft="10dp"
                                 android:gravity="center_vertical"
@@ -338,25 +338,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:inputType="textPersonName"
-                            android:id="@+id/et_area"
-                            android:hint="Governorate"
-                            android:gravity="center|right"
-                            android:layout_weight="1"
-                            android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:inputType="textPersonName"
                             android:id="@+id/et_class"
                             android:hint="Class"
                             android:layout_weight="1"
@@ -365,42 +346,56 @@
                             android:paddingRight="10dp"
                             android:paddingLeft="10dp" />
 
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:inputType="textPersonName"
+                            android:id="@+id/et_area"
+                            android:hint="Governorate"
+                            android:gravity="center|right"
+                            android:layout_weight="1"
+                            android:textSize="15dp"
+                            android:background="@color/signup_field_bg"
+                            android:paddingRight="10dp"
+                            android:visibility="gone" />
+
                     </LinearLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/text_black"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:id="@+id/ll_signup"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SIGN UP"
+                        android:id="@+id/signup2"
+                        android:textSize="15dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="#ffffff"
+                        android:layout_marginRight="5dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView48"
+                        android:src="@drawable/tick_icon"
+                        android:layout_marginRight="5dp" />
                 </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/text_black"
-            android:gravity="center"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:id="@+id/ll_signup"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SIGN UP"
-                android:id="@+id/signup2"
-                android:textSize="15dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textColor="#ffffff"
-                android:layout_marginRight="5dp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView48"
-                android:src="@drawable/tick_icon"
-                android:layout_marginRight="5dp" />
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
