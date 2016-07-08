@@ -63,7 +63,7 @@ public class SignupActivity extends Activity {
     LinearLayout gove_ll,area_ll;
     String type;
     TextView signup_txt;
-    String area_id,gove_id;
+    String area_id,gove_id,area_name,gove_name;
     int posi;
     ArrayList<Governorate> governorates;
     ArrayList<String> gove_titles;
@@ -131,7 +131,9 @@ public class SignupActivity extends Activity {
 //                        Toast.makeText(SignupActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
                         posi=which;
                         gove_id= governorates.get(which).id;
+                        area_id = "";
                         et_gove.setText(governorates.get(which).getTitle(SignupActivity.this));
+                        area_tv.setText(Session.getword(SignupActivity.this, "area"));
                         area_titles.clear();
                         for(int i=0;i<governorates.get(which).are.size();i++) {
                             area_titles.add(governorates.get(which).are.get(i).getATitle(SignupActivity.this));
@@ -146,21 +148,27 @@ public class SignupActivity extends Activity {
         area_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SignupActivity.this);
-                builder.setTitle("Areas");
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SignupActivity.this, android.R.layout.select_dialog_item, area_titles);
-                builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                if (!gove_id.equals("")) {
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SignupActivity.this);
+                    builder.setTitle("Areas");
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SignupActivity.this, android.R.layout.select_dialog_item, area_titles);
+                    builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 //                        Toast.makeText(SignupActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
-                        area_id= governorates.get(posi).are.get(which).a_id;
-                        area_tv.setText(governorates.get(posi).are.get(which).getATitle(SignupActivity.this));
-                    }
-                });
-                final android.app.AlertDialog dialog = builder.create();
-                dialog.show();
+                            area_id = governorates.get(posi).are.get(which).a_id;
+                            area_tv.setText(governorates.get(posi).are.get(which).getATitle(SignupActivity.this));
+                        }
+                    });
+                    final android.app.AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else{
+                    Toast.makeText(SignupActivity.this, Session.getword(SignupActivity.this,"Pls_ent_gover"), Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
 
 
 
@@ -235,7 +243,6 @@ public class SignupActivity extends Activity {
          fullname = et_fullname.getText().toString();
          email = et_email.getText().toString();
          mobile = et_mobile.getText().toString();
-         gove = et_gove.getText().toString();
          classs = et_class.getText().toString();
 
         if (uname.equals(""))
@@ -250,8 +257,10 @@ public class SignupActivity extends Activity {
             Toast.makeText(SignupActivity.this, "Please Enter Email", Toast.LENGTH_SHORT).show();
         else if (mobile.equals(""))
             Toast.makeText(SignupActivity.this, "Please Enter Mobile", Toast.LENGTH_SHORT).show();
-        else if (gove.equals(""))
-            Toast.makeText(SignupActivity.this, "Please Enter Govenerate", Toast.LENGTH_SHORT).show();
+        else if (gove_id.equals(""))
+            Toast.makeText(SignupActivity.this, "Please Select Govenerate", Toast.LENGTH_SHORT).show();
+        else if (area_id.equals(""))
+            Toast.makeText(SignupActivity.this, "Please Select Area", Toast.LENGTH_SHORT).show();
         else if (classs.equals(""))
             Toast.makeText(SignupActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
         else {
@@ -265,7 +274,7 @@ public class SignupActivity extends Activity {
             signup_intent.putExtra("fname", fullname);
             signup_intent.putExtra("email", email);
             signup_intent.putExtra("mobile", mobile);
-            signup_intent.putExtra("gover", gove);
+            signup_intent.putExtra("gover", area_id);
             signup_intent.putExtra("class", classs);
             signup_intent.putExtra("image_path", imgPath);
             startActivity(signup_intent);
@@ -325,7 +334,7 @@ public class SignupActivity extends Activity {
                 params.put("member_id",Session.getUserid(SignupActivity.this));
                 params.put("name",fullname);
                 params.put("phone",mobile);
-                params.put("governorate",gove);
+                params.put("governorate",area_id);
                 params.put("class",classs);
                 return params;
             }
