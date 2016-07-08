@@ -60,7 +60,7 @@ public class SplashScreen extends Activity {
 
         } else {
             // Device is already registered on GCM
-            if (GCMRegistrar.isRegisteredOnServer(this)) {
+            if (GCMRegistrar.isRegisteredOnServer(this) && false) {
                 // Skips registration.
                 //Toast.makeText(getApplicationContext(), "Already registered with GCM", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(SplashScreen.this, MainActivity.class);
@@ -91,9 +91,9 @@ public class SplashScreen extends Activity {
 
                 };
                 mRegisterTask.execute(null, null, null);
-                Intent i = new Intent(SplashScreen.this, MainActivity.class);
-                startActivity(i);
-                finish();
+               // Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                //startActivity(i);
+                //finish();
             }
         }
 

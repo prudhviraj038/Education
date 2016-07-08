@@ -6,7 +6,9 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMRegistrar;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -36,6 +38,7 @@ public final class ServerUtilities {
         String serverUrl = SERVER_URL;
         Map<String, String> params = new HashMap<String, String>();
         params.put("device_token", regId);
+        params.put("member_id", Session.getUserid(context));
         params.put("name", name);
         params.put("email", email);
 
@@ -153,6 +156,15 @@ public final class ServerUtilities {
             int status = conn.getResponseCode();
             if (status != 200) {
                 throw new IOException("Post failed with error code " + status);
+            }
+            else{
+                BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+                StringBuilder sb = new StringBuilder();
+                String output;
+                while ((output = br.readLine()) != null)
+                    sb.append(output);
+
+                Log.e("GCM Success",sb.toString());
             }
         } finally {
             if (conn != null) {
