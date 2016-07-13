@@ -85,7 +85,7 @@ public class HomeActivity extends RootActivity {
         choose_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this,R.style.PauseDialogAnimation);
                 builder.setTitle(Session.getword(HomeActivity.this,"choose_subjects"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.select_dialog_item, sub_title);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
