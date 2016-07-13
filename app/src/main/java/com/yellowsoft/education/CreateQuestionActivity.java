@@ -30,52 +30,57 @@ import java.util.Map;
 
 
 public class CreateQuestionActivity extends AppCompatActivity {
-    TextView write_que,book_ref,upload_video,write_ans,submit,book_rev;
+    TextView write_que, book_ref, upload_video, write_ans, submit, book_rev;
     EditText type_question;
     LinearLayout book_ll;
     ArrayList<Questiondetails> questions;
-    String correct="-1";
-    RadioButton one,two,three,four;
-    JSONObject user_details ;
+    String correct = "-1";
+    RadioButton one, two, three, four;
+    JSONObject user_details;
     String subject_id = "1";
-    ArrayList<String> book_id;
-    ArrayList<String> book_title;
-    String book_id_id="-1";
+    ArrayList<String> book_id,topic_id;
+    ArrayList<String> book_title,topic_title;
+    ArrayList<JSONArray> tpoics_json;
+    String book_id_id = "-1";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.create_question);
-        book_id=new ArrayList<>();
-        book_title=new ArrayList<>();
-        write_que = (TextView)findViewById(R.id.write_que_heading);
+        book_id = new ArrayList<>();
+        book_title = new ArrayList<>();
+        write_que = (TextView) findViewById(R.id.write_que_heading);
         write_que.setText(Session.getword(this, "write_y_question"));
-        type_question=(EditText)findViewById(R.id.et_que);
-        type_question.setHint(Session.getword(this,"type_your_ques"));
-        book_rev = (TextView)findViewById(R.id.books_rev_heading);
-        book_rev.setText(Session.getword(this,"books_and_reviews"));
-       // book_ref = (TextView)findViewById(R.id.book_ref_heading);
-       // book_ref.setText(Session.getword(this,"reference"));
-       // upload_video = (TextView)findViewById(R.id.upload_vid_heading);
-       // upload_video.setText(Session.getword(this,""));
-        write_ans = (TextView)findViewById(R.id.write_answer_heading);
-        write_ans.setText(Session.getword(this,"write_y_answer"));
+        type_question = (EditText) findViewById(R.id.et_que);
+        type_question.setHint(Session.getword(this, "type_your_ques"));
+        book_rev = (TextView) findViewById(R.id.books_rev_heading);
+        book_rev.setText(Session.getword(this, "books_and_reviews"));
+        // book_ref = (TextView)findViewById(R.id.book_ref_heading);
+        // book_ref.setText(Session.getword(this,"reference"));
+        // upload_video = (TextView)findViewById(R.id.upload_vid_heading);
+        // upload_video.setText(Session.getword(this,""));
+        write_ans = (TextView) findViewById(R.id.write_answer_heading);
+        write_ans.setText(Session.getword(this, "write_y_answer"));
 
-        submit = (TextView)findViewById(R.id.create_submit);
+        submit = (TextView) findViewById(R.id.create_submit);
         submit.setText(Session.getword(this, "submit"));
-        book_ll=(LinearLayout)findViewById(R.id.book_ll);
+        book_ll = (LinearLayout) findViewById(R.id.book_ll);
         getSupportActionBar().hide();
         book_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CreateQuestionActivity.this);
-                builder.setTitle(Session.getword(CreateQuestionActivity.this,"books"));
+                builder.setTitle(Session.getword(CreateQuestionActivity.this, "books"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CreateQuestionActivity.this, android.R.layout.select_dialog_item, book_title);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                         Toast.makeText(CreateQuestionActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(CreateQuestionActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
+
                         book_id_id = book_id.get(which);
+                        show_topic(which);
 //                        choose_section.setText(book_title.get(which));
                         //save_changes.performClick();
 
@@ -87,8 +92,10 @@ public class CreateQuestionActivity extends AppCompatActivity {
 
             }
         });
+
+
         get_book();
-        one = (RadioButton ) findViewById(R.id.one);
+        one = (RadioButton) findViewById(R.id.one);
         two = (RadioButton) findViewById(R.id.two);
         three = (RadioButton) findViewById(R.id.three);
         four = (RadioButton) findViewById(R.id.four);
@@ -157,6 +164,39 @@ public class CreateQuestionActivity extends AppCompatActivity {
             }
         });
         subject_id = getIntent().getStringExtra("subj_id");
+    }
+
+    private void show_topic(int pos) {
+        topic_id = new ArrayList<>();
+        topic_title = new ArrayList<>();
+        for(int i=0;i<tpoics_json.get(pos).length();i++){
+            try {
+                topic_id.add(tpoics_json.get(pos).getJSONObject(i).getString("id"));
+                topic_title.add(tpoics_json.get(pos).getJSONObject(i).getString("title"+Session.get_append(this)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CreateQuestionActivity.this);
+        builder.setTitle(Session.getword(CreateQuestionActivity.this, "topics"));
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CreateQuestionActivity.this, android.R.layout.select_dialog_item, topic_title);
+        builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener()
+
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(CreateQuestionActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
+                        book_id_id = topic_id.get(which);
+//                        choose_section.setText(book_title.get(which));
+                        //save_changes.performClick();
+
+                    }
+                }
+
+        );
+
+        final android.app.AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void add_question() {
@@ -261,6 +301,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
             public void onResponse(JSONArray jsonArray) {
                 progressDialog.dismiss();
                 Log.e("response is: ", jsonArray.toString());
+                tpoics_json = new ArrayList<>();
                 try {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject sub = jsonArray.getJSONObject(i);
@@ -268,6 +309,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
                         String semsec_id = sub.getString("id");
                         book_id.add(semsec_id);
                         book_title.add(semsec_name);
+                        tpoics_json.add(sub.getJSONArray("topics"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -325,4 +367,6 @@ public class CreateQuestionActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+
 }

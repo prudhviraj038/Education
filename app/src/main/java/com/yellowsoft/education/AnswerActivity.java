@@ -8,7 +8,8 @@ import android.app.AlertDialog;
         import android.content.DialogInterface;
         import android.content.Intent;
         import android.content.pm.ActivityInfo;
-        import android.os.Handler;
+import android.net.Uri;
+import android.os.Handler;
         import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
 
@@ -38,10 +39,10 @@ import android.app.AlertDialog;
 public class AnswerActivity extends Activity {
     boolean cansubmit;
     String subject_id = "1";
-    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,submit_answer;
+    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,submit_answer,ref;
     ImageView one,two,three,four;
     LinearLayout submit_layout;
-    String user_correct,api_correct;
+    String user_correct,api_correct,pdf_url;
     JSONObject user_details;
     int next_stage = 5;
     int correct_count=0;
@@ -63,7 +64,7 @@ public class AnswerActivity extends Activity {
         choose_ans.setText(Session.getword(this,"choose_your_answer"));
         submit_layout=(LinearLayout)findViewById(R.id.submit_ans);
         submit_answer = (TextView) findViewById(R.id.submit_answer);
-
+        ref = (TextView) findViewById(R.id.reference);
         que_count = (TextView) findViewById(R.id.que_count);
         que_number = (TextView) findViewById(R.id.question_number);
       //  que_number.setText(Session.getword(this,"question"+ String.valueOf(question_count)));
@@ -181,6 +182,15 @@ public class AnswerActivity extends Activity {
             }
         });
 
+        ref.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent callIntent = new Intent(Intent.ACTION_VIEW);
+                callIntent.setData(Uri.parse(pdf_url));
+                startActivity(callIntent);
+//                   Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
+            }
+        });
         getquestion();
     }
 
@@ -239,7 +249,9 @@ public class AnswerActivity extends Activity {
                         ans2.setText(jsonObject.getString("answer2"));
                         ans3.setText(jsonObject.getString("answer3"));
                         ans4.setText(jsonObject.getString("answer4"));
+                        ref.setText(jsonObject.getJSONObject("reference").getString("title" + Session.get_append(AnswerActivity.this)));
                         api_correct = jsonObject.getString("correct");
+                        pdf_url = jsonObject.getJSONObject("reference").getString("pdf");
                         question_count++;
                         que_number.setText(Session.getword(AnswerActivity.this,"question_no") + String.valueOf(question_count));
                         que_count.setText(String.valueOf(question_count)+ "/" + String.valueOf(next_stage));

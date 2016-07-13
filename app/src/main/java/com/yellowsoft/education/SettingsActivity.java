@@ -102,14 +102,14 @@ public class SettingsActivity extends Activity {
                     Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-
+                    finish();
 
                 } else {
                     Session.set_user_language(SettingsActivity.this, "ar");
-                    Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
+                   Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-
+                    finish();
 
                 }
             }

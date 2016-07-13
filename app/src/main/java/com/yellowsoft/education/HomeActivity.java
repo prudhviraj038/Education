@@ -41,11 +41,13 @@ public class HomeActivity extends Activity {
     String user_id;
     ImageView reward_btn,settings_btn;
     TextView answer,make_que,books;
+    LinearLayout main_layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.home_screen);
+        main_layout = (LinearLayout) findViewById(R.id.main_layout);
         sub_id= new ArrayList<String>();
         sub_title=new ArrayList<String>();
         answer = (TextView)findViewById(R.id.answer_question);
