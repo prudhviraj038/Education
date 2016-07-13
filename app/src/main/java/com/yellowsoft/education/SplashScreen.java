@@ -21,7 +21,7 @@ import static com.yellowsoft.education.CommonUtilities.DISPLAY_MESSAGE_ACTION;
 import static com.yellowsoft.education.CommonUtilities.EXTRA_MESSAGE;
 import static com.yellowsoft.education.CommonUtilities.SENDER_ID;
 
-public class SplashScreen extends Activity {
+public class SplashScreen extends RootActivity {
 
     // Splash screen timer
     private static int SPLASH_TIME_OUT = 1000;

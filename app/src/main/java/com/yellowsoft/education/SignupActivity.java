@@ -50,7 +50,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SignupActivity extends Activity {
+public class SignupActivity extends RootActivity {
 
     EditText et_uname;
     EditText et_password;

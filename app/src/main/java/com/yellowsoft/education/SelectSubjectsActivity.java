@@ -41,7 +41,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SelectSubjectsActivity extends Activity {
+public class SelectSubjectsActivity extends RootActivity {
     ArrayAdapter<String> adapter;
     HashMap<String, String> choices;
     ArrayList<String> sub_id;

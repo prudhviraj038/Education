@@ -47,7 +47,7 @@
                         android:layout_height="wrap_content"
                         android:text="ABDULLAH ALAAZMY"
                         android:id="@+id/username"
-                        android:textSize="13dp"
+                        android:textSize="15sp"
                         android:layout_gravity="left"
                         android:layout_marginBottom="2dp"
                         android:paddingLeft="10dp"
@@ -61,7 +61,7 @@
                         android:layout_gravity="left"
                         android:layout_marginBottom="5dp"
                         android:paddingLeft="10dp"
-                        android:textSize="12dp"
+                        android:textSize="14sp"
                         android:textColor="@color/ans_scr_text" />
 
                 </LinearLayout>
@@ -71,7 +71,7 @@
                     android:layout_height="match_parent"
                     android:text="04"
                     android:id="@+id/userlevel"
-                    android:textSize="18dp"
+                    android:textSize="20sp"
                     android:gravity="center_vertical"
                     android:padding="5dp"
                     android:background="#dedede"
@@ -117,13 +117,15 @@
                 android:layout_gravity="center"
                 android:password="false"
                 android:text="CHOOSE YOUR ANSWER"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp" />
 
             <RelativeLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp">
 
                 <RelativeLayout
                     android:orientation="vertical"
@@ -168,7 +170,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp">
 
                 <RelativeLayout
                     android:orientation="vertical"
@@ -212,7 +215,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp">
 
                 <RelativeLayout
                     android:orientation="vertical"
@@ -256,7 +260,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp" >
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp">
 
                 <RelativeLayout
                     android:orientation="vertical"
@@ -301,7 +306,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:divider="@drawable/ans_scr_divider">
+                android:divider="@drawable/ans_scr_divider"
+                android:layout_marginTop="10dp">
 
                 <LinearLayout
                     android:orientation="vertical"

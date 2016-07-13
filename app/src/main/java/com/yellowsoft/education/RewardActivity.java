@@ -28,7 +28,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 
-public class RewardActivity extends Activity {
+public class RewardActivity extends RootActivity {
 
     TextView worng,total,correct,user_name,user_adrress;
     TextView wrong,correctt,questions,top_stud;

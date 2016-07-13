@@ -24,7 +24,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 
-public class ChangePasswordActivity extends Activity {
+public class ChangePasswordActivity extends RootActivity {
     EditText new_pass,conf_pass;
     TextView sub_pass;
 
@@ -72,13 +72,13 @@ public class ChangePasswordActivity extends Activity {
     }
     private void change_password() {
         String n_pass = new_pass.getText().toString();
-        new_pass.setText(Session.getword(this,"new_password"));
+        new_pass.setText(Session.getword(this, "new_password"));
         Log.e("pass",n_pass);
         String c_pass = conf_pass.getText().toString();
         if (n_pass.equals(""))
             Toast.makeText(ChangePasswordActivity.this, Session.getword(ChangePasswordActivity.this,"new_password"), Toast.LENGTH_SHORT).show();
         else if (n_pass.length() < 6)
-            Toast.makeText(ChangePasswordActivity.this, "Password Lenth should be grether than 6 charcters", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChangePasswordActivity.this, Session.getword(ChangePasswordActivity.this,"password_length"), Toast.LENGTH_SHORT).show();
         else if (!c_pass.equals(n_pass))
             Toast.makeText(ChangePasswordActivity.this,Session.getword(ChangePasswordActivity.this,"confirm_password"), Toast.LENGTH_SHORT).show();
 

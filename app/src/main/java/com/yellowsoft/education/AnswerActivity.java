@@ -36,7 +36,7 @@ import android.os.Handler;
         import org.json.JSONObject;
 
 
-public class AnswerActivity extends Activity {
+public class AnswerActivity extends RootActivity {
     boolean cansubmit;
     String subject_id = "1";
     TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,submit_answer,ref;

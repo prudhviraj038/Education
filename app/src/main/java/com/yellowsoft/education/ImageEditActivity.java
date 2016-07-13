@@ -29,7 +29,7 @@ import java.util.Date;
 /**
  * Created by Chinni on 13-11-2015.
  */
-public class ImageEditActivity extends Activity {
+public class ImageEditActivity extends RootActivity {
     Boolean saveandfinish = false;
     Boolean saveasnew = false;
     String photopath,photosource;

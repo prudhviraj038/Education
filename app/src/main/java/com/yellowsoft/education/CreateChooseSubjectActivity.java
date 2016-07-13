@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import javax.security.auth.Subject;
 
 
-public class CreateChooseSubjectActivity extends Activity {
+public class CreateChooseSubjectActivity extends RootActivity {
     String subect_id="0";
     String levels_id="0";
     String grade_id="0";

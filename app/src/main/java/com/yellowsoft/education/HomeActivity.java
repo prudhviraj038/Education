@@ -32,7 +32,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends RootActivity {
 
     String subect_id="0";
     ArrayList<String> sub_id;

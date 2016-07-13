@@ -31,7 +31,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 
-public class ChooseQuestionaireActivity extends Activity {
+public class ChooseQuestionaireActivity extends RootActivity {
     HomeActivity homeActivity=new HomeActivity();
     TextView choosequestion,save_changes;
     String sub_id=homeActivity.subect_id;

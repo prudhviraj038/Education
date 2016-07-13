@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends RootActivity {
         TextView edit_profile,change_academics,change_sub,lang,logout,change_pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

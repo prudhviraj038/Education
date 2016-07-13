@@ -34,7 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class ChooseLevelGradeSemActivity extends Activity {
+public class ChooseLevelGradeSemActivity extends RootActivity {
     String levels_id="0";
     String grade_id="0";
     String sem_sec_id="0";

@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:text="ABDULLAH AL AAZMY"
                     android:id="@+id/name_tv"
-                    android:textSize="10dp"
+                    android:textSize="12sp"
                     android:textColor="#474747"
                     android:gravity="left"
                     android:layout_marginLeft="5dp"
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:text="SECONDARY"
                         android:id="@+id/sec_tv"
-                        android:textSize="10dp"
+                        android:textSize="12sp"
                         android:textColor="#474747"
                         android:layout_marginRight="5dp"
                         android:layout_marginLeft="5dp" />
@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:text="GRADE 03"
                         android:id="@+id/grade_tv"
-                        android:textSize="10dp"
+                        android:textSize="12sp"
                         android:textColor="#474747"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp" />
@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:text="7"
                         android:id="@+id/number_gave_tv"
-                        android:textSize="18dp"
+                        android:textSize="20sp"
                         android:textColor="#4b4b4b" />
 
                     <TextView
@@ -111,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:text="GAVE UP"
                         android:id="@+id/gave_tv"
-                        android:textSize="10dp"
+                        android:textSize="12sp"
                         android:textColor="#9C9C9C" />
                 </LinearLayout>
 
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:text="7"
                         android:id="@+id/number_wrong_tv"
-                        android:textSize="18dp"
+                        android:textSize="20sp"
                         android:textColor="#4b4b4b" />
 
                     <TextView
@@ -137,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:text="WRONG ANSWERS"
                         android:id="@+id/wrong_tv"
-                        android:textSize="10dp"
+                        android:textSize="12sp"
                         android:textColor="#9C9C9C" />
                 </LinearLayout>
 
@@ -153,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:text="7"
                         android:id="@+id/number_correct_tv"
-                        android:textSize="18dp"
+                        android:textSize="20sp"
                         android:textColor="#4b4b4b" />
 
                     <TextView
@@ -161,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:text="CORRECT ANSWERS"
                         android:id="@+id/correct_tv"
-                        android:textSize="10dp"
+                        android:textSize="12sp"
                         android:textColor="#9C9C9C" />
                 </LinearLayout>
             </LinearLayout>

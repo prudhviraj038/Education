@@ -27,7 +27,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends RootActivity {
     EditText et_uname;
     EditText et_password;
     String write;
