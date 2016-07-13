@@ -88,6 +88,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
                 });
 
                 final android.app.AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                 dialog.show();
 
             }
@@ -196,6 +197,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
         );
 
         final android.app.AlertDialog dialog = builder.create();
+        dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
         dialog.show();
     }
 

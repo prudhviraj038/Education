@@ -422,6 +422,7 @@ public class AnswerActivity extends RootActivity {
         });
 
         android.app.AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
         alertDialog.show();
     }
 

@@ -143,6 +143,7 @@ public class SignupActivity extends RootActivity {
                     }
                 });
                 final android.app.AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                 dialog.show();
             }
         });
@@ -163,6 +164,7 @@ public class SignupActivity extends RootActivity {
                         }
                     });
                     final android.app.AlertDialog dialog = builder.create();
+                    dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                     dialog.show();
                 }
                 else{
@@ -468,6 +470,7 @@ public class SignupActivity extends RootActivity {
         });
 
         final AlertDialog dialog = builder.create();
+        dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
         dialog.show();
     }
 

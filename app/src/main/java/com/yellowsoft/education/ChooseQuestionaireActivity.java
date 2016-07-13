@@ -71,6 +71,7 @@ public class ChooseQuestionaireActivity extends RootActivity {
                 });
 
                 final AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                 dialog.show();
             }});
         get_choose_quer_id();

@@ -116,6 +116,7 @@ public class SettingsActivity extends RootActivity {
 
         });
         final AlertDialog dialog = alert1.create();
+        dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
         dialog.show();
     }
 

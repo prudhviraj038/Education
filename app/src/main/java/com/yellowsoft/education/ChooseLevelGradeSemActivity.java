@@ -117,6 +117,7 @@ public class ChooseLevelGradeSemActivity extends RootActivity {
                 });
 
                 final AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                 dialog.show();
             }
         });
@@ -147,6 +148,7 @@ public class ChooseLevelGradeSemActivity extends RootActivity {
                 });
 
                 final AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                 dialog.show();
             }
         });
@@ -170,6 +172,7 @@ public class ChooseLevelGradeSemActivity extends RootActivity {
                 });
 
                 final AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                 dialog.show();
             }
         });

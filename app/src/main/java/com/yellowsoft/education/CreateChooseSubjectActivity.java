@@ -106,6 +106,7 @@ public class CreateChooseSubjectActivity extends RootActivity {
                 });
 
                 final AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                 dialog.show();
             }
         });
@@ -129,6 +130,7 @@ public class CreateChooseSubjectActivity extends RootActivity {
                 });
 
                 final AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                 dialog.show();
             }
         });
@@ -159,6 +161,7 @@ public class CreateChooseSubjectActivity extends RootActivity {
                 });
 
                 final AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                 dialog.show();
             }
         });
@@ -182,6 +185,7 @@ public class CreateChooseSubjectActivity extends RootActivity {
                 });
 
                 final AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
                 dialog.show();
             }
         });
