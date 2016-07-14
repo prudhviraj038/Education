@@ -93,7 +93,7 @@
                         android:layout_height="100dp"
                         android:id="@+id/profile_image"
                         android:layout_gravity="right"
-                        android:src="@drawable/choose_icon"
+                        android:src="@drawable/building_icon"
                         android:layout_alignParentTop="true"
                         android:layout_toRightOf="@+id/ly_v1"
                         android:layout_toEndOf="@+id/ly_v1"

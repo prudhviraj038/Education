@@ -31,11 +31,11 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:id="@+id/user_image"
-                    android:src="@drawable/building_icon" />
+                    android:src="@drawable/building" />
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:divider="@drawable/answer_divider"
@@ -412,9 +412,9 @@
         android:layout_height="wrap_content"
         android:background="@color/text_black"
         android:gravity="center"
-        android:paddingBottom="10dp"
+        android:id="@+id/submit_ans"
         android:paddingTop="10dp"
-        android:id="@+id/submit_ans" >
+        android:paddingBottom="10dp">
 
         <TextView
             android:layout_width="wrap_content"
