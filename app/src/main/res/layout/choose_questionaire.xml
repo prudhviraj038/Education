@@ -103,6 +103,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView58"
             android:src="@drawable/tick_icon"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:adjustViewBounds="false" />
     </LinearLayout>
 </LinearLayout>
