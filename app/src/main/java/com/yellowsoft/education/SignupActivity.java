@@ -106,7 +106,7 @@ public class SignupActivity extends RootActivity {
          et_gove=(TextView)findViewById(R.id.et_gove);
         et_gove.setText(Session.getword(this, "governorate"));
         area_tv=(TextView)findViewById(R.id.area_tv);
-        area_tv.setText(Session.getword(this,"area"));
+        area_tv.setText(Session.getword(this,"school"));
          et_class=(EditText)findViewById(R.id.et_class);
         et_class.setHint(Session.getword(this, "class"));
             profile_image = (ImageView) findViewById(R.id.profile_image);
@@ -135,7 +135,7 @@ public class SignupActivity extends RootActivity {
                         gove_id= governorates.get(which).id;
                         area_id = "";
                         et_gove.setText(governorates.get(which).getTitle(SignupActivity.this));
-                        area_tv.setText(Session.getword(SignupActivity.this, "area"));
+                        area_tv.setText(Session.getword(SignupActivity.this, "school"));
                         area_titles.clear();
                         for(int i=0;i<governorates.get(which).are.size();i++) {
                             area_titles.add(governorates.get(which).are.get(i).getATitle(SignupActivity.this));
@@ -265,7 +265,7 @@ public class SignupActivity extends RootActivity {
         else if (gove_id.equals(""))
             Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_gover"), Toast.LENGTH_SHORT).show();
         else if (area_id.equals(""))
-            Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_sel_area"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_sel_school"), Toast.LENGTH_SHORT).show();
         else if (classs.equals(""))
             Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_ent_class"), Toast.LENGTH_SHORT).show();
         else {
@@ -339,6 +339,7 @@ public class SignupActivity extends RootActivity {
                 params.put("member_id",Session.getUserid(SignupActivity.this));
                 params.put("name",fullname);
                 params.put("phone",mobile);
+                params.put("governorate",area_id);
                 params.put("governorate",area_id);
                 params.put("class",classs);
                 return params;
