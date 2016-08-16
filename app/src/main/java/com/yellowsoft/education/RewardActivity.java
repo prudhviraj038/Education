@@ -44,7 +44,7 @@ public class RewardActivity extends RootActivity {
         setContentView(R.layout.rewards_screen);
         rewardses = new ArrayList<>();
         wrong = (TextView)findViewById(R.id.wrong_ans);
-        wrong.setText(Session.getword(this, "wrong_answers"));
+        wrong.setText(Session.getword(this, "giveup"));
 
         questions = (TextView)findViewById(R.id.no_ques);
         questions.setText(Session.getword(this, "no_of_questions"));
@@ -91,8 +91,8 @@ public class RewardActivity extends RootActivity {
             user_details = new JSONObject(Session.getUserdetails(this));
             user_name.setText(user_details.getString("name"));
             user_name.setText(user_details.getString("name"));
-            user_adrress.setText(user_details.getJSONObject("area").getString("governate"+Session.get_append(this))
-                            +" , "+ user_details.getJSONObject("area").getString("title"+Session.get_append(this))
+            user_adrress.setText(user_details.getJSONObject("school").getString("governate"+Session.get_append(this))
+                            +" , "+ user_details.getJSONObject("school").getString("title"+Session.get_append(this))
             );
             Picasso.with(this).load(user_details.getString("image")).into(user_image);
         } catch (JSONException e) {
@@ -145,7 +145,7 @@ public class RewardActivity extends RootActivity {
 
                 try {
                     Log.e("res",jsonArray.toString());
-                    worng.setText(jsonArray.getString("wrong"));
+                    worng.setText(jsonArray.getString("skipped"));
                     total.setText(jsonArray.getString("total"));
                     correct.setText(jsonArray.getString("correct"));
                 } catch (Exception e) {

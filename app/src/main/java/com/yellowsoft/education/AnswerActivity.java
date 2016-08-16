@@ -46,6 +46,7 @@ public class AnswerActivity extends RootActivity {
     JSONObject user_details;
     int next_stage = 5;
     int correct_count=0;
+    int attempt_count=0;
     int question_count = 0;
     String answertype = "-1";
     String question_id = "-1";
@@ -81,20 +82,26 @@ public class AnswerActivity extends RootActivity {
             @Override
             public void onClick(View v) {
                 if (cansubmit) {
+
                     if (user_correct.equals("-1")) {
                         Toast.makeText(AnswerActivity.this, Session.getword(AnswerActivity.this,"Pls_sel_corr_ans"), Toast.LENGTH_SHORT).show();
                     } else {
+                        attempt_count++;
                         if (user_correct.equals(api_correct)) {
                             Toast.makeText(AnswerActivity.this, Session.getword(AnswerActivity.this,"correct_answers"), Toast.LENGTH_SHORT).show();
                             correct_count = correct_count + 1;
-
                             answertype = "correct";
+                            setanswer();
                         } else {
                             Toast.makeText(AnswerActivity.this, Session.getword(AnswerActivity.this,"wrong_answers"), Toast.LENGTH_SHORT).show();
                             answertype = "wrong";
+                            if(attempt_count==1)
+                            show_alert_wrong();
+                            else
+                                setanswer();
                         }
 
-                        setanswer();
+
                     }
                 }
                 else{
@@ -219,6 +226,7 @@ public class AnswerActivity extends RootActivity {
     private void getquestion(){
         submit_answer.setText(Session.getword(AnswerActivity.this,"submit_answer"));
         user_correct = "-1";
+        attempt_count = 0;
         one.setImageResource(R.drawable.radio_btn_unselected);
         two.setImageResource(R.drawable.radio_btn_unselected);
         three.setImageResource(R.drawable.radio_btn_unselected);
@@ -322,7 +330,9 @@ public class AnswerActivity extends RootActivity {
                                     show_alert_fail();
                                 }
                             }else{
-                                if(answertype.equals("wrong")|| answertype.equals("skipped")){
+                                getquestion();
+
+                                /*if(answertype.equals("wrong")|| answertype.equals("skipped")){
                                     show_alert_wrong();
                                 }
                                 else
@@ -330,7 +340,7 @@ public class AnswerActivity extends RootActivity {
                                     getquestion();
 
 
-                                }
+                                }*/
 
                             }
 
@@ -405,19 +415,20 @@ public class AnswerActivity extends RootActivity {
     public void show_alert_wrong(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(Session.getword(this, "wrong_answers"));
-        alertDialogBuilder.setMessage("Do You want to know the correct answer?");
-        alertDialogBuilder.setMessage(Session.getword(this,"know_correct_answer"));
+        alertDialogBuilder.setMessage("Do You want to try again?");
+        alertDialogBuilder.setMessage(Session.getword(this,"try_again"));
         alertDialogBuilder.setPositiveButton(Session.getword(this, "yes"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                show_correct_answer();
+               // show_correct_answer();
             }
         });
 
         alertDialogBuilder.setNegativeButton(Session.getword(this, "no_continue_exam"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                getquestion();
+                //getquestion();
+                setanswer();
             }
         });
 
@@ -429,7 +440,7 @@ public class AnswerActivity extends RootActivity {
 
     private  void show_correct_answer(){
         cansubmit=false;
-        submit_answer.setText(Session.getword(this,"next_question"));
+      //  submit_answer.setText(Session.getword(this,"next_question"));
         if(user_correct.equals("1"))
             one.setImageResource(R.drawable.radio_btn_wrong);
         else if(user_correct.equals("2"))

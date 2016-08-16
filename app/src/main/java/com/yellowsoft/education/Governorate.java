@@ -21,7 +21,7 @@ public class Governorate {
                 id=jsonObject.getString("id");
                 title=jsonObject.getString("title");
                 title_ar=jsonObject.getString("title_ar");
-                jsonArray1=jsonObject.getJSONArray("areas");
+                jsonArray1=jsonObject.getJSONArray("schools");
                 for(int j=0;j<jsonArray1.length();j++) {
                         Area ar = new Area(jsonArray1.getJSONObject(j));
                         are.add(ar);

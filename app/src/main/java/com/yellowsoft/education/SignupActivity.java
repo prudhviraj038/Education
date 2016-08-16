@@ -57,17 +57,19 @@ public class SignupActivity extends RootActivity {
     EditText et_fullname;
     EditText et_email;
     EditText et_mobile;
-    TextView et_gove,area_tv;
+    TextView et_gove,area_tv,class_tv;
     EditText et_class;
     ImageView profile_image;
-    LinearLayout gove_ll,area_ll;
+    LinearLayout gove_ll,area_ll,class_ll;
     String type;
     TextView signup_txt;
-    String area_id,gove_id,area_name,gove_name;
+    String area_id,gove_id,class_id,area_name,gove_name;
     int posi;
     ArrayList<Governorate> governorates;
     ArrayList<String> gove_titles;
     ArrayList<String> area_titles;
+    ArrayList<String> class_titles;
+    ArrayList<String> class_ids;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,10 +80,15 @@ public class SignupActivity extends RootActivity {
         governorates=new ArrayList<>();
         gove_titles=new ArrayList<>();
         area_titles=new ArrayList<>();
+        class_titles = new ArrayList<>();
+        class_ids = new ArrayList<>();
         gove_id = "";
         area_id= "";
+        class_id = "";
         gove_ll=(LinearLayout)findViewById(R.id.gove_ll);
         area_ll=(LinearLayout)findViewById(R.id.area_ll);
+        class_ll=(LinearLayout) findViewById(R.id.class_ll);
+
         ImageView back=(ImageView)findViewById(R.id.back_signup_scr);
         TextView selectimg=(TextView)findViewById(R.id.select_image);
         selectimg.setText(Session.getword(this,"selct_image"));
@@ -109,6 +116,9 @@ public class SignupActivity extends RootActivity {
         area_tv.setText(Session.getword(this,"school"));
          et_class=(EditText)findViewById(R.id.et_class);
         et_class.setHint(Session.getword(this, "class"));
+        class_tv = (TextView) findViewById(R.id.class_tv);
+        class_tv.setText(Session.getword(this, "class"));
+
             profile_image = (ImageView) findViewById(R.id.profile_image);
 
         selectimg.setOnClickListener(new View.OnClickListener() {
@@ -131,13 +141,13 @@ public class SignupActivity extends RootActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 //                        Toast.makeText(SignupActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
-                        posi=which;
-                        gove_id= governorates.get(which).id;
+                        posi = which;
+                        gove_id = governorates.get(which).id;
                         area_id = "";
                         et_gove.setText(governorates.get(which).getTitle(SignupActivity.this));
                         area_tv.setText(Session.getword(SignupActivity.this, "school"));
                         area_titles.clear();
-                        for(int i=0;i<governorates.get(which).are.size();i++) {
+                        for (int i = 0; i < governorates.get(which).are.size(); i++) {
                             area_titles.add(governorates.get(which).are.get(i).getATitle(SignupActivity.this));
                         }
                     }
@@ -174,7 +184,27 @@ public class SignupActivity extends RootActivity {
         });
 
 
+        class_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SignupActivity.this);
+                builder.setTitle("Areas");
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SignupActivity.this,
+                        android.R.layout.select_dialog_item, area_titles);
+                builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(SignupActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
+                        classs = class_ids.get(which);
+                        class_tv.setText(class_titles.get(which));
+                    }
+                });
+                final android.app.AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
+                dialog.show();
+            }
 
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -391,7 +421,7 @@ public class SignupActivity extends RootActivity {
     private void get_area() {
         String url = null;
         try {
-            url = Session.SERVERURL+"areas.php?";
+            url = Session.SERVERURL+"schools.php?";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -405,6 +435,7 @@ public class SignupActivity extends RootActivity {
             public void onResponse(JSONArray jsonArray) {
                 progressDialog.dismiss();
                 Log.e("orders response is: ", jsonArray.toString());
+                get_classes();
                 for(int i=0;i<jsonArray.length();i++){
                     Governorate governorate= null;
                     try {
@@ -424,12 +455,57 @@ public class SignupActivity extends RootActivity {
                 Log.e("response is:", error.toString());
 //                Toast.makeText(getActivity(), Settings.getword(getActivity(), "server_not_connected"), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
+                get_classes();
             }
 
         });
 // Access the RequestQueue through your singleton class.
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
     }
+    private void get_classes() {
+        String url = null;
+        try {
+            url = Session.SERVERURL+"classes.php?";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Log.e("url--->", url);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please_wait");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url,new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                progressDialog.dismiss();
+                Log.e("orders response is: ", jsonArray.toString());
+                class_titles = new ArrayList<>();
+                for(int i=0;i<jsonArray.length();i++){
+                    try {
+
+                        class_titles.add(jsonArray.getJSONObject(i).getString("title"+Session.get_append(SignupActivity.this)));
+                        class_ids.add(jsonArray.getJSONObject(i).getString("id"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+                Log.e("response is:", error.toString());
+//                Toast.makeText(getActivity(), Settings.getword(getActivity(), "server_not_connected"), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+
+        });
+// Access the RequestQueue through your singleton class.
+        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+    }
+
 
     Bitmap bitmap;
     String encodedString;
