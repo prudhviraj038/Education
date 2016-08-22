@@ -55,6 +55,39 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:gravity="center"
+                    android:id="@+id/choose_sem"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/sem"
+                        android:contentDescription=""
+                        android:src="@drawable/list_icon"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:clickable="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CHOOSE SEMESTER"
+                        android:id="@+id/sem_tv"
+                        android:textSize="16dp"
+                        android:textColor="#ffffff"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#107fc9"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center"
                     android:id="@+id/choose_sub">
 
                     <ImageView

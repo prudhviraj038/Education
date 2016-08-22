@@ -64,7 +64,7 @@ public class ChooseLevelGradeSemActivity extends RootActivity {
         choose_grade = (TextView) findViewById(R.id.choose_grade_heading);
         choose_grade.setText(Session.getword(this,"choose_grade"));
         choose_section = (TextView) findViewById(R.id.choose_section_heading);
-        choose_section.setText(Session.getword(this,"choose_subject"));
+        choose_section.setText(Session.getword(this,"choose_semester"));
         TextView sav_chnges = (TextView)findViewById(R.id.savechanges);
         sav_chnges.setText(Session.getword(this,"savechanges"));
 

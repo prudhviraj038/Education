@@ -46,7 +46,7 @@ public class SplashScreen extends RootActivity {
             startActivity(i);
             finish();
         }
-        GCMRegistrar.checkDevice(this);
+       // GCMRegistrar.checkDevice(this);
         GCMRegistrar.checkManifest(this);
         registerReceiver(mHandleMessageReceiver, new IntentFilter(
                 DISPLAY_MESSAGE_ACTION));

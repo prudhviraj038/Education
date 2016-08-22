@@ -416,7 +416,7 @@ public class AnswerActivity extends RootActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(Session.getword(this, "wrong_answers"));
         alertDialogBuilder.setMessage("Do You want to try again?");
-        alertDialogBuilder.setMessage(Session.getword(this,"try_again"));
+        alertDialogBuilder.setMessage(Session.getword(this,"message_incorrect_answer"));
         alertDialogBuilder.setPositiveButton(Session.getword(this, "yes"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {

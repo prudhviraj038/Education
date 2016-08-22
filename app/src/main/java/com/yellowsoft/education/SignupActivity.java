@@ -188,9 +188,9 @@ public class SignupActivity extends RootActivity {
             @Override
             public void onClick(View v) {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SignupActivity.this);
-                builder.setTitle("Areas");
+                builder.setTitle("Classes");
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SignupActivity.this,
-                        android.R.layout.select_dialog_item, area_titles);
+                        android.R.layout.select_dialog_item, class_titles);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -234,7 +234,7 @@ public class SignupActivity extends RootActivity {
             et_mobile.setText(jsonObject.getString("phone"));
             et_gove.setText(jsonObject.getJSONObject("area").getString("governate" + Session.get_append(this)));
             area_tv.setText(jsonObject.getJSONObject("area").getString("title" + Session.get_append(this)));
-            et_class.setText(jsonObject.getString("class"));
+            class_tv.setText(jsonObject.getString("class"));
             Picasso.with(SignupActivity.this).load(jsonObject.getString("image")).into(profile_image);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -278,7 +278,7 @@ public class SignupActivity extends RootActivity {
          fullname = et_fullname.getText().toString();
          email = et_email.getText().toString();
          mobile = et_mobile.getText().toString();
-         classs = et_class.getText().toString();
+       //  classs = et_class.getText().toString();
 
         if (uname.equals(""))
             Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_username"), Toast.LENGTH_SHORT).show();
