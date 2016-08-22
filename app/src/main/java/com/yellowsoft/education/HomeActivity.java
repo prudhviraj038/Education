@@ -47,7 +47,7 @@ public class HomeActivity extends RootActivity {
     String user_id;
     ImageView reward_btn,settings_btn;
     TextView answer,make_que,books;
-    LinearLayout main_layout;
+    LinearLayout main_layout,advertise;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +65,14 @@ public class HomeActivity extends RootActivity {
         make_que= (TextView)findViewById(R.id.make_questiona);
         make_que.setText(Session.getword(this, "make_a_questionaire"));
 
+        advertise = (LinearLayout)findViewById(R.id.home_advertisment);
+        advertise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,Advertisement_Activity.class);
+                startActivity(intent);
+            }
+        });
 
         // books = (TextView)findViewById(R.id.books_reviews);
         // books.setText(Session.getword(this, "books_and_reviews"));

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="screen_top_background">#21a6e0</color>
+    <color name="screen_down_background">#565656</color>
     <color name="text_blue">#107fc9</color>
     <color name="text_black">#616161</color>
     <color name="signup_field_bg">#eeeeee</color>
