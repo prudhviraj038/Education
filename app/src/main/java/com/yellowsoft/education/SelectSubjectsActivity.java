@@ -81,6 +81,9 @@ public class SelectSubjectsActivity extends RootActivity {
             classs = intent.getStringExtra("clas");
             img_path = intent.getStringExtra("image_path");
         }
+        else{
+
+         }
         LinearLayout save_changes=(LinearLayout)findViewById(R.id.save_change_fin);
         save_changes.setOnClickListener(new View.OnClickListener() {
             @Override

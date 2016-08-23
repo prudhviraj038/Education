@@ -352,7 +352,6 @@ public class HomeActivity extends RootActivity {
 
 // Access the RequestQueue through your singleton class.
         AppController.getInstance().addToRequestQueue(jsObjRequest);
-
     }
 
 

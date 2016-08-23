@@ -232,10 +232,15 @@ public class SignupActivity extends RootActivity {
             et_fullname.setText(jsonObject.getString("name"));
             et_email.setText(jsonObject.getString("email"));
             et_mobile.setText(jsonObject.getString("phone"));
-            et_gove.setText(jsonObject.getJSONObject("area").getString("governate" + Session.get_append(this)));
-            area_tv.setText(jsonObject.getJSONObject("area").getString("title" + Session.get_append(this)));
+            et_gove.setText(jsonObject.getJSONObject("school").getString("governate" + Session.get_append(this)));
+            area_tv.setText(jsonObject.getJSONObject("school").getString("title" + Session.get_append(this)));
             class_tv.setText(jsonObject.getString("class"));
+            classs = jsonObject.getString("class");
+            area_id = jsonObject.getJSONObject("school").getString("id");
+            gove_id = jsonObject.getJSONObject("school").getString("id");
             Picasso.with(SignupActivity.this).load(jsonObject.getString("image")).into(profile_image);
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
