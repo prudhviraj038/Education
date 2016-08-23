@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class AdvertisementListAdapter extends BaseAdapter{
@@ -25,7 +27,7 @@ public class AdvertisementListAdapter extends BaseAdapter{
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 10;
+        return freelancers.size();
     }
 
     @Override
@@ -57,7 +59,7 @@ public class AdvertisementListAdapter extends BaseAdapter{
         rowView = convertView;
         holder.userimage=(ImageView) rowView.findViewById(R.id.adv_image);
 
-      //   Picasso.with(context).load(users.get(position).image).into(holder.userimage);
+         Picasso.with(context).load(freelancers.get(position).image).into(holder.userimage);
        //  holder.name.setText(users.get(position).name);
         // holder.field.setText(users.get(position).field);
         // holder.experience.setText(users.get(position).experience);

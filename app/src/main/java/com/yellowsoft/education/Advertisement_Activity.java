@@ -2,10 +2,14 @@ package com.yellowsoft.education;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,14 +37,36 @@ public class Advertisement_Activity extends RootActivity {
         super.onCreate(savedInstanceState);
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.advertisement);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linear_layout);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Advertisement_Activity.this,Feedback.class);
+                startActivity(intent);
+            }
+        });
+        ImageView back_btn = (ImageView) findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         advertses = new ArrayList<>();
         advertiseListAdapter = new AdvertisementListAdapter(this,advertses);
         listView = (ListView)findViewById(R.id.listView);
+        listView.setAdapter(advertiseListAdapter);
         get_advertisement();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                try{
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(advertses.get(position).link));
+                    startActivity(browserIntent);
+                }catch (Exception exception){
+                    Toast.makeText(Advertisement_Activity.this,"invalid url",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -59,10 +85,12 @@ public class Advertisement_Activity extends RootActivity {
             public void onResponse(JSONArray jsonArray) {
                 try {
                     Log.e("res", jsonArray.toString());
-                    //  worng.setText(jsonArray.getString("skipped"));
-                    //   total.setText(jsonArray.getString("total"));
-                    //  correct.setText(jsonArray.getString("correct"));
-                } catch (Exception e) {
+                    for(int i =0;i<jsonArray.length();i++){
+                        advertses.add(new Advertisement(jsonArray.getJSONObject(i),Advertisement_Activity.this));
+
+                    }
+                    advertiseListAdapter.notifyDataSetChanged();
+                                    } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
