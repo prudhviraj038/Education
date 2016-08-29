@@ -1,6 +1,5 @@
 package com.yellowsoft.education;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -42,10 +40,11 @@ import java.util.Map;
 
 
 public class SelectSubjectsActivity extends RootActivity {
-    ArrayAdapter<String> adapter;
+  SubjectsListAdapter adapter;
     HashMap<String, String> choices;
     ArrayList<String> sub_id;
     ArrayList<String> sub_title;
+    ArrayList<String> ids;
     String type;
     Intent intent=getIntent();
     String level,semister,grade,uname,password,fullname,email,mobile,gove,classs;
@@ -59,12 +58,27 @@ public class SelectSubjectsActivity extends RootActivity {
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.select_subjects);
         choices = new HashMap<>();
+        ids = new ArrayList<String>();
         sub_id = new ArrayList<String>();
         sub_title = new ArrayList<String>();
         chose_subject = (TextView)findViewById(R.id.choose_sub_heading);
         chose_subject.setText(Session.getword(this,"choose_subject"));
         save_changes = (TextView)findViewById(R.id.select_changes);
         save_changes.setText(Session.getword(this,"savechanges"));
+        JSONObject jsonObject= null;
+        try {
+            jsonObject = new JSONObject(Session.getUserdetails(this));
+            for(int i=0;i<jsonObject.getJSONArray("subjects").length();i++) {
+                ids.add(jsonObject.getJSONArray("subjects").getJSONObject(i).getString("id"));
+                if (choices.containsKey(ids.get(i)))
+                    choices.remove(ids.get(i));
+                else {
+                    choices.put(ids.get(i), ids.get(i));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         Intent intent=getIntent();
         type = getIntent().getStringExtra("type");
@@ -85,20 +99,20 @@ public class SelectSubjectsActivity extends RootActivity {
         save_changes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(type.equals("change")){
-                    edit_profile();
-                }else{
-                    if(choices.size()>5)
-                        Toast.makeText(SelectSubjectsActivity.this, Session.getword(SelectSubjectsActivity.this,"select_minimum5"), Toast.LENGTH_SHORT).show();
-
-                    else
-                        register();
+                if (choices.size() > 5) {
+                    Toast.makeText(SelectSubjectsActivity.this, Session.getword(SelectSubjectsActivity.this, "select_minimum5"), Toast.LENGTH_SHORT).show();
+                }  else{
+                        if (type.equals("change")) {
+                            edit_profile();
+                        } else
+                            register();
                 }
+
 
             }
         });
 
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item, sub_title);
+        adapter = new SubjectsListAdapter(this,ids,sub_id,sub_title);
         LinearLayout sub_ly = (LinearLayout) findViewById(R.id.ly_subjects);
         sub_ly.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,10 +123,10 @@ public class SelectSubjectsActivity extends RootActivity {
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        if (choices.containsKey(String.valueOf(position)))
-                            choices.remove(String.valueOf(position));
+                        if (choices.containsKey(sub_id.get(position)))
+                            choices.remove(sub_id.get(position));
                         else {
-                            choices.put(String.valueOf(position), sub_id.get(position));
+                            choices.put(sub_id.get(position), sub_id.get(position));
                         }
                         JSONObject jsonObject = new JSONObject(choices);
                         Log.e("choice", jsonObject.toString());
@@ -210,7 +224,8 @@ public class SelectSubjectsActivity extends RootActivity {
                             }
                             else {
                                 // Toast.makeText(SelectSubjectsActivity.this,response , Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(getApplicationContext(), Session.getword(SelectSubjectsActivity.this,"updated_successfully"), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), Session.getword(SelectSubjectsActivity.this,"updated_successfully"), Toast.LENGTH_LONG).show();
+                                get_user_details();
                                 finish();
                             }
                         } catch (JSONException e) {
@@ -289,7 +304,6 @@ public class SelectSubjectsActivity extends RootActivity {
                                                 Toast.LENGTH_LONG).show();
                                         Intent in_login = new Intent(getApplicationContext(), LoginActivity.class);
                                         startActivity(in_login);
-                                        finish();
 
                                     }
                             }
