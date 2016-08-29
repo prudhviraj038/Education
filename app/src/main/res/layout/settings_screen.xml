@@ -76,7 +76,7 @@
                         android:textSize="15dp"
                         android:padding="10dp"
                         android:background="@drawable/login_divider_shadow"
-                        android:visibility="visible" />
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="match_parent"

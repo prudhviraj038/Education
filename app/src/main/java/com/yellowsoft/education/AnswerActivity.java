@@ -143,8 +143,8 @@ public class AnswerActivity extends RootActivity {
         TextView user_level = (TextView) findViewById(R.id.userlevel);
         try {
             user_name.setText(user_details.getString("name"));
-            user_adress.setText(user_details.getJSONObject("area").getString("governate"+Session.get_append(this))
-            +" , "+ user_details.getJSONObject("area").getString("title"+Session.get_append(this))
+            user_adress.setText(user_details.getJSONObject("school").getString("governate"+Session.get_append(this))
+            +" , "+ user_details.getJSONObject("school").getString("title"+Session.get_append(this))
             );
             user_level.setText("0"+user_details.getString("grade"));
             Picasso.with(this).load(user_details.getString("image")).into(userimage);
