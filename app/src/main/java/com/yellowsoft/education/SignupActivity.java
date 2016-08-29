@@ -130,6 +130,7 @@ public class SignupActivity extends RootActivity {
 
             }
         });
+        //llkk
         get_area();
         gove_ll.setOnClickListener(new View.OnClickListener() {
             @Override
