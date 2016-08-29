@@ -52,7 +52,7 @@ public class SelectSubjectsActivity extends RootActivity {
     String img_path;
     String mem_id;
     TextView chose_subject,save_changes;
-
+//kjghkghk
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
