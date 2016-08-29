@@ -88,7 +88,7 @@ public class SelectSubjectsActivity extends RootActivity {
                 if(type.equals("change")){
                     edit_profile();
                 }else{
-                    if(choices.size()>5)
+                    if(choices.size()<1)
                         Toast.makeText(SelectSubjectsActivity.this, Session.getword(SelectSubjectsActivity.this,"select_minimum5"), Toast.LENGTH_SHORT).show();
 
                     else

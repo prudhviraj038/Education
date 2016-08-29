@@ -41,7 +41,7 @@ public class AnswerActivity extends RootActivity {
     String subject_id = "1";
     TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,submit_answer,ref;
     ImageView one,two,three,four;
-    LinearLayout submit_layout;
+    LinearLayout submit_layout,reference_ll;
     String user_correct,api_correct,pdf_url;
     JSONObject user_details;
     int next_stage = 5;
@@ -61,6 +61,13 @@ public class AnswerActivity extends RootActivity {
         give_pass.setText(Session.getword(this,"give_or_pass"));
         TextView refference = (TextView)findViewById(R.id.reference_sub);
         refference.setText(Session.getword(this,"reference"));
+        reference_ll=(LinearLayout)findViewById(R.id.reference_ll);
+        reference_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ref.performClick();
+            }
+        });
         TextView choose_ans = (TextView)findViewById(R.id.choose_ans_heading);
         choose_ans.setText(Session.getword(this,"choose_your_answer"));
         submit_layout=(LinearLayout)findViewById(R.id.submit_ans);

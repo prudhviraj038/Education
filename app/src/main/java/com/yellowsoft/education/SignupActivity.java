@@ -154,6 +154,7 @@ public class SignupActivity extends RootActivity {
                 });
                 final android.app.AlertDialog dialog = builder.create();
                 dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
+                if(!type.equals("change"))
                 dialog.show();
             }
         });
@@ -163,7 +164,7 @@ public class SignupActivity extends RootActivity {
             public void onClick(View v) {
                 if (!gove_id.equals("")) {
                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SignupActivity.this);
-                    builder.setTitle("Areas");
+                    builder.setTitle("Select School");
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SignupActivity.this, android.R.layout.select_dialog_item, area_titles);
                     builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                         @Override
@@ -171,14 +172,18 @@ public class SignupActivity extends RootActivity {
 //                        Toast.makeText(SignupActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
                             area_id = governorates.get(posi).are.get(which).a_id;
                             area_tv.setText(governorates.get(posi).are.get(which).getATitle(SignupActivity.this));
+                            Picasso.with(SignupActivity.this).load(governorates.get(posi).are.get(which).school_image).into(profile_image);
                         }
                     });
                     final android.app.AlertDialog dialog = builder.create();
                     dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
+                    if(!type.equals("change"))
                     dialog.show();
                 }
                 else{
+                    if(!type.equals("change"))
                     Toast.makeText(SignupActivity.this, Session.getword(SignupActivity.this,"Pls_ent_gover"), Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -201,6 +206,7 @@ public class SignupActivity extends RootActivity {
                 });
                 final android.app.AlertDialog dialog = builder.create();
                 dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
+                if(!type.equals("change"))
                 dialog.show();
             }
 
@@ -216,7 +222,9 @@ public class SignupActivity extends RootActivity {
             pass_ll.setVisibility(View.GONE);
             user_ll.setVisibility(View.GONE);
             email_ll.setVisibility(View.GONE);
-            signup_txt.setText(Session.getword(this,"save"));
+            signup_txt.setText(Session.getword(this, "save"));
+            signup.setVisibility(View.GONE);
+
 
         }else{
             pass_ll.setVisibility(View.VISIBLE);
@@ -232,9 +240,14 @@ public class SignupActivity extends RootActivity {
             et_fullname.setText(jsonObject.getString("name"));
             et_email.setText(jsonObject.getString("email"));
             et_mobile.setText(jsonObject.getString("phone"));
-            et_gove.setText(jsonObject.getJSONObject("area").getString("governate" + Session.get_append(this)));
-            area_tv.setText(jsonObject.getJSONObject("area").getString("title" + Session.get_append(this)));
+            et_gove.setText(jsonObject.getJSONObject("school").getString("governate" + Session.get_append(this)));
+            area_tv.setText(jsonObject.getJSONObject("school").getString("title" + Session.get_append(this)));
             class_tv.setText(jsonObject.getString("class"));
+            et_fullname.setEnabled(false);
+            et_mobile.setEnabled(false);
+            et_uname.setEnabled(false);
+            et_email.setEnabled(false);
+
             Picasso.with(SignupActivity.this).load(jsonObject.getString("image")).into(profile_image);
         } catch (JSONException e) {
             e.printStackTrace();

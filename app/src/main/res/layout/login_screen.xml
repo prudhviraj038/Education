@@ -180,6 +180,30 @@
                             android:src="@drawable/tick_icon"
                             android:layout_marginRight="5dp" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#72b34d"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:gravity="center"
+                        android:id="@+id/login_advertisement"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:focusableInTouchMode="false">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ADVERTISEMENTS"
+                            android:id="@+id/textView5"
+                            android:textSize="16dp"
+                            android:textColor="#ffffff"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp" />
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
 

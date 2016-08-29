@@ -66,16 +66,31 @@
 
                 </LinearLayout>
 
-                <TextView
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="04"
-                    android:id="@+id/userlevel"
-                    android:textSize="20sp"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
+                    android:layout_height="wrap_content"
                     android:background="#dedede"
-                    android:textColor="#ffffff" />
+                    android:padding="2dp"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Level"
+                        android:id="@+id/textView6"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="04"
+                        android:id="@+id/userlevel"
+                        android:textSize="20sp"
+                        android:gravity="center_vertical"
+                        android:textColor="#ffffff" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -90,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:text="QUESTION-1"
                     android:id="@+id/question_number"
-                    android:textSize="15dp"
+                    android:textSize="12sp"
                     android:gravity="center|center_horizontal"
                     android:background="#107fc9"
                     android:textColor="#ffffff"
@@ -102,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem."
                     android:id="@+id/question"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textColor="#8c99a9"
                     android:background="#ffffff"
                     android:padding="10dp" />
@@ -112,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/choose_ans_heading"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 android:textColor="#616161"
                 android:layout_gravity="center"
                 android:password="false"
@@ -311,10 +326,11 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp">
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -325,7 +341,8 @@
                         android:background="#dedede"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -341,11 +358,12 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp">
+                    android:layout_marginRight="2dp"
+                    android:id="@+id/reference_ll">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -356,7 +374,8 @@
                         android:background="#dedede"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -372,7 +391,7 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginLeft="2dp"
@@ -387,7 +406,8 @@
                         android:background="#dedede"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="match_parent"

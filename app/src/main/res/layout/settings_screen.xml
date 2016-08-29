@@ -46,7 +46,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Edit Profile"
+                        android:text="My Profile"
                         android:id="@+id/edit_profile"
                         android:gravity="center"
                         android:textColor="#000000"
@@ -63,7 +63,8 @@
                         android:textColor="#000000"
                         android:textSize="15dp"
                         android:padding="10dp"
-                        android:background="@drawable/login_divider_shadow" />
+                        android:background="@drawable/login_divider_shadow"
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -74,7 +75,8 @@
                         android:textColor="#000000"
                         android:textSize="15dp"
                         android:padding="10dp"
-                        android:background="@drawable/login_divider_shadow" />
+                        android:background="@drawable/login_divider_shadow"
+                        android:visibility="visible" />
 
                     <TextView
                         android:layout_width="match_parent"

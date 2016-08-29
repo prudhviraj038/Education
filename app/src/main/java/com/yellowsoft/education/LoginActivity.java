@@ -30,6 +30,7 @@ import java.net.URLEncoder;
 public class LoginActivity extends RootActivity {
     EditText et_uname;
     EditText et_password;
+    LinearLayout advertise;
     String write;
     String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     @Override
@@ -53,14 +54,22 @@ public class LoginActivity extends RootActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            logindetails();
+                logindetails();
             }
         });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                intent.putExtra("type","normal");
+                intent.putExtra("type", "normal");
+                startActivity(intent);
+            }
+        });
+        advertise = (LinearLayout)findViewById(R.id.login_advertisement);
+        advertise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,Advertisement_Activity.class);
                 startActivity(intent);
             }
         });

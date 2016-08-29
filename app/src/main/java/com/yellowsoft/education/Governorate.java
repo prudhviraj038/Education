@@ -37,12 +37,13 @@ public class Governorate {
             return  title;
     }
     public class Area {
-        String a_id,a_title,a_title_ar;
+        String a_id,a_title,a_title_ar,school_image;
         Area(JSONObject jsonObject1){
             try {
                 a_id=jsonObject1.getString("id");
                 a_title=jsonObject1.getString("title");
                 a_title_ar=jsonObject1.getString("title_ar");
+                school_image=jsonObject1.getString("image");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

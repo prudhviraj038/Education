@@ -55,8 +55,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="20dp"
-                    android:paddingBottom="10dp"
-                    android:visibility="gone">
+                    android:paddingBottom="10dp">
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -67,7 +66,8 @@
                         android:id="@+id/ly_v1"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:layout_gravity="left">
+                        android:layout_gravity="left"
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
                         android:layout_height="100dp"
                         android:id="@+id/profile_image"
                         android:layout_gravity="right"
-                        android:src="@drawable/building_icon"
+                        android:src="@drawable/logo_icon_small"
                         android:layout_alignParentTop="true"
                         android:layout_toRightOf="@+id/ly_v1"
                         android:layout_toEndOf="@+id/ly_v1"
@@ -188,7 +188,8 @@
                             android:textSize="15dp"
                             android:background="@color/signup_field_bg"
                             android:paddingRight="10dp"
-                            android:paddingLeft="10dp" />
+                            android:paddingLeft="10dp"
+                            android:textColor="#000000" />
 
                     </LinearLayout>
 
@@ -214,7 +215,8 @@
                             android:textSize="15dp"
                             android:background="@color/signup_field_bg"
                             android:paddingRight="10dp"
-                            android:paddingLeft="10dp" />
+                            android:paddingLeft="10dp"
+                            android:textColor="#000000" />
 
                     </LinearLayout>
 
@@ -239,7 +241,8 @@
                             android:layout_weight="1"
                             android:background="@color/signup_field_bg"
                             android:paddingRight="10dp"
-                            android:paddingLeft="10dp" />
+                            android:paddingLeft="10dp"
+                            android:textColor="#000000" />
 
                     </LinearLayout>
 
@@ -253,7 +256,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:id="@+id/imageView9"
-                            android:src="@drawable/gove_icon" />
+                            android:src="@drawable/location_ic" />
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -272,7 +275,8 @@
                                 android:textSize="15sp"
                                 android:paddingRight="10dp"
                                 android:paddingLeft="10dp"
-                                android:gravity="center_vertical" />
+                                android:gravity="center_vertical"
+                                android:textColor="#000000" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -313,7 +317,8 @@
                                 android:paddingRight="10dp"
                                 android:paddingLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="Area" />
+                                android:text="School"
+                                android:textColor="#000000" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -354,7 +359,8 @@
                                 android:paddingRight="10dp"
                                 android:paddingLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="Area" />
+                                android:text="Class"
+                                android:textColor="#000000" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
