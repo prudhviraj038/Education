@@ -115,6 +115,7 @@ public class SelectSubjectsActivity extends RootActivity {
                         if (choices.containsKey(String.valueOf(position)))
                             choices.remove(String.valueOf(position));
                         else {
+
                             choices.put(String.valueOf(position), sub_id.get(position));
                         }
                         JSONObject jsonObject = new JSONObject(choices);
