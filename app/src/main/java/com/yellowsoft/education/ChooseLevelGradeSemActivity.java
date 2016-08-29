@@ -97,6 +97,10 @@ public class ChooseLevelGradeSemActivity extends RootActivity {
                 choose_level.setText(jsonObject.getJSONObject("level").getString("title"));
                 choose_grade.setText(jsonObject.getString("grade"));
                 choose_section.setText(jsonObject.getJSONObject("semister").getString("title"));
+                levels_id=jsonObject.getJSONObject("level").getString("id");
+                grade_id = jsonObject.getString("grade");
+                sem_sec_id = jsonObject.getJSONObject("semister").getString("id");
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

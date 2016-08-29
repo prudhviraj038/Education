@@ -81,6 +81,9 @@ public class SelectSubjectsActivity extends RootActivity {
             classs = intent.getStringExtra("clas");
             img_path = intent.getStringExtra("image_path");
         }
+        else{
+
+         }
         LinearLayout save_changes=(LinearLayout)findViewById(R.id.save_change_fin);
         save_changes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +115,7 @@ public class SelectSubjectsActivity extends RootActivity {
                         if (choices.containsKey(String.valueOf(position)))
                             choices.remove(String.valueOf(position));
                         else {
+
                             choices.put(String.valueOf(position), sub_id.get(position));
                         }
                         JSONObject jsonObject = new JSONObject(choices);
