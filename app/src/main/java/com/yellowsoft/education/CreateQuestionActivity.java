@@ -2,6 +2,7 @@ package com.yellowsoft.education;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +43,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
     ArrayList<String> book_id,topic_id;
     ArrayList<String> book_title,topic_title;
     ArrayList<JSONArray> tpoics_json;
+    ArrayList<JSONArray> pages_json;
     String book_id_id = "-1",temp="0";
     RelativeLayout rl1,rl2,rl3,rl4;
 
@@ -273,10 +275,12 @@ public class CreateQuestionActivity extends AppCompatActivity {
     private void show_topic(int pos) {
         topic_id = new ArrayList<>();
         topic_title = new ArrayList<>();
+        pages_json = new ArrayList<>();
         for(int i=0;i<tpoics_json.get(pos).length();i++){
             try {
                 topic_id.add(tpoics_json.get(pos).getJSONObject(i).getString("id"));
                 topic_title.add(tpoics_json.get(pos).getJSONObject(i).getString("title"+Session.get_append(this)));
+                pages_json.add(tpoics_json.get(pos).getJSONObject(i).getJSONArray("pages"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -289,11 +293,14 @@ public class CreateQuestionActivity extends AppCompatActivity {
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(CreateQuestionActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
+                  //      Toast.makeText(CreateQuestionActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
                         book_id_id = topic_id.get(which);
 //                        choose_section.setText(book_title.get(which));
                         //save_changes.performClick();
-
+                        Intent intent=new Intent(CreateQuestionActivity.this,SelectPageActivity.class);
+                        intent.putExtra("pages_json",pages_json.get(which).toString());
+                        intent.putExtra("title",topic_title.get(which));
+                        startActivityForResult(intent, 5);
                     }
                 }
 

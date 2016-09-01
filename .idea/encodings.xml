@@ -5,9 +5,12 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/AlertDialogManager.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/CommonUtilities.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/ConnectionDetector.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/CustomVolleyRequest.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/GalleryImage.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/Governorate.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/ImageEditActivity.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/ServerUtilities.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/SlidingImageAdapter.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/SplashScreen.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/yellowsoft/education/WakeLocker.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/comments_bg.9.png" charset="windows-1252" />
@@ -22,6 +25,7 @@
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/image_edit_view.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/settings_actvity.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/slidingimages_layout.xml" charset="windows-1252" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
