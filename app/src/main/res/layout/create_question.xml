@@ -2,12 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/new_home_bg">
+    android:background="#F8F8F8">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView64"
+            android:background="@drawable/new_home_bg"
+            android:alpha="0.3" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -458,6 +465,7 @@
 
             </LinearLayout>
         </LinearLayout>
+
     </RelativeLayout>
 
 </LinearLayout>
