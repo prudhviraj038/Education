@@ -80,6 +80,18 @@
                         android:layout_marginRight="5dp" />
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView35"
+                        android:src="@drawable/horizontal_shadow"
+                        android:layout_marginTop="-2dp" />
+                </RelativeLayout>
+
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -111,6 +123,18 @@
                         android:layout_marginRight="5dp" />
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView36"
+                        android:src="@drawable/horizontal_shadow"
+                        android:layout_marginTop="-2dp" />
+                </RelativeLayout>
+
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -138,7 +162,7 @@
                             android:paddingBottom="20dp"
                             android:layout_centerVertical="true"
                             android:layout_marginTop="20dp"
-                            android:background="#ffffff"
+                            android:background="@drawable/home_item_back"
                             android:gravity="center">
 
                             <TextView
@@ -193,7 +217,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginTop="20dp"
                             android:baselineAligned="false"
-                            android:background="#ffffff"
+                            android:background="@drawable/home_item_back"
                             android:id="@+id/ll">
 
                             <TextView
@@ -251,6 +275,18 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp" />
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView43"
+                        android:src="@drawable/horizontal_shadow"
+                        android:layout_marginTop="-2dp" />
+                </RelativeLayout>
 
             </LinearLayout>
 

@@ -136,17 +136,37 @@
                             android:padding="10dp" />
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/choose_ans_heading"
-                        android:textSize="12sp"
-                        android:textColor="#616161"
-                        android:layout_gravity="center"
-                        android:password="false"
-                        android:text="CHOOSE YOUR ANSWER"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/choose_ans_heading"
+                                android:textSize="12sp"
+                                android:textColor="#616161"
+                                android:layout_gravity="center"
+                                android:password="false"
+                                android:text="CHOOSE YOUR ANSWER" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#616161"></LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
 
                     <RelativeLayout
                         android:orientation="horizontal"
@@ -289,7 +309,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone">
 
                         <RelativeLayout
                             android:orientation="vertical"
