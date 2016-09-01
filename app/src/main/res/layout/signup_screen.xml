@@ -22,12 +22,20 @@
             android:adjustViewBounds="false" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/imageView50"
             android:src="@drawable/logo_icon_small"
             android:adjustViewBounds="false"
             android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView59"
+            android:src="@drawable/back_arrow"
+            android:adjustViewBounds="false"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
@@ -256,7 +264,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:id="@+id/imageView9"
-                            android:src="@drawable/gove_icon" />
+                            android:src="@drawable/class_ic" />
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -340,7 +348,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:id="@+id/imageView20"
-                            android:src="@drawable/gove_icon" />
+                            android:src="@drawable/class_icon" />
 
                         <LinearLayout
                             android:orientation="horizontal"

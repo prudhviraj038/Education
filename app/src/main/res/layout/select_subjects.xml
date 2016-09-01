@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@drawable/new_home_bg">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -22,12 +22,20 @@
             android:adjustViewBounds="false" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/imageView47"
             android:src="@drawable/logo_icon_small"
             android:adjustViewBounds="false"
             android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView62"
+            android:src="@drawable/back_arrow"
+            android:adjustViewBounds="false"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
@@ -89,7 +97,8 @@
                 android:layout_height="match_parent"
                 android:id="@+id/lv1"
                 android:numColumns="1"
-                android:clickable="false" />
+                android:clickable="false"
+                android:background="#FFFFFF" />
         </LinearLayout>
 
     </LinearLayout>
