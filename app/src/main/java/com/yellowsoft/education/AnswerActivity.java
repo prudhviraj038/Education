@@ -35,6 +35,8 @@ import android.os.Handler;
         import org.json.JSONException;
         import org.json.JSONObject;
 
+import pl.droidsonroids.gif.GifImageView;
+
 
 public class AnswerActivity extends RootActivity {
     boolean cansubmit;
@@ -50,11 +52,24 @@ public class AnswerActivity extends RootActivity {
     int question_count = 0;
     String answertype = "-1";
     String question_id = "-1";
+    GifImageView gifImageView;
+    TextView pop_up_ok_btn;
+    LinearLayout pop_up_layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.answer_screen);
+        pop_up_ok_btn=(TextView) findViewById(R.id.pop_up_ok_btn);
+        gifImageView = (GifImageView) findViewById(R.id.gif_anim);
+        pop_up_layout = (LinearLayout) findViewById(R.id.pop_up_layout);
+        pop_up_ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop_up_layout.setVisibility(View.GONE);
+            }
+        });
         user_correct = "-1";
         cansubmit=true;
         TextView give_pass = (TextView)findViewById(R.id.give_pass);
@@ -75,6 +90,12 @@ public class AnswerActivity extends RootActivity {
         ref = (TextView) findViewById(R.id.reference);
         que_count = (TextView) findViewById(R.id.que_count);
         que_number = (TextView) findViewById(R.id.question_number);
+        que_number.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop_up_layout.setVisibility(View.VISIBLE);
+            }
+        });
       //  que_number.setText(Session.getword(this,"question"+ String.valueOf(question_count)));
         give_up = (TextView) findViewById(R.id.give_up);
         give_up.setText(Session.getword(this,"giveup"));

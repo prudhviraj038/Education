@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -25,6 +26,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * Created by sriven on 8/22/2016.
  */
@@ -32,7 +35,7 @@ public class Advertisement_Activity extends RootActivity {
     ListView listView;
     ArrayList<Advertisement> advertses;
     AdvertisementListAdapter advertiseListAdapter;
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Session.forceRTLIfSupported(this);
@@ -45,6 +48,8 @@ public class Advertisement_Activity extends RootActivity {
                 startActivity(intent);
             }
         });
+
+
         ImageView back_btn = (ImageView) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
