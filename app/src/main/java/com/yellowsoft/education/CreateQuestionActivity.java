@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,9 +31,9 @@ import java.util.Map;
 
 
 public class CreateQuestionActivity extends AppCompatActivity {
-    TextView write_que, book_ref, upload_video, write_ans, submit, book_rev;
-    EditText type_question;
-    LinearLayout book_ll;
+    TextView write_que, book_ref, upload_video, write_ans, submit, book_rev,ok_tv,pop_title,question,answer1,answer2,answer3,answer4;
+    EditText type_question,pop_question;
+    LinearLayout book_ll,pop_ll,ok_ll;
     ArrayList<Questiondetails> questions;
     String correct = "-1";
     RadioButton one, two, three, four;
@@ -41,7 +42,8 @@ public class CreateQuestionActivity extends AppCompatActivity {
     ArrayList<String> book_id,topic_id;
     ArrayList<String> book_title,topic_title;
     ArrayList<JSONArray> tpoics_json;
-    String book_id_id = "-1";
+    String book_id_id = "-1",temp="0";
+    RelativeLayout rl1,rl2,rl3,rl4;
 
 
     @Override
@@ -53,8 +55,8 @@ public class CreateQuestionActivity extends AppCompatActivity {
         book_title = new ArrayList<>();
         write_que = (TextView) findViewById(R.id.write_que_heading);
         write_que.setText(Session.getword(this, "write_y_question"));
-        type_question = (EditText) findViewById(R.id.et_que);
-        type_question.setHint(Session.getword(this, "type_your_ques"));
+//        type_question = (EditText) findViewById(R.id.et_que);
+//        type_question.setHint(Session.getword(this, "type_your_ques"));
         book_rev = (TextView) findViewById(R.id.books_rev_heading);
         book_rev.setText(Session.getword(this, "books_and_reviews"));
         // book_ref = (TextView)findViewById(R.id.book_ref_heading);
@@ -77,7 +79,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                      //  Toast.makeText(CreateQuestionActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(CreateQuestionActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
 
                         book_id_id = book_id.get(which);
                         show_topic(which);
@@ -143,13 +145,114 @@ public class CreateQuestionActivity extends AppCompatActivity {
                 one.setChecked(false);
             }
         });
+        pop_question = (EditText) findViewById(R.id.pop_question);
+        pop_title = (TextView) findViewById(R.id.title_pop_que);
+        ok_tv = (TextView) findViewById(R.id.pop_up_que_ok_btn);
+        ok_tv.setText(Session.getword(this, "ok"));
+        ok_ll = (LinearLayout) findViewById(R.id.pop_up_que_ok_btn_ll);
+        pop_ll = (LinearLayout) findViewById(R.id.pop_up_layout_que);
+        rl1 = (RelativeLayout) findViewById(R.id.rl1);
+        rl2 = (RelativeLayout) findViewById(R.id.rl2);
+        rl3 = (RelativeLayout) findViewById(R.id.rl3);
+        rl4 = (RelativeLayout) findViewById(R.id.rl4);
 
-        EditText question = (EditText) findViewById(R.id.et_que);
-        EditText answer1 = (EditText) findViewById(R.id.et_ans1);
-        EditText answer2 = (EditText) findViewById(R.id.et_ans2);
-        EditText answer3 = (EditText) findViewById(R.id.et_ans3);
-        EditText answer4 = (EditText) findViewById(R.id.et_ans4);
-
+        question = (TextView) findViewById(R.id.et_que);
+        question.setHint(Session.getword(CreateQuestionActivity.this, "write_y_question"));
+        answer1 = (TextView) findViewById(R.id.et_ans1);
+        answer1.setHint(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+        answer2 = (TextView) findViewById(R.id.et_ans2);
+        answer2.setHint(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+        answer3 = (TextView) findViewById(R.id.et_ans3);
+        answer3.setHint(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+        answer4 = (TextView) findViewById(R.id.et_ans4);
+        answer4.setHint(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+        question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                temp = "1";
+                pop_question.setText("");
+                pop_ll.setVisibility(View.VISIBLE);
+                pop_title.setText(Session.getword(CreateQuestionActivity.this, "write_y_question"));
+                if (question.getText().toString().equals("")) {
+                    pop_question.setHint(Session.getword(CreateQuestionActivity.this, "write_y_question"));
+                } else {
+                    pop_question.setText(question.getText().toString());
+                }
+            }
+        });
+        rl1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                temp="2";
+                pop_question.setText("");
+                pop_ll.setVisibility(View.VISIBLE);
+                pop_title.setText(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+                if(answer1.getText().toString().equals("")){
+                    pop_question.setHint(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+                }else{
+                    pop_question.setText(answer1.getText().toString());
+                }
+            }
+        });
+        rl2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                temp="3";
+                pop_question.setText("");
+                pop_ll.setVisibility(View.VISIBLE);
+                pop_title.setText(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+                if(answer2.getText().toString().equals("")){
+                    pop_question.setHint(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+                }else{
+                    pop_question.setText(answer2.getText().toString());
+                }
+            }
+        });
+        rl3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                temp="4";
+                pop_question.setText("");
+                pop_ll.setVisibility(View.VISIBLE);
+                pop_title.setText(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+                if(answer3.getText().toString().equals("")){
+                    pop_question.setHint(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+                }else{
+                    pop_question.setText(answer3.getText().toString());
+                }
+            }
+        });
+        rl4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                temp="5";
+                pop_question.setText("");
+                pop_ll.setVisibility(View.VISIBLE);
+                pop_title.setText(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+                if(answer4.getText().toString().equals("")){
+                    pop_question.setHint(Session.getword(CreateQuestionActivity.this, "write_y_answer"));
+                }else{
+                    pop_question.setText(answer4.getText().toString());
+                }
+            }
+        });
+        ok_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop_ll.setVisibility(View.GONE);
+                if(temp.equals("1")){
+                    question.setText(pop_question.getText().toString());
+                }else if(temp.equals("2")){
+                    answer1.setText(pop_question.getText().toString());
+                }else if(temp.equals("3")){
+                    answer2.setText(pop_question.getText().toString());
+                }else if(temp.equals("4")){
+                    answer3.setText(pop_question.getText().toString());
+                }else {
+                    answer4.setText(pop_question.getText().toString());
+                }
+            }
+        });
         String questions = question.getText().toString();
         String answ1 = answer1.getText().toString();
         String answ2 = answer2.getText().toString();
@@ -202,12 +305,6 @@ public class CreateQuestionActivity extends AppCompatActivity {
     }
 
     private void add_question() {
-        EditText question = (EditText) findViewById(R.id.et_que);
-        EditText answer1 = (EditText) findViewById(R.id.et_ans1);
-        EditText answer2 = (EditText) findViewById(R.id.et_ans2);
-        EditText answer3 = (EditText) findViewById(R.id.et_ans3);
-        EditText answer4 = (EditText) findViewById(R.id.et_ans4);
-
         final String questions = question.getText().toString();
         final String answ1 = answer1.getText().toString();
         final String answ2 = answer2.getText().toString();
@@ -341,11 +438,6 @@ public class CreateQuestionActivity extends AppCompatActivity {
                 .setPositiveButton(Session.getword(this, "yes"), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
-                        EditText question = (EditText) findViewById(R.id.et_que);
-                        EditText answer1 = (EditText) findViewById(R.id.et_ans1);
-                        EditText answer2 = (EditText) findViewById(R.id.et_ans2);
-                        EditText answer3 = (EditText) findViewById(R.id.et_ans3);
-                        EditText answer4 = (EditText) findViewById(R.id.et_ans4);
                         question.setText("");
                         answer1.setText("");
                         answer2.setText("");
@@ -369,6 +461,13 @@ public class CreateQuestionActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
-
+    @Override
+    public void onBackPressed() {
+        if(pop_ll.getVisibility()==View.VISIBLE){
+            pop_ll.setVisibility(View.GONE);
+        }else{
+            super.onBackPressed();
+        }
+    }
 
 }
