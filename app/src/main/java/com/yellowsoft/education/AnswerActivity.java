@@ -8,8 +8,9 @@ import android.app.AlertDialog;
         import android.content.DialogInterface;
         import android.content.Intent;
         import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Handler;
+        import android.os.Handler;
         import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
 
@@ -37,7 +38,6 @@ import android.os.Handler;
 
 import pl.droidsonroids.gif.GifImageView;
 
-
 public class AnswerActivity extends RootActivity {
     boolean cansubmit;
     String subject_id = "1";
@@ -54,7 +54,28 @@ public class AnswerActivity extends RootActivity {
     String question_id = "-1";
     GifImageView gifImageView;
     TextView pop_up_ok_btn;
+    TextView pop_up_ok_btn_wrong,pop_up_continue_btn;
     LinearLayout pop_up_layout;
+    LinearLayout pop_up_layout_wrong;
+    MediaPlayer mp,mpwrong;
+    private MediaPlayer getMediaPlayer(){
+       // if(mp == null)
+            mp = MediaPlayer.create(this,R.raw.correct_sound);
+        mp.setLooping(true);
+      //  else if(mp.isPlaying())
+        //    mp.stop();
+        return mp;
+    }
+
+    private MediaPlayer getMediaPlayerwrong(){
+       // if(mpwrong == null)
+            mpwrong = MediaPlayer.create(this,R.raw.wrong_sound);
+            mpwrong.setLooping(true);
+       /// else if(mpwrong.isPlaying())
+          //  mpwrong.stop();
+
+        return mpwrong;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +83,38 @@ public class AnswerActivity extends RootActivity {
         Session.forceRTLIfSupported(this);
         setContentView(R.layout.answer_screen);
         pop_up_ok_btn=(TextView) findViewById(R.id.pop_up_ok_btn);
+        pop_up_ok_btn_wrong=(TextView) findViewById(R.id.pop_up_ok_btn_wrong);
+        pop_up_continue_btn = (TextView) findViewById(R.id.pop_up_continue_btn);
+
         gifImageView = (GifImageView) findViewById(R.id.gif_anim);
         pop_up_layout = (LinearLayout) findViewById(R.id.pop_up_layout);
+        pop_up_layout_wrong = (LinearLayout) findViewById(R.id.pop_up_layout_wrong);
+
         pop_up_ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pop_up_layout.setVisibility(View.GONE);
+                mp.stop();
+                setanswer();
             }
         });
+        pop_up_ok_btn_wrong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop_up_layout_wrong.setVisibility(View.GONE);
+                mpwrong.stop();
+            }
+        });
+        pop_up_continue_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop_up_layout_wrong.setVisibility(View.GONE);
+                mpwrong.stop();
+                setanswer();
+            }
+        });
+
+
         user_correct = "-1";
         cansubmit=true;
         TextView give_pass = (TextView)findViewById(R.id.give_pass);
@@ -116,17 +161,16 @@ public class AnswerActivity extends RootActivity {
                     } else {
                         attempt_count++;
                         if (user_correct.equals(api_correct)) {
-                            Toast.makeText(AnswerActivity.this, Session.getword(AnswerActivity.this,"correct_answers"), Toast.LENGTH_SHORT).show();
+                         //   Toast.makeText(AnswerActivity.this, Session.getword(AnswerActivity.this,"correct_answers"), Toast.LENGTH_SHORT).show();
                             correct_count = correct_count + 1;
                             answertype = "correct";
-                            setanswer();
+                            pop_up_layout.setVisibility(View.VISIBLE);
+                            getMediaPlayer().start();
+                           // setanswer();
                         } else {
-                            Toast.makeText(AnswerActivity.this, Session.getword(AnswerActivity.this,"wrong_answers"), Toast.LENGTH_SHORT).show();
+                        //    Toast.makeText(AnswerActivity.this, Session.getword(AnswerActivity.this,"wrong_answers"), Toast.LENGTH_SHORT).show();
                             answertype = "wrong";
-                            if(attempt_count==1)
                             show_alert_wrong();
-                            else
-                                setanswer();
                         }
 
 
@@ -443,7 +487,6 @@ public class AnswerActivity extends RootActivity {
     public void show_alert_wrong(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(Session.getword(this, "wrong_answers"));
-        alertDialogBuilder.setMessage("Do You want to try again?");
         alertDialogBuilder.setMessage(Session.getword(this,"message_incorrect_answer"));
         alertDialogBuilder.setPositiveButton(Session.getword(this, "yes"), new DialogInterface.OnClickListener() {
             @Override
@@ -462,7 +505,13 @@ public class AnswerActivity extends RootActivity {
 
         android.app.AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
-        alertDialog.show();
+        //alertDialog.show();
+        pop_up_layout_wrong.setVisibility(View.VISIBLE);
+        pop_up_continue_btn.setVisibility(View.VISIBLE);
+        if(attempt_count==1)
+            pop_up_ok_btn_wrong.setVisibility(View.GONE);
+
+        getMediaPlayerwrong().start();
     }
 
 
@@ -488,6 +537,8 @@ public class AnswerActivity extends RootActivity {
         else if(api_correct.equals("4"))
             four.setImageResource(R.drawable.radio_btn_correct);
     }
+
+
 
 
 }
