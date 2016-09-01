@@ -328,10 +328,9 @@ public class AnswerActivity extends RootActivity {
                         ans1.setText(jsonObject.getString("answer1"));
                         ans2.setText(jsonObject.getString("answer2"));
                         ans3.setText(jsonObject.getString("answer3"));
-                        ans4.setText(jsonObject.getString("answer4"));
                         ref.setText(jsonObject.getJSONObject("reference").getString("title" + Session.get_append(AnswerActivity.this)));
                         api_correct = jsonObject.getString("correct");
-                        pdf_url = jsonObject.getJSONObject("reference").getString("pdf");
+                        pdf_url = jsonObject.getJSONObject("reference").getString("image");
                         question_count++;
                         que_number.setText(Session.getword(AnswerActivity.this,"question_no") + String.valueOf(question_count));
                         que_count.setText(String.valueOf(question_count)+ "/" + String.valueOf(next_stage));
@@ -507,9 +506,9 @@ public class AnswerActivity extends RootActivity {
         alertDialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
         //alertDialog.show();
         pop_up_layout_wrong.setVisibility(View.VISIBLE);
-        pop_up_continue_btn.setVisibility(View.VISIBLE);
+        pop_up_ok_btn_wrong.setVisibility(View.GONE);
         if(attempt_count==1)
-            pop_up_ok_btn_wrong.setVisibility(View.GONE);
+            pop_up_ok_btn_wrong.setVisibility(View.VISIBLE);
 
         getMediaPlayerwrong().start();
     }
@@ -538,7 +537,32 @@ public class AnswerActivity extends RootActivity {
             four.setImageResource(R.drawable.radio_btn_correct);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();  // Always call the superclass method first
 
-
+        // Release the Camera because we don't need it when paused
+        // and other activities might need to use it.
+        if (mp != null) {
+            mp.release();
+            mp = null;
+        }
+        if (mpwrong != null) {
+            mpwrong.release();
+            mpwrong = null;
+        }
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mp != null) {
+            mp.release();
+            mp = null;
+        }
+        if (mpwrong != null) {
+            mpwrong.release();
+            mpwrong = null;
+        }
+    }
 
 }
