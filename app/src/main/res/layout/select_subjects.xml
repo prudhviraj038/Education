@@ -47,7 +47,8 @@
             android:textColor="#616161"
             android:textSize="13sp"
             android:padding="5dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:visibility="invisible" />
 
         <LinearLayout
             android:orientation="vertical"

@@ -326,8 +326,8 @@ public class CreateQuestionActivity extends AppCompatActivity {
             Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_sec_ans"), Toast.LENGTH_SHORT).show();
         else if (answ3.equals(""))
             Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_ent_third_ans"), Toast.LENGTH_SHORT).show();
-        else if (answ4.equals(""))
-            Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_fourth_ans"), Toast.LENGTH_SHORT).show();
+       // else if (answ4.equals(""))
+         //   Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_fourth_ans"), Toast.LENGTH_SHORT).show();
         else if (correct.equals("-1"))
             Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_corr_ans"), Toast.LENGTH_SHORT).show();
         else if (book_id_id.equals("-1"))
@@ -475,6 +475,16 @@ public class CreateQuestionActivity extends AppCompatActivity {
         }else{
             super.onBackPressed();
         }
+    }
+String page_id = "";
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(requestCode==5){
+            if(data!=null)
+                book_id_id = data.getStringExtra("page_id");
+        }
+
     }
 
 }

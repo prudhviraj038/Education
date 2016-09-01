@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:divider="@drawable/answer_divider"
     android:showDividers="end"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -28,10 +29,9 @@
             android:id="@+id/ly_v1">
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:id="@+id/ly_h2">
 
                 <TextView
@@ -83,91 +83,94 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:id="@+id/ly_h4">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginRight="20dp"
-                    android:id="@+id/ly_v2">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="7"
-                        android:id="@+id/number_gave_tv"
-                        android:textSize="20sp"
-                        android:textColor="#4b4b4b" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="GAVE UP"
-                        android:id="@+id/gave_tv"
-                        android:textSize="12sp"
-                        android:textColor="#9C9C9C" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:id="@+id/ly_v3"
-                    android:layout_marginRight="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="7"
-                        android:id="@+id/number_wrong_tv"
-                        android:textSize="20sp"
-                        android:textColor="#4b4b4b" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="WRONG ANSWERS"
-                        android:id="@+id/wrong_tv"
-                        android:textSize="12sp"
-                        android:textColor="#9C9C9C" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:id="@+id/ly_v4">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="7"
-                        android:id="@+id/number_correct_tv"
-                        android:textSize="20sp"
-                        android:textColor="#4b4b4b" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="CORRECT ANSWERS"
-                        android:id="@+id/correct_tv"
-                        android:textSize="12sp"
-                        android:textColor="#9C9C9C" />
-                </LinearLayout>
-            </LinearLayout>
-
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/ly_h4">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/ly_v2"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:id="@+id/number_gave_tv"
+                android:textSize="20sp"
+                android:textColor="#4b4b4b" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GAVE UP"
+                android:id="@+id/gave_tv"
+                android:textSize="12sp"
+                android:textColor="#9C9C9C"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/ly_v3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:id="@+id/number_wrong_tv"
+                android:textSize="20sp"
+                android:textColor="#4b4b4b" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WRONG ANSWERS"
+                android:id="@+id/wrong_tv"
+                android:textSize="12sp"
+                android:textColor="#9C9C9C"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/ly_v4"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:id="@+id/number_correct_tv"
+                android:textSize="20sp"
+                android:textColor="#4b4b4b" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CORRECT ANSWERS"
+                android:id="@+id/correct_tv"
+                android:textSize="12sp"
+                android:textColor="#9C9C9C"
+                android:visibility="gone" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -55,5 +55,28 @@ public class SelectPageActivity extends RootActivity {
              e.printStackTrace();
          }
          viewPager.setAdapter(new SlidingImageAdapter(this,images));
+
+         pre.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 viewPager.setCurrentItem(viewPager.getCurrentItem()-1);
+             }
+         });
+         next.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+             }
+         });
+         select.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent intent = new Intent();
+                 intent.putExtra("page_id",images.get(viewPager.getCurrentItem()).id);
+                 setResult(5,intent);
+                 finish();
+             }
+         });
+
      }
 }

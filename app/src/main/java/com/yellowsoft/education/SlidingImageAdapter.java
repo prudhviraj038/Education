@@ -10,6 +10,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
@@ -61,6 +62,10 @@ public class SlidingImageAdapter extends PagerAdapter {
 
 
         view.addView(imageLayout, 0);
+
+        TextView page_title = (TextView) imageLayout.findViewById(R.id.page_no);
+        page_title.setText(IMAGES.get(position).title);
+
 
         return imageLayout;
     }

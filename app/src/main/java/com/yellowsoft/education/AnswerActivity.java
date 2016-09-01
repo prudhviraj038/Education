@@ -8,6 +8,7 @@ import android.app.AlertDialog;
         import android.content.DialogInterface;
         import android.content.Intent;
         import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInstaller;
 import android.media.MediaPlayer;
 import android.net.Uri;
         import android.os.Handler;
@@ -23,7 +24,8 @@ import android.net.Uri;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
         import android.widget.RadioButton;
-        import android.widget.TextView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
         import android.widget.Toast;
 
         import com.android.volley.Request;
@@ -53,10 +55,14 @@ public class AnswerActivity extends RootActivity {
     String answertype = "-1";
     String question_id = "-1";
     GifImageView gifImageView;
-    TextView pop_up_ok_btn;
+    TextView pop_up_ok_btn,question_pop_btn,question_pop_title,question_pop_textview
+            ;
     TextView pop_up_ok_btn_wrong,pop_up_continue_btn;
     LinearLayout pop_up_layout;
     LinearLayout pop_up_layout_wrong;
+    LinearLayout pop_up_layout_question;
+    RelativeLayout r1,r2,r3,r4;
+    LinearLayout l1;
     MediaPlayer mp,mpwrong;
     private MediaPlayer getMediaPlayer(){
        // if(mp == null)
@@ -85,10 +91,19 @@ public class AnswerActivity extends RootActivity {
         pop_up_ok_btn=(TextView) findViewById(R.id.pop_up_ok_btn);
         pop_up_ok_btn_wrong=(TextView) findViewById(R.id.pop_up_ok_btn_wrong);
         pop_up_continue_btn = (TextView) findViewById(R.id.pop_up_continue_btn);
-
+        pop_up_layout_question = (LinearLayout) findViewById(R.id.question_popup);
         gifImageView = (GifImageView) findViewById(R.id.gif_anim);
         pop_up_layout = (LinearLayout) findViewById(R.id.pop_up_layout);
         pop_up_layout_wrong = (LinearLayout) findViewById(R.id.pop_up_layout_wrong);
+        question_pop_btn = (TextView) findViewById(R.id.question_pop);
+        question_pop_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop_up_layout_question.setVisibility(View.GONE);
+            }
+        });
+        question_pop_title = (TextView) findViewById(R.id.question_pop_title);
+        question_pop_textview = (TextView) findViewById(R.id.pop_up_textview);
 
         pop_up_ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +188,6 @@ public class AnswerActivity extends RootActivity {
                             show_alert_wrong();
                         }
 
-
                     }
                 }
                 else{
@@ -189,10 +203,65 @@ public class AnswerActivity extends RootActivity {
         four = (ImageView) findViewById(R.id.four);
 
         question = (TextView)findViewById(R.id.question);
+        l1 = (LinearLayout) findViewById(R.id.l1);
+
+        l1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop_up_layout_question.setVisibility(View.VISIBLE);
+                question_pop_title.setText(Session.getword(AnswerActivity.this,"Question"));
+                question_pop_textview.setText(question.getText().toString());
+
+            }
+        });
+
         ans1 = (TextView)findViewById(R.id.ans1);
         ans2 = (TextView)findViewById(R.id.ans2);
         ans3 = (TextView)findViewById(R.id.ans3);
         ans4 = (TextView)findViewById(R.id.ans4);
+
+        r1 = (RelativeLayout) findViewById(R.id.r1);
+        r2 = (RelativeLayout) findViewById(R.id.r2);
+        r3 = (RelativeLayout) findViewById(R.id.r3);
+        r4 = (RelativeLayout) findViewById(R.id.r4);
+
+
+        r1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop_up_layout_question.setVisibility(View.VISIBLE);
+                question_pop_title.setText(Session.getword(AnswerActivity.this,"Answer 1"));
+                question_pop_textview.setText(ans1.getText().toString());
+            }
+        });
+
+        r4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop_up_layout_question.setVisibility(View.VISIBLE);
+                question_pop_title.setText(Session.getword(AnswerActivity.this,"Answer 4"));
+                question_pop_textview.setText(ans4.getText().toString());
+            }
+        });
+
+        r2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop_up_layout_question.setVisibility(View.VISIBLE);
+                question_pop_title.setText(Session.getword(AnswerActivity.this,"Answer 2"));
+                question_pop_textview.setText(ans2.getText().toString());
+            }
+        });
+
+        r3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop_up_layout_question.setVisibility(View.VISIBLE);
+                question_pop_title.setText(Session.getword(AnswerActivity.this,"Answer 3"));
+                question_pop_textview.setText(ans3.getText().toString());
+            }
+        });
+
 
         subject_id = getIntent().getStringExtra("subj_id");
         try {

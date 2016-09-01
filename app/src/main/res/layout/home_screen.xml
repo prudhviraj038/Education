@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main_layout"
-    android:background="@drawable/answer_screen_background">
+    android:background="@drawable/new_home_bg">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,12 +31,13 @@
                     android:adjustViewBounds="false" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:id="@+id/imageView29"
                     android:src="@drawable/logo_icon_small"
                     android:adjustViewBounds="false"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_margin="5dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -57,8 +58,7 @@
                     android:paddingBottom="10dp"
                     android:gravity="center"
                     android:id="@+id/choose_sem"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp">
+                    android:layout_marginTop="5dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -154,7 +154,7 @@
 
                         <LinearLayout
                             android:orientation="vertical"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:paddingTop="30dp"
@@ -183,7 +183,8 @@
                                 android:id="@+id/textView44"
                                 android:textColor="#414042"
                                 android:textSize="10dp"
-                                android:gravity="center_horizontal" />
+                                android:gravity="center_horizontal"
+                                android:visibility="gone" />
                         </LinearLayout>
 
                         <ImageView
@@ -207,7 +208,7 @@
 
                         <LinearLayout
                             android:orientation="vertical"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:layout_alignParentTop="true"
@@ -238,7 +239,8 @@
                                 android:id="@+id/textView46"
                                 android:textColor="#414042"
                                 android:textSize="10dp"
-                                android:gravity="center_horizontal" />
+                                android:gravity="center_horizontal"
+                                android:visibility="gone" />
                         </LinearLayout>
 
                         <ImageView
@@ -263,8 +265,7 @@
                     android:paddingBottom="10dp"
                     android:gravity="center"
                     android:id="@+id/home_advertisment"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp" >
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
