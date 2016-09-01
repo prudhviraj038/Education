@@ -8,5 +8,5 @@
     <color name="ans_scr_text">#5e5e5e</color>
     <color name="ans_text">#616161</color>
     <color name="question_text">#8c99a9</color>
-
+    <color name="pop_up_transparent">#b6b6b6b6</color>
 </resources>
