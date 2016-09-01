@@ -20,7 +20,6 @@ public class QuestionDetailedFragment extends Fragment{
         args.putString("answer1", questiondetails.answer1);
         args.putString("answer2", questiondetails.answer2);
         args.putString("answer3", questiondetails.answer3);
-        args.putString("answer4", questiondetails.answer4);
         args.putString("reference", questiondetails.reference);
         args.putString("youtube", questiondetails.youtube);
 
