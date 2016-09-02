@@ -30,7 +30,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/back_home_scr"
                     android:src="@drawable/back_arrow"
-                    android:adjustViewBounds="false" />
+                    android:adjustViewBounds="false"
+                    android:visibility="gone" />
 
                 <ImageView
                     android:layout_width="50dp"
@@ -67,7 +68,7 @@
                     android:paddingBottom="10dp"
                     android:gravity="center"
                     android:id="@+id/choose_sem"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="50dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -150,8 +151,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:gravity="center|center_horizontal"
-                    android:baselineAligned="false">
+                    android:baselineAligned="false"
+                    android:layout_marginTop="20dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -176,14 +177,15 @@
                             android:gravity="center">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:text="Answer Questions"
                                 android:id="@+id/answer_question"
                                 android:textColor="#107fc9"
                                 android:textSize="14sp"
                                 android:layout_marginBottom="5dp"
-                                android:minLines="2" />
+                                android:minLines="2"
+                                android:gravity="center" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -198,12 +200,13 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView31"
                             android:src="@drawable/tick_blue_icon"
                             android:layout_alignParentEnd="false"
                             android:layout_alignParentStart="false"
-                            android:layout_centerHorizontal="true" />
+                            android:layout_centerHorizontal="true"
+                            android:adjustViewBounds="true" />
 
                     </RelativeLayout>
 
@@ -232,14 +235,15 @@
                             android:id="@+id/ll">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:text="Make a Questionaire"
                                 android:id="@+id/make_questiona"
                                 android:textColor="#107fc9"
                                 android:textSize="14sp"
                                 android:layout_marginBottom="5dp"
-                                android:minLines="2" />
+                                android:minLines="2"
+                                android:gravity="center" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -254,13 +258,13 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView32"
                             android:src="@drawable/questionmark_icon"
                             android:layout_alignParentEnd="false"
                             android:layout_alignParentStart="false"
                             android:layout_centerHorizontal="true"
-                            android:adjustViewBounds="false" />
+                            android:adjustViewBounds="true" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -304,30 +308,36 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:gravity="center"
                 android:background="@color/text_black"
-                android:padding="10dp" >
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/imageView34"
-                    android:src="@drawable/home_color" />
+                    android:src="@drawable/home_color"
+                    android:adjustViewBounds="true" />
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/reward_btn"
                     android:src="@drawable/reward_star_white_icon"
+                    android:adjustViewBounds="true"
                     android:layout_weight="1" />
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/settings_btn"
                     android:src="@drawable/settings_icon"
-                    android:focusableInTouchMode="false" />
+                    android:focusableInTouchMode="false"
+                    android:adjustViewBounds="true" />
             </LinearLayout>
         </LinearLayout>
 

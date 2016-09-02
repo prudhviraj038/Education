@@ -65,7 +65,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView11"
                             android:src="@drawable/name_icon"
                             android:adjustViewBounds="true" />
@@ -78,7 +78,7 @@
                             android:hint="User Name"
                             android:layout_weight="1"
                             android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
+                            android:background="@drawable/blue_underline"
                             android:paddingRight="10dp"
                             android:paddingLeft="10dp" />
 
@@ -96,9 +96,10 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView11"
-                            android:src="@drawable/lock_icon" />
+                            android:src="@drawable/lock_icon"
+                            android:adjustViewBounds="true" />
 
                         <EditText
                             android:layout_width="0dp"
@@ -108,7 +109,7 @@
                             android:layout_weight="1"
                             android:hint="Password"
                             android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
+                            android:background="@drawable/blue_underline"
                             android:paddingRight="10dp"
                             android:paddingLeft="10dp" />
 

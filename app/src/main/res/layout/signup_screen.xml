@@ -131,9 +131,10 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView9"
-                            android:src="@drawable/class_ic" />
+                            android:src="@drawable/location_ic"
+                            android:adjustViewBounds="true" />
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -141,7 +142,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:layout_weight="1"
-                            android:background="@color/signup_field_bg">
+                            android:background="@drawable/blue_underline">
 
                             <TextView
                                 android:layout_width="0dp"
@@ -173,9 +174,10 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView15"
-                            android:src="@drawable/gove_icon" />
+                            android:src="@drawable/school_ic"
+                            android:adjustViewBounds="true" />
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -183,7 +185,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:layout_weight="1"
-                            android:background="@color/signup_field_bg" >
+                            android:background="@drawable/blue_underline" >
 
                             <TextView
                                 android:layout_width="0dp"
@@ -215,9 +217,10 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView20"
-                            android:src="@drawable/class_icon" />
+                            android:src="@drawable/class_icon"
+                            android:adjustViewBounds="true" />
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -225,7 +228,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:layout_weight="1"
-                            android:background="@color/signup_field_bg" >
+                            android:background="@drawable/blue_underline" >
 
                             <TextView
                                 android:layout_width="0dp"
@@ -255,9 +258,10 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView6"
-                            android:src="@drawable/name_icon" />
+                            android:src="@drawable/name_icon"
+                            android:adjustViewBounds="true" />
 
                         <EditText
                             android:layout_width="wrap_content"
@@ -267,7 +271,7 @@
                             android:hint="Full Name"
                             android:layout_weight="1"
                             android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
+                            android:background="@drawable/blue_underline"
                             android:paddingRight="10dp"
                             android:paddingLeft="10dp"
                             android:textColor="#000000" />
@@ -282,9 +286,10 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView7"
-                            android:src="@drawable/email_icon" />
+                            android:src="@drawable/email_icon"
+                            android:adjustViewBounds="true" />
 
                         <EditText
                             android:layout_width="wrap_content"
@@ -294,7 +299,7 @@
                             android:hint="E-Mail"
                             android:layout_weight="1"
                             android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
+                            android:background="@drawable/blue_underline"
                             android:paddingRight="10dp"
                             android:paddingLeft="10dp"
                             android:textColor="#000000" />
@@ -308,9 +313,10 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView8"
-                            android:src="@drawable/mobile_icon" />
+                            android:src="@drawable/mobile_icon"
+                            android:adjustViewBounds="true" />
 
                         <EditText
                             android:layout_width="wrap_content"
@@ -320,7 +326,7 @@
                             android:hint="Mobile"
                             android:textSize="15dp"
                             android:layout_weight="1"
-                            android:background="@color/signup_field_bg"
+                            android:background="@drawable/blue_underline"
                             android:paddingRight="10dp"
                             android:paddingLeft="10dp"
                             android:textColor="#000000" />
@@ -374,7 +380,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView4"
                             android:src="@drawable/name_icon"
                             android:adjustViewBounds="true" />
@@ -387,7 +393,7 @@
                             android:hint="User Name"
                             android:layout_weight="1"
                             android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
+                            android:background="@drawable/blue_underline"
                             android:paddingRight="10dp"
                             android:paddingLeft="10dp" />
 
@@ -401,9 +407,10 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView5"
-                            android:src="@drawable/lock_icon" />
+                            android:src="@drawable/lock_icon"
+                            android:adjustViewBounds="true" />
 
                         <EditText
                             android:layout_width="wrap_content"
@@ -413,7 +420,7 @@
                             android:layout_weight="1"
                             android:hint="Password"
                             android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
+                            android:background="@drawable/blue_underline"
                             android:paddingRight="10dp"
                             android:paddingLeft="10dp" />
 

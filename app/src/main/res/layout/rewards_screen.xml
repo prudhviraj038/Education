@@ -273,29 +273,35 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:gravity="center"
         android:background="@color/text_black"
-        android:padding="10dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/reward_home"
-            android:src="@drawable/home" />
+            android:src="@drawable/home"
+            android:adjustViewBounds="true" />
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/imageView26"
             android:src="@drawable/rewarad_star_icon"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:adjustViewBounds="true" />
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/reward_settings"
-            android:src="@drawable/settings_icon" />
+            android:src="@drawable/settings_icon"
+            android:adjustViewBounds="true" />
     </LinearLayout>
 
 </LinearLayout>
