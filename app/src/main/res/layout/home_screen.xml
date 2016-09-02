@@ -21,7 +21,9 @@
                 android:background="@color/screen_top_background"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -36,8 +38,15 @@
                     android:id="@+id/imageView29"
                     android:src="@drawable/logo_icon_small"
                     android:adjustViewBounds="false"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp" />
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView81"
+                    android:src="@drawable/back_arrow"
+                    android:adjustViewBounds="false"
+                    android:visibility="invisible" />
             </LinearLayout>
 
             <LinearLayout
@@ -90,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView35"
                         android:src="@drawable/horizontal_shadow"
-                        android:layout_marginTop="-2dp" />
+                        android:scaleType="fitStart" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -133,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView36"
                         android:src="@drawable/horizontal_shadow"
-                        android:layout_marginTop="-2dp" />
+                        android:scaleType="fitStart" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -287,7 +296,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView43"
                         android:src="@drawable/horizontal_shadow"
-                        android:layout_marginTop="-2dp" />
+                        android:scaleType="fitStart" />
                 </RelativeLayout>
 
             </LinearLayout>

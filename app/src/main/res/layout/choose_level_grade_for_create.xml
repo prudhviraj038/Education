@@ -10,15 +10,16 @@
         android:background="@color/screen_top_background"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView16"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false" />
+            android:adjustViewBounds="true" />
 
         <ImageView
             android:layout_width="50dp"
@@ -251,23 +252,24 @@
                 android:paddingTop="10dp"
                 android:id="@+id/cre_save" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SAVE CHANGES"
-                    android:id="@+id/textView30"
-                    android:textSize="15dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:layout_marginRight="5dp" />
-
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView55"
                     android:src="@drawable/tick_icon"
-                    android:layout_marginRight="5dp" />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:id="@+id/textView30"
+                    android:textSize="15dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#ffffff" />
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

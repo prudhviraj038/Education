@@ -16,22 +16,24 @@
         android:background="#FFFFFF">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:id="@+id/reward_list_image"
-            android:src="@drawable/reward_lisi_img" />
+            android:src="@drawable/reward_lisi_img"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingLeft="5dp"
-            android:id="@+id/ly_v1">
+            android:id="@+id/ly_v1"
+            android:gravity="center_vertical">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/ly_h2">
 
                 <TextView
@@ -39,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:text="ABDULLAH AL AAZMY"
                     android:id="@+id/name_tv"
-                    android:textSize="12sp"
+                    android:textSize="18sp"
                     android:textColor="#474747"
                     android:gravity="left"
                     android:layout_marginLeft="5dp"
@@ -65,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:text="SECONDARY"
                         android:id="@+id/sec_tv"
-                        android:textSize="12sp"
+                        android:textSize="18sp"
                         android:textColor="#474747"
                         android:layout_marginRight="5dp"
                         android:layout_marginLeft="5dp" />
@@ -75,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:text="GRADE 03"
                         android:id="@+id/grade_tv"
-                        android:textSize="12sp"
+                        android:textSize="18sp"
                         android:textColor="#474747"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp" />
@@ -92,15 +94,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:id="@+id/ly_h4">
+        android:id="@+id/ly_h4"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/ly_v2"
-            android:layout_weight="1">
+            android:id="@+id/ly_v2">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -122,7 +125,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_weight="1"
@@ -148,11 +151,10 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/ly_v4"
-            android:layout_weight="1">
+            android:id="@+id/ly_v4">
 
             <TextView
                 android:layout_width="wrap_content"

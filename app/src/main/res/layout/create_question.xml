@@ -29,7 +29,8 @@
                 android:gravity="center|bottom"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingBottom="5dp" >
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -46,6 +47,15 @@
                     android:src="@drawable/logo_icon_small"
                     android:adjustViewBounds="false"
                     android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView80"
+                    android:src="@drawable/back_arrow"
+                    android:adjustViewBounds="false"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 
@@ -368,23 +378,24 @@
                 android:paddingTop="10dp"
                 android:id="@+id/submit">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SUBMIT"
-                    android:id="@+id/create_submit"
-                    android:textSize="15dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:layout_marginRight="5dp" />
-
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView21"
                     android:src="@drawable/tick_icon"
-                    android:layout_marginRight="5dp" />
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SUBMIT"
+                    android:id="@+id/create_submit"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:textColor="#ffffff"
+                    android:gravity="center" />
+
             </LinearLayout>
         </LinearLayout>
         <LinearLayout

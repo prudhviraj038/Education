@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -51,6 +52,8 @@ public class SelectSubjectsActivity extends RootActivity {
     String img_path;
     String mem_id;
     TextView chose_subject,save_changes;
+    ImageView back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,13 @@ public class SelectSubjectsActivity extends RootActivity {
         sub_title = new ArrayList<String>();
         chose_subject = (TextView)findViewById(R.id.choose_sub_heading);
         chose_subject.setText(Session.getword(this,"choose_subject"));
+        back = (ImageView)findViewById(R.id.back_select_subject);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         save_changes = (TextView)findViewById(R.id.select_changes);
         save_changes.setText(Session.getword(this,"savechanges"));
         JSONObject jsonObject= null;
