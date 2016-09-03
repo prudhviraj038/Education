@@ -32,242 +32,249 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="10dp"
-        android:layout_weight="1">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:divider="@drawable/answer_divider"
-            android:showDividers="end"
-            android:layout_marginBottom="5dp" >
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:id="@+id/user_image"
-                android:src="@drawable/building_icon"
-                android:adjustViewBounds="false"
-                android:scaleType="centerCrop" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:divider="@drawable/answer_divider"
-                android:showDividers="end"
-                android:gravity="bottom">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ABDULLAH AL AAZMY"
-                    android:id="@+id/user_name"
-                    android:textSize="18sp"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="2dp"
-                    android:paddingLeft="5dp"
-                    android:textColor="@color/ans_scr_text" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Salmiya,Hawalli"
-                    android:id="@+id/reward_user_adr"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="5dp"
-                    android:paddingLeft="5dp"
-                    android:textSize="18sp"
-                    android:textColor="@color/ans_scr_text" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:layout_marginBottom="5dp">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView65"
-                        android:src="@drawable/rewards_icr"
-                        android:adjustViewBounds="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/wrong_answers"
-                        android:textSize="25sp"
-                        android:layout_gravity="center"
-                        android:textColor="#4b4b4b"
-                        android:text="99"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true" />
-
-                </RelativeLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView66"
-                    android:src="@drawable/shadow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="WRONG ANSWERS"
-                    android:id="@+id/wrong_ans"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    android:textColor="#474747" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView67"
-                        android:src="@drawable/rewards_icr"
-                        android:adjustViewBounds="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="99"
-                        android:id="@+id/no_of_questions"
-                        android:textSize="25sp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="5dp"
-                        android:textColor="#4b4b4b"
-                        android:layout_centerInParent="true" />
-
-                </RelativeLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView68"
-                    android:src="@drawable/shadow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="NO. OF QUESTIONS"
-                    android:id="@+id/no_ques"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    android:textColor="#474747" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView69"
-                        android:src="@drawable/rewards_icr"
-                        android:adjustViewBounds="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="99"
-                        android:id="@+id/correct_answers"
-                        android:textSize="25sp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="5dp"
-                        android:textColor="#4b4b4b"
-                        android:layout_centerInParent="true" />
-                </RelativeLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView70"
-                    android:src="@drawable/shadow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CORRECT ANSWERS"
-                    android:id="@+id/correct_ans"
-                    android:textSize="12sp"
-                    android:singleLine="false"
-                    android:gravity="center"
-                    android:textColor="#474747" />
-            </LinearLayout>
-
-        </LinearLayout>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView8"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp">
+            android:layout_height="0dp"
+            android:padding="10dp">
 
-            <TextView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TOP STUDENTS"
-                android:id="@+id/top_students"
                 android:gravity="center"
-                android:textSize="14sp"
-                android:background="#107fc9"
-                android:textColor="#ffffff"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp" />
+                android:divider="@drawable/answer_divider"
+                android:showDividers="end"
+                android:layout_marginBottom="5dp" >
 
-            <GridView
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/user_image"
+                    android:src="@drawable/building_icon"
+                    android:adjustViewBounds="false"
+                    android:scaleType="centerCrop" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:divider="@drawable/answer_divider"
+                    android:showDividers="end"
+                    android:gravity="bottom">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ABDULLAH AL AAZMY"
+                        android:id="@+id/user_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left"
+                        android:layout_marginBottom="2dp"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/ans_scr_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Salmiya,Hawalli"
+                        android:id="@+id/reward_user_adr"
+                        android:layout_gravity="left"
+                        android:layout_marginBottom="5dp"
+                        android:paddingLeft="5dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/ans_scr_text" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/gridView_reward"
-                android:numColumns="1" />
+                android:baselineAligned="false"
+                android:layout_marginBottom="5dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView65"
+                            android:src="@drawable/rewards_icr"
+                            android:adjustViewBounds="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/wrong_answers"
+                            android:textSize="25sp"
+                            android:layout_gravity="center"
+                            android:textColor="#4b4b4b"
+                            android:text="99"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true" />
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView66"
+                        android:src="@drawable/shadow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="WRONG ANSWERS"
+                        android:id="@+id/wrong_ans"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:textColor="#474747" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView67"
+                            android:src="@drawable/rewards_icr"
+                            android:adjustViewBounds="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="99"
+                            android:id="@+id/no_of_questions"
+                            android:textSize="25sp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:textColor="#4b4b4b"
+                            android:layout_centerInParent="true" />
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView68"
+                        android:src="@drawable/shadow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="NO. OF QUESTIONS"
+                        android:id="@+id/no_ques"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:textColor="#474747" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView69"
+                            android:src="@drawable/rewards_icr"
+                            android:adjustViewBounds="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="99"
+                            android:id="@+id/correct_answers"
+                            android:textSize="25sp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:textColor="#4b4b4b"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView70"
+                        android:src="@drawable/shadow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CORRECT ANSWERS"
+                        android:id="@+id/correct_ans"
+                        android:textSize="12sp"
+                        android:singleLine="false"
+                        android:gravity="center"
+                        android:textColor="#474747" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TOP STUDENTS"
+                    android:id="@+id/top_students"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:background="#107fc9"
+                    android:textColor="#ffffff"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp" />
+
+                <GridView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gridView_reward"
+                    android:numColumns="1" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:orientation="horizontal"
