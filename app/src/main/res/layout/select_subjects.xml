@@ -16,10 +16,10 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:id="@+id/back_select_subject"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false" />
+            android:adjustViewBounds="true" />
 
         <ImageView
             android:layout_width="50dp"
@@ -74,7 +74,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="CHOOSE SUBJECTS"
                     android:id="@+id/choose_sub_heading"
                     android:background="#107fc9"
@@ -82,15 +82,16 @@
                     android:gravity="center|left"
                     android:layout_marginRight="1dp"
                     android:textSize="13dp"
-                    android:paddingLeft="10dp"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:padding="10dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/imageView46"
                     android:src="@drawable/down_arrow"
-                    android:background="#107fc9" />
+                    android:background="#107fc9"
+                    android:padding="5dp" />
             </LinearLayout>
 
             <ListView
@@ -116,8 +117,8 @@
         android:id="@+id/save_change_fin">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:id="@+id/imageView46"
             android:src="@drawable/tick_icon"
             android:layout_marginLeft="10dp"

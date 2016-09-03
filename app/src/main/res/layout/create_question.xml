@@ -34,10 +34,10 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:id="@+id/back_cre_ques_scr"
                     android:src="@drawable/back_arrow"
-                    android:adjustViewBounds="false"
+                    android:adjustViewBounds="true"
                     android:layout_gravity="center_vertical" />
 
                 <ImageView
@@ -380,8 +380,8 @@
                 android:id="@+id/submit">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:id="@+id/imageView21"
                     android:src="@drawable/tick_icon"
                     android:layout_marginRight="10dp"
@@ -392,10 +392,11 @@
                     android:layout_height="wrap_content"
                     android:text="SUBMIT"
                     android:id="@+id/create_submit"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:layout_gravity="center"
                     android:textColor="#ffffff"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:paddingTop="1dp" />
 
             </LinearLayout>
         </LinearLayout>

@@ -16,10 +16,10 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:id="@+id/back_btn"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false" />
+            android:adjustViewBounds="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,14 +29,15 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView24"
+            android:layout_height="25dp"
+            android:id="@+id/imageView83"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false"
+            android:adjustViewBounds="true"
             android:visibility="invisible" />
 
     </LinearLayout>
@@ -53,19 +54,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/screen_down_background"
-        android:gravity="center|bottom"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:id="@+id/linear_layout">
+        android:gravity="center_vertical|center"
+        android:id="@+id/linear_layout"
+        android:padding="10dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:id="@+id/imageView25"
             android:src="@drawable/tick_icon"
-            android:adjustViewBounds="false"
-            android:padding="5dp" />
+            android:adjustViewBounds="false" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,8 +73,9 @@
             android:gravity="center"
             android:textColor="#ffffff"
             android:padding="5dp"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="1dp" />
 
     </LinearLayout>
 </LinearLayout>
