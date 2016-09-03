@@ -137,6 +137,8 @@ public class SelectSubjectsActivity extends RootActivity {
 
             }
         });
+
+
         get_sub();
     }
 

@@ -68,6 +68,8 @@ public class RewardActivity extends RootActivity {
         reward_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(RewardActivity.this,HomeActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -77,6 +79,7 @@ public class RewardActivity extends RootActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(RewardActivity.this,SettingsActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

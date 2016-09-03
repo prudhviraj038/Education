@@ -95,6 +95,25 @@ public class AnswerActivity extends RootActivity {
         gifImageView = (GifImageView) findViewById(R.id.gif_anim);
         pop_up_layout = (LinearLayout) findViewById(R.id.pop_up_layout);
         pop_up_layout_wrong = (LinearLayout) findViewById(R.id.pop_up_layout_wrong);
+        pop_up_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        pop_up_layout_wrong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        pop_up_layout_question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         question_pop_btn = (TextView) findViewById(R.id.question_pop);
         question_pop_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +128,7 @@ public class AnswerActivity extends RootActivity {
             @Override
             public void onClick(View view) {
                 pop_up_layout.setVisibility(View.GONE);
+                if(mp!=null)
                 mp.stop();
                 setanswer();
             }
@@ -117,6 +137,7 @@ public class AnswerActivity extends RootActivity {
             @Override
             public void onClick(View view) {
                 pop_up_layout_wrong.setVisibility(View.GONE);
+                if(mpwrong!=null)
                 mpwrong.stop();
             }
         });
@@ -124,7 +145,8 @@ public class AnswerActivity extends RootActivity {
             @Override
             public void onClick(View view) {
                 pop_up_layout_wrong.setVisibility(View.GONE);
-                mpwrong.stop();
+                if(mpwrong!=null)
+                    mpwrong.stop();
                 setanswer();
             }
         });
@@ -402,7 +424,7 @@ public class AnswerActivity extends RootActivity {
                         pdf_url = jsonObject.getJSONObject("reference").getString("image");
                         question_count++;
                         que_number.setText(Session.getword(AnswerActivity.this,"question_no") + String.valueOf(question_count));
-                        que_count.setText(String.valueOf(question_count)+ "/" + String.valueOf(next_stage));
+                        que_count.setText(String.valueOf(question_count)+ " OUT OF " + String.valueOf(next_stage));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

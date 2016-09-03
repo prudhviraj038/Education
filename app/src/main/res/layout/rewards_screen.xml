@@ -29,8 +29,7 @@
             android:id="@+id/imageView23"
             android:src="@drawable/logo_icon_small"
             android:adjustViewBounds="false"
-            android:layout_weight="1"
-            android:layout_margin="5dp" />
+            android:layout_weight="1" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,8 +49,8 @@
             android:layout_marginBottom="5dp" >
 
             <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:id="@+id/user_image"
                 android:src="@drawable/building_icon"
                 android:adjustViewBounds="false"
@@ -111,7 +110,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView65"
                         android:src="@drawable/rewards_icr"
@@ -121,7 +120,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/wrong_answers"
-                        android:textSize="40dp"
+                        android:textSize="25sp"
                         android:layout_gravity="center"
                         android:textColor="#4b4b4b"
                         android:text="99"
@@ -159,7 +158,7 @@
                     android:layout_height="wrap_content" >
 
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView67"
                         android:src="@drawable/rewards_icr"
@@ -170,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:text="99"
                         android:id="@+id/no_of_questions"
-                        android:textSize="40dp"
+                        android:textSize="25sp"
                         android:layout_gravity="center"
                         android:layout_marginBottom="5dp"
                         android:textColor="#4b4b4b"
@@ -207,7 +206,7 @@
                     android:layout_height="wrap_content" >
 
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView69"
                         android:src="@drawable/rewards_icr"
@@ -218,7 +217,7 @@
                         android:layout_height="wrap_content"
                         android:text="99"
                         android:id="@+id/correct_answers"
-                        android:textSize="40dp"
+                        android:textSize="25sp"
                         android:layout_gravity="center"
                         android:layout_marginBottom="5dp"
                         android:textColor="#4b4b4b"
