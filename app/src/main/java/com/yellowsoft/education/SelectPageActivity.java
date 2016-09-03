@@ -73,6 +73,7 @@ public class SelectPageActivity extends RootActivity {
              public void onClick(View view) {
                  Intent intent = new Intent();
                  intent.putExtra("page_id",images.get(viewPager.getCurrentItem()).id);
+                 intent.putExtra("page_title",images.get(viewPager.getCurrentItem()).title);
                  setResult(5,intent);
                  finish();
              }

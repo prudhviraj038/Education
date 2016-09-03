@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ public class RewardActivity extends RootActivity {
 
     ArrayList<Rewards> rewardses;
     RewardListAdapter rewardListAdapter;
+    GridView reward_gridView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +58,7 @@ public class RewardActivity extends RootActivity {
         top_stud.setText(Session.getword(this,"top_students"));
 
         ImageView back=(ImageView)findViewById(R.id.back_rewrds);
-        GridView reward_gridView=(GridView)findViewById(R.id.gridView_reward);
+        reward_gridView=(GridView)findViewById(R.id.gridView_reward);
         rewardListAdapter = new RewardListAdapter(this,rewardses);
         reward_gridView.setAdapter(rewardListAdapter);
         back.setOnClickListener(new View.OnClickListener() {
@@ -187,11 +190,12 @@ public class RewardActivity extends RootActivity {
 
                 try {
                     JSONObject jsonObject = jsonArray.getJSONObject(0);
-                    Log.e("res",jsonObject.toString());
+                    Log.e("res", jsonObject.toString());
                     for(int i=0;i<jsonArray.length();i++){
                         rewardses.add(new Rewards(jsonArray.getJSONObject(i),RewardActivity.this));
                     }
                     rewardListAdapter.notifyDataSetChanged();
+                    setGridViewHeightBasedOnItems(reward_gridView);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -215,5 +219,34 @@ public class RewardActivity extends RootActivity {
 
     }
 
+    public static boolean setGridViewHeightBasedOnItems(GridView gridView) {
 
+        ListAdapter listAdapter = gridView.getAdapter();
+        if (listAdapter != null) {
+
+            int numberOfItems = listAdapter.getCount();
+
+            // Get total height of all items.
+            int totalItemsHeight = 0;
+            int lastItemsHeight = 0;
+            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
+                View item = listAdapter.getView(itemPos, null, gridView);
+                item.measure(0, 0);
+                totalItemsHeight += item.getMeasuredHeight();
+                lastItemsHeight = item.getMeasuredHeight();
+            }
+
+            ViewGroup.LayoutParams params = gridView.getLayoutParams();
+
+            params.height = totalItemsHeight ;
+            gridView.setLayoutParams(params);
+            gridView.requestLayout();
+
+            return true;
+
+        } else {
+            return false;
+        }
+
+    }
 }
