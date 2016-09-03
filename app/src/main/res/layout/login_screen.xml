@@ -201,22 +201,23 @@
                         android:id="@+id/ll_submit_pass">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
                             android:id="@+id/imageView45"
                             android:src="@drawable/tick_icon"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginLeft="10dp" />
+                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="5dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="SIGN IN"
                             android:id="@+id/signin"
-                            android:textSize="15dp"
-                            android:layout_gravity="center"
+                            android:textSize="16sp"
+                            android:layout_gravity="center_vertical"
                             android:gravity="center"
-                            android:textColor="#ffffff" />
+                            android:textColor="#ffffff"
+                            android:layout_marginTop="1dp" />
 
                     </LinearLayout>
                 </LinearLayout>

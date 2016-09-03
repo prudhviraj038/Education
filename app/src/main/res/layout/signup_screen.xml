@@ -17,10 +17,10 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:id="@+id/back_signup_scr"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false" />
+            android:adjustViewBounds="true" />
 
         <ImageView
             android:layout_width="50dp"
@@ -32,11 +32,12 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:id="@+id/imageView59"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false"
+            android:adjustViewBounds="true"
             android:visibility="invisible" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -440,22 +441,23 @@
                     android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
                         android:id="@+id/imageView48"
                         android:src="@drawable/tick_icon"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="next"
                         android:id="@+id/signup2"
-                        android:textSize="15dp"
+                        android:textSize="16sp"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:textColor="#ffffff" />
+                        android:textColor="#ffffff"
+                        android:layout_marginTop="1dp" />
 
                 </LinearLayout>
 
