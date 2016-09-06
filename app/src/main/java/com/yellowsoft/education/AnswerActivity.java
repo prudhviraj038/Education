@@ -355,8 +355,8 @@ public class AnswerActivity extends RootActivity {
         ref.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent callIntent = new Intent(Intent.ACTION_VIEW);
-                callIntent.setData(Uri.parse(pdf_url));
+                Intent callIntent = new Intent(AnswerActivity.this,ImageZoomActivity.class);
+                callIntent.putExtra("url",pdf_url);
                 startActivity(callIntent);
 //                   Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
             }
@@ -404,7 +404,6 @@ public class AnswerActivity extends RootActivity {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setMessage(Session.getword(getApplicationContext(),"please_wait"));
             progressDialog.setMessage(Session.getword(getApplicationContext(),"loading"));
-
             progressDialog.setCancelable(false);
             progressDialog.show();
             JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

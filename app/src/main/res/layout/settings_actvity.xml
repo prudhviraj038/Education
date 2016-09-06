@@ -9,61 +9,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/screen_top_background"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:baselineAligned="false" >
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" >
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center|center_horizontal"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/linearLayout6" >
+            android:layout_height="25dp"
+            android:id="@+id/back_btn"
+            android:src="@drawable/back_arrow"
+            android:adjustViewBounds="true" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:id="@+id/back_btnn"
-                android:src="@drawable/back_arrow"
-                android:adjustViewBounds="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADVERTISEMENTS"
             android:layout_weight="1"
-            android:baselineAligned="false"
-            android:gravity="center_vertical|center_horizontal" >
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:id="@+id/advertise_page_title" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/labell"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/linearLayout7"
-            android:visibility="invisible" >
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/imageView20"
-                android:src="@drawable/back_arrow"
-                android:adjustViewBounds="false" />
-        </LinearLayout>
+            android:layout_height="25dp"
+            android:id="@+id/imageView90"
+            android:src="@drawable/back_arrow"
+            android:adjustViewBounds="true"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <ScrollView
@@ -83,24 +59,26 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:id="@+id/imageView89"
+                    android:id="@+id/profile_image"
                     android:src="@drawable/logo_icon_small"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/ly_v1"
                     android:layout_toEndOf="@+id/ly_v1"
                     android:adjustViewBounds="true"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_marginTop="5dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Click here to Select Image"
-                    android:id="@+id/select_here_tv" />
+                    android:id="@+id/select_here_tv"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -205,7 +183,6 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:inputType="phone"
                     android:id="@+id/st_redirect_url"
                     android:hint="Redirect URL"
                     android:textSize="15dp"
@@ -232,7 +209,8 @@
                     android:paddingLeft="10dp"
                     android:textColor="#000000"
                     android:lines="5"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout

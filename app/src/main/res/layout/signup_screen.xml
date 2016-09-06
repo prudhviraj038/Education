@@ -160,7 +160,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="20dp"
-                                android:id="@+id/imageView12"
+                                android:id="@+id/gov_drop"
                                 android:src="@drawable/down_arrow_black"
                                 android:layout_margin="5dp" />
                         </LinearLayout>
@@ -203,7 +203,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="20dp"
-                                android:id="@+id/imageView19"
+                                android:id="@+id/school_drop"
                                 android:src="@drawable/down_arrow_black"
                                 android:layout_margin="5dp" />
                         </LinearLayout>
@@ -246,7 +246,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="20dp"
-                                android:id="@+id/imageView24"
+                                android:id="@+id/class_drop"
                                 android:src="@drawable/down_arrow_black"
                                 android:layout_margin="5dp" />
                         </LinearLayout>

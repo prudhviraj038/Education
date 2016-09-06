@@ -33,11 +33,13 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,26 +52,36 @@ import java.net.URLEncoder;
  * Created by Chinni on 18-08-2016.
  */
 public class Feedback extends Activity {
-    TextView submit,label,click_here;
+    TextView submit,click_here;
     EditText name,email,msg,mobile,url;
     String namee,emaill,msgg,no,id,mobile_str,url_str;
     LinearLayout subit_ll;
     ImageView back;
     ImageView profile_image;
+    String enquiry_id;
     String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    boolean image_selected = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Session.forceRTLIfSupported(this);
         setContentView(R.layout.settings_actvity);
+        profile_image = (ImageView) findViewById(R.id.profile_image);
+        TextView advertisement_page_title = (TextView) findViewById(R.id.advertise_page_title);
         no="1";
         id=getIntent().getStringExtra("id");
         submit=(TextView)findViewById(R.id.sett_submit);
-        label=(TextView)findViewById(R.id.labell);
+        submit.setText(Session.getword(this,"submit_enquiry"));
         click_here=(TextView)findViewById(R.id.select_here_tv);
+        click_here.setText(Session.getword(this,"tap_here_to_select_image"));
         name=(EditText)findViewById(R.id.st_fullname_et);
+        name.setHint(Session.getword(this,"fullname"));
         mobile=(EditText)findViewById(R.id.st_mobile_et);
+        mobile.setHint(Session.getword(this,"mobile"));
         url=(EditText)findViewById(R.id.st_redirect_url);
+        url.setHint(Session.getword(this,"redirect_url"));
         email=(EditText)findViewById(R.id.st_email_et);
+        email.setHint(Session.getword(this,"email"));
         msg=(EditText)findViewById(R.id.st_message_et);
         click_here.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,20 +89,15 @@ public class Feedback extends Activity {
                 selectphotos();
             }
         });
-        back=(ImageView)findViewById(R.id.back_btnn);
+        back=(ImageView)findViewById(R.id.back_btn);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        if(no.equals("1")){
-            label.setText("Request for Advertisement");
-        }else if(no.equals("2")){
-            label.setText("Send Bug Report");
-        }else{
-            label.setText("Report or Abuse");
-        }
+
+
         subit_ll=(LinearLayout)findViewById(R.id.st_submit_ll);
         subit_ll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,15 +108,18 @@ public class Feedback extends Activity {
                 mobile_str=mobile.getText().toString();
                 url_str=url.getText().toString();
                 if (namee.equals(""))
-                    Toast.makeText(Feedback.this,"Please enter name", Toast.LENGTH_SHORT).show();
-                else if (url_str.equals(""))
-                    Toast.makeText(Feedback.this, "Please enter url", Toast.LENGTH_SHORT).show();
-                else if (mobile_str.equals(""))
-                    Toast.makeText(Feedback.this, "Please enter mobile number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Feedback.this,Session.getword(Feedback.this,"pls_ent_fullname"), Toast.LENGTH_SHORT).show();
                 else if (!emaill.matches(emailPattern))
-                    Toast.makeText(Feedback.this, "Please Enter Valid Email id", Toast.LENGTH_SHORT).show();
-                else if (msgg.equals(""))
-                    Toast.makeText(Feedback.this,"Please Enter Valid Message", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Feedback.this, Session.getword(Feedback.this,"Please enter EmailID"), Toast.LENGTH_SHORT).show();
+
+                else if (mobile_str.equals(""))
+                    Toast.makeText(Feedback.this, Session.getword(Feedback.this,"Pls_ent_Mob_Num"), Toast.LENGTH_SHORT).show();
+
+                else if (url_str.equals(""))
+                    Toast.makeText(Feedback.this, Session.getword(Feedback.this,"pls_ent_redirect_url"), Toast.LENGTH_SHORT).show();
+                else if (!image_selected)
+                    Toast.makeText(Feedback.this, Session.getword(Feedback.this,"pls_select_a_image"), Toast.LENGTH_SHORT).show();
+
                 else {
                     final ProgressDialog progressDialog = new ProgressDialog(Feedback.this);
                     progressDialog.setMessage("please_wait");
@@ -117,10 +127,11 @@ public class Feedback extends Activity {
                     String url = null;
                     try {
                         if(no.equals("1")) {
-                            url = Session.SERVERURL+"suggestions.php?" +
-                                    "name=" + URLEncoder.encode(namee, "utf-8") +
-                                    "&email=" + URLEncoder.encode(emaill, "utf-8")
-                                    + "&message=" + URLEncoder.encode(msgg, "utf-8");
+                            url = Session.SERVERURL+"send_enquiry.php?" +
+                                    "full_name=" + URLEncoder.encode(namee, "utf-8") +
+                                    "&email=" + URLEncoder.encode(emaill, "utf-8") +
+                                    "&contact_number=" + URLEncoder.encode(mobile_str, "utf-8")+
+                                    "&url=" + URLEncoder.encode(url_str, "utf-8");
                         }else if(no.equals("2")){
                             url = "http://3ajelapp.com/nashrsdfs/api/bug_reports.php?" +
                                     "name=" + URLEncoder.encode(namee, "utf-8") +
@@ -137,23 +148,26 @@ public class Feedback extends Activity {
                         e.printStackTrace();
                     }
                     Log.e("register url", url);
-                    JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    JsonArrayRequest jsObjRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
 
                         @Override
-                        public void onResponse(JSONObject jsonObject) {
+                        public void onResponse(JSONArray jsonArray) {
                             if (progressDialog != null)
                                 progressDialog.dismiss();
-                            Log.e("response is", jsonObject.toString());
+                            Log.e("response is", jsonArray.toString());
                             try {
+                                JSONObject jsonObject = jsonArray.getJSONObject(0);
 //                                Log.e("response is", jsonObject.getString("response"));
                                 String result = jsonObject.getString("status");
-                                String message = jsonObject.getString("message");
-                                if (result.equals("Failed")) {
-                                    Toast.makeText(Feedback.this, message, Toast.LENGTH_SHORT).show();
+
+                                if (result.equals("Success")) {
+
+                                    enquiry_id = jsonObject.getString("enquiry_id");
+                                    encodeImagetoString();
 
                                 } else {
+                                    String message = jsonObject.getString("message");
                                     Toast.makeText(Feedback.this, message, Toast.LENGTH_SHORT).show();
-                                    finish();
                                 }
 
                             } catch (JSONException e) {
@@ -320,6 +334,7 @@ public class Feedback extends Activity {
             //  .into(profile_image);
             imgPath = file_path;
             profile_image.setImageBitmap(sample);
+            image_selected=true;
         }
         else{
             Log.e("activity","not returned");
@@ -372,11 +387,11 @@ public class Feedback extends Activity {
 
         AsyncHttpClient client = new AsyncHttpClient();
         // Don't forget to change the IP address to your LAN address. Port no as well.
-        params.put("file", encodedString);
-        params.put("ext_str", "jpg");
-        params.put("member_id", Session.getUserid(this));
+        params.put("image", encodedString);
+        params.put("ext", "jpg");
+        params.put("id", enquiry_id);
 
-        client.post(Session.SERVERURL + "add-member-image.php",
+        client.post(Session.SERVERURL + "send_enquiry_image.php",
                 params, new AsyncHttpResponseHandler() {
                     // When the response returned by REST has Http
                     // response code '200'
@@ -384,10 +399,21 @@ public class Feedback extends Activity {
                     public void onSuccess(String response) {
                         // Hide Progress Dialog
                         Log.e("success", response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if(jsonObject.getString("status").equals("Success")){
+                                Toast.makeText(getApplicationContext(),"Requested submited successfully",Toast.LENGTH_LONG).show();
+                                finish();
+                            }else {
+                                Toast.makeText(getApplicationContext(),"try agian",Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(getApplicationContext(), Session.getword(Feedback.this,"updated_successfully"),
-                                Toast.LENGTH_LONG).show();
-                       // get_user_details();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),"try agin",Toast.LENGTH_LONG).show();
+                            // get_user_details();
+                        }
 
                     }
 

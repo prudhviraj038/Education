@@ -70,6 +70,7 @@ public class SignupActivity extends RootActivity {
     ArrayList<String> area_titles;
     ArrayList<String> class_titles;
     ArrayList<String> class_ids;
+    ImageView gov_drop,school_drop,class_drop;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,9 @@ public class SignupActivity extends RootActivity {
         setContentView(R.layout.signup_screen);
         final int RESULT_LOAD_IMAGE = 1;
         type = getIntent().getStringExtra("type");
+        gov_drop = (ImageView) findViewById(R.id.gov_drop);
+        school_drop = (ImageView) findViewById(R.id.school_drop);
+        class_drop = (ImageView) findViewById(R.id.class_drop);
         governorates=new ArrayList<>();
         gove_titles=new ArrayList<>();
         area_titles=new ArrayList<>();
@@ -85,6 +89,7 @@ public class SignupActivity extends RootActivity {
         gove_id = "";
         area_id= "";
         class_id = "";
+        classs = "";
         gove_ll=(LinearLayout)findViewById(R.id.gove_ll);
         area_ll=(LinearLayout)findViewById(R.id.area_ll);
         class_ll=(LinearLayout) findViewById(R.id.class_ll);
@@ -248,6 +253,9 @@ public class SignupActivity extends RootActivity {
             et_mobile.setEnabled(false);
             et_uname.setEnabled(false);
             et_email.setEnabled(false);
+            class_drop.setVisibility(View.INVISIBLE);
+            gov_drop.setVisibility(View.INVISIBLE);
+            school_drop.setVisibility(View.INVISIBLE);
 
             Picasso.with(SignupActivity.this).load(jsonObject.getString("image")).into(profile_image);
         } catch (JSONException e) {
@@ -292,28 +300,27 @@ public class SignupActivity extends RootActivity {
          fullname = et_fullname.getText().toString();
          email = et_email.getText().toString();
          mobile = et_mobile.getText().toString();
-       //  classs = et_class.getText().toString();
 
-        if (uname.equals(""))
-            Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_username"), Toast.LENGTH_SHORT).show();
-        else if (type.equals("normal")&&password.equals(""))
-            Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_Password"),Toast.LENGTH_SHORT).show();
-        else if (type.equals("normal")&&password.length() < 6)
-            Toast.makeText(SignupActivity.this, Session.getword(this,"Password Lenth should be grether than 6 charcters"), Toast.LENGTH_SHORT).show();
+         if (gove_id.equals(""))
+            Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_gover"), Toast.LENGTH_SHORT).show();
+        else if (area_id.equals(""))
+            Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_ent_school"), Toast.LENGTH_SHORT).show();
+        else if (classs.equals(""))
+            Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_ent_class"), Toast.LENGTH_SHORT).show();
         else if (fullname.equals(""))
-            Toast.makeText(SignupActivity.this,Session.getword(this,"Please Enter Fullname"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this,Session.getword(this,"pls_ent_fullname"), Toast.LENGTH_SHORT).show();
         else if (email.equals(""))
             Toast.makeText(SignupActivity.this, Session.getword(this,"Please enter EmailID"), Toast.LENGTH_SHORT).show();
         else if (mobile.equals(""))
             Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_ent_Mob_Num"), Toast.LENGTH_SHORT).show();
-        else if (gove_id.equals(""))
-            Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_gover"), Toast.LENGTH_SHORT).show();
-        else if (area_id.equals(""))
-            Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_sel_school"), Toast.LENGTH_SHORT).show();
-        else if (classs.equals(""))
-            Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_ent_class"), Toast.LENGTH_SHORT).show();
-        else {
-            if(type.equals("change")){
+        else if (uname.equals(""))
+            Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_username"), Toast.LENGTH_SHORT).show();
+        else if (type.equals("normal")&&password.equals(""))
+            Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_Password"),Toast.LENGTH_SHORT).show();
+        else if (type.equals("normal")&&password.length() < 6)
+            Toast.makeText(SignupActivity.this, Session.getword(this,"password_length"), Toast.LENGTH_SHORT).show();
+         else{
+             if(type.equals("change")){
                 edit_profile();
             }else{
             Intent signup_intent = new Intent(getApplicationContext(), ChooseLevelGradeSemActivity.class);

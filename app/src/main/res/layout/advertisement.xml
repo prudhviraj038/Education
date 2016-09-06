@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ADVERTISEMENTS"
-            android:id="@+id/textView2"
+            android:id="@+id/advertise_page_title"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="#ffffff"
@@ -58,24 +58,24 @@
         android:id="@+id/linear_layout"
         android:padding="10dp">
 
-        <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:id="@+id/imageView25"
-            android:src="@drawable/tick_icon"
-            android:adjustViewBounds="false" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ADVERTISEMENT ENQUIREY"
-            android:id="@+id/textView4"
+            android:text="ADVERTISEMENT ENQUIRY"
+            android:id="@+id/advertisement_enquiry"
             android:gravity="center"
             android:textColor="#ffffff"
             android:padding="5dp"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginTop="1dp" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:id="@+id/imageView25"
+            android:src="@drawable/tick_icon"
+            android:adjustViewBounds="false" />
 
     </LinearLayout>
 </LinearLayout>
