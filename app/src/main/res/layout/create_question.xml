@@ -29,14 +29,15 @@
                 android:gravity="center|bottom"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingBottom="5dp" >
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:id="@+id/back_cre_ques_scr"
                     android:src="@drawable/back_arrow"
-                    android:adjustViewBounds="false"
+                    android:adjustViewBounds="true"
                     android:layout_gravity="center_vertical" />
 
                 <ImageView
@@ -47,13 +48,23 @@
                     android:adjustViewBounds="false"
                     android:layout_weight="1" />
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView80"
+                    android:src="@drawable/back_arrow"
+                    android:adjustViewBounds="false"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="invisible" />
+
             </LinearLayout>
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:id="@+id/scrollView2"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:fillViewport="true">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -78,9 +89,10 @@
 
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="20dp"
                                 android:id="@+id/imageView18"
-                                android:src="@drawable/write_icon" />
+                                android:src="@drawable/write_icon"
+                                android:adjustViewBounds="true" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -99,14 +111,13 @@
                             android:layout_height="100dp"
                             android:id="@+id/et_que"
                             android:textSize="14sp"
-                            android:textColor="@color/question_text"
-                            android:background="@drawable/box_shadow"
-                            android:padding="20dp"
+                            android:textColor="#000000"
                             android:inputType="none"
                             android:scrollbars="vertical"
-                            android:textColorHint="@color/question_text"
+                            android:textColorHint="#000000"
                             android:hint="Type your Question"
-                            android:layout_marginTop="-10dp" />
+                            android:background="#ffffff"
+                            android:padding="10dp" />
 
                     </LinearLayout>
 
@@ -122,12 +133,13 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="20dp"
                             android:id="@+id/imageView33"
                             android:contentDescription=""
                             android:src="@drawable/book"
                             android:layout_marginRight="5dp"
-                            android:layout_marginLeft="5dp" />
+                            android:layout_marginLeft="5dp"
+                            android:adjustViewBounds="true" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -149,34 +161,35 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/imageView3"
                             android:src="@drawable/horizontal_shadow"
-                            android:layout_marginTop="-2dp" />
+                            android:scaleType="fitStart" />
 
                     </RelativeLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="WRITE YOUR ANSWER"
-                        android:id="@+id/write_answer_heading"
-                        android:textSize="16sp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="#f8f8f8" />
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:divider="@drawable/ans_bw_divider"
-                        android:showDividers="middle">
+                        android:showDividers="middle"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="WRITE YOUR ANSWER"
+                            android:id="@+id/write_answer_heading"
+                            android:textSize="16sp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:background="#f8f8f8" />
 
                         <RelativeLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
+                            android:layout_marginTop="5dp" >
 
                             <RelativeLayout
                                 android:orientation="vertical"
@@ -190,12 +203,56 @@
                                 android:layout_weight="1"
                                 android:layout_alignParentTop="true"
                                 android:layout_toLeftOf="@+id/one"
-                                android:id="@+id/rl1">
+                                android:layout_toStartOf="@+id/one"
+                                android:id="@+id/rl1" >
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/et_ans1"
+                                    android:textColor="@color/ans_text"
+                                    android:layout_alignParentBottom="false"
+                                    android:textSize="14sp"
+                                    android:textColorHint="@color/ans_text"
+                                    android:hint="Option 1"
+                                    android:background="#00000000" />
+                            </RelativeLayout>
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/one"
+                                android:layout_gravity="center_vertical"
+                                android:clickable="false"
+                                android:focusableInTouchMode="false"
+                                android:layout_alignParentEnd="true"
+                                android:checked="false"
+                                android:layout_centerVertical="true" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:visibility="gone">
+
+                            <RelativeLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ans_background"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:layout_alignParentTop="true"
+                                android:layout_toLeftOf="@+id/one">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:textColor="@color/ans_text"
                                     android:layout_alignParentBottom="false"
                                     android:textSize="14sp"
@@ -208,7 +265,6 @@
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/one"
                                 android:layout_gravity="center_vertical"
                                 android:clickable="false"
                                 android:focusableInTouchMode="false"
@@ -259,8 +315,7 @@
                                 android:clickable="false"
                                 android:focusableInTouchMode="false"
                                 android:layout_alignParentEnd="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="10dp" />
+                                android:layout_centerVertical="true" />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -304,8 +359,7 @@
                                 android:clickable="false"
                                 android:focusableInTouchMode="false"
                                 android:layout_alignParentEnd="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="10dp" />
+                                android:layout_centerVertical="true" />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -353,6 +407,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="10dp" />
                         </RelativeLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -368,23 +423,25 @@
                 android:paddingTop="10dp"
                 android:id="@+id/submit">
 
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:id="@+id/imageView21"
+                    android:src="@drawable/tick_icon"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SUBMIT"
                     android:id="@+id/create_submit"
-                    android:textSize="15dp"
+                    android:textSize="16sp"
                     android:layout_gravity="center"
-                    android:gravity="center"
                     android:textColor="#ffffff"
-                    android:layout_marginRight="5dp" />
+                    android:gravity="center"
+                    android:paddingTop="1dp" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView21"
-                    android:src="@drawable/tick_icon"
-                    android:layout_marginRight="5dp" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout

@@ -151,6 +151,13 @@
             android:name=".SelectPageActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            android:name=".ImageZoomActivity"
+            android:label="@string/app_name" >
+        </activity>
+
         <receiver
             android:name="com.google.android.gcm.GCMBroadcastReceiver"
             android:exported="true"

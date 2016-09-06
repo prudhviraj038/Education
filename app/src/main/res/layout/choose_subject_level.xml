@@ -12,14 +12,15 @@
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp" >
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:id="@+id/back_sub_scr"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false" />
+            android:adjustViewBounds="true" />
 
         <ImageView
             android:layout_width="50dp"
@@ -31,11 +32,12 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:id="@+id/imageView61"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false"
+            android:adjustViewBounds="true"
             android:visibility="invisible" />
+
     </LinearLayout>
 
     <ScrollView
@@ -82,7 +84,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="CHOOSE LEVEL"
                             android:id="@+id/choose_level_heading"
                             android:background="#107fc9"
@@ -90,15 +92,17 @@
                             android:gravity="center|left"
                             android:layout_marginRight="1dp"
                             android:textSize="13dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="#ffffff" />
+                            android:textColor="#ffffff"
+                            android:padding="10dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/imageView"
                             android:src="@drawable/down_arrow"
-                            android:background="#107fc9" />
+                            android:background="#107fc9"
+                            android:adjustViewBounds="true"
+                            android:padding="5dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -128,7 +132,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="CHOOSE GRADE"
                             android:id="@+id/choose_grade_heading"
                             android:background="#107fc9"
@@ -136,15 +140,16 @@
                             android:gravity="center|left"
                             android:layout_marginRight="1dp"
                             android:textSize="13dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="#ffffff" />
+                            android:textColor="#ffffff"
+                            android:padding="10dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/imageView2"
                             android:src="@drawable/down_arrow"
-                            android:background="#107fc9" />
+                            android:background="#107fc9"
+                            android:padding="5dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -174,7 +179,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="SEMESTER SECTIONS"
                             android:id="@+id/choose_section_heading"
                             android:background="#107fc9"
@@ -182,15 +187,16 @@
                             android:gravity="center|left"
                             android:layout_marginRight="1dp"
                             android:textSize="13dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="#ffffff" />
+                            android:textColor="#ffffff"
+                            android:padding="10dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/imageView28"
                             android:src="@drawable/down_arrow"
-                            android:background="#107fc9" />
+                            android:background="#107fc9"
+                            android:padding="5dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -209,23 +215,25 @@
         android:paddingTop="10dp"
         android:id="@+id/save_change">
 
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:id="@+id/imageView44"
+            android:src="@drawable/tick_icon"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SAVE CHANGES"
+            android:text="next"
             android:id="@+id/savechanges"
-            android:textSize="15dp"
+            android:textSize="16sp"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:layout_marginRight="5dp" />
+            android:layout_marginTop="1dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView44"
-            android:src="@drawable/tick_icon"
-            android:layout_marginRight="5dp" />
     </LinearLayout>
 
 </LinearLayout>

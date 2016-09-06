@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by Chinni on 10-06-2016.
  */
 public class Rewards implements java.io.Serializable{
-    String id,title,grade,correctt,wrong,skiped,level,image;
+    String id,title,grade,correctt,wrong,skiped,level,image,count;
     Context context;
     String append ;
 
@@ -28,6 +28,7 @@ public class Rewards implements java.io.Serializable{
             correctt = jsonObject.optString("correct", "99");
             wrong = jsonObject.optString("wrong", "99");
             skiped = jsonObject.optString("skipped", "99");
+            count = jsonObject.optString("count","99");
         } catch (JSONException e) {
             e.printStackTrace();
         }

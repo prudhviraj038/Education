@@ -3,117 +3,256 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView22"
-        android:src="@drawable/login_background"
-        android:adjustViewBounds="false"
-        android:scaleType="centerCrop" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/scrollView6"
-            android:layout_weight="1"
-            android:fillViewport="true"
-            android:layout_marginBottom="50dp">
+            android:layout_height="wrap_content"
+            android:background="@color/screen_top_background"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center_vertical" >
 
-            <LinearLayout
-                android:orientation="vertical"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView71"
+                android:src="@drawable/back_arrow"
+                android:adjustViewBounds="false"
+                android:visibility="gone" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView72"
+                android:src="@drawable/logo_icon_small"
+                android:adjustViewBounds="false"
+                android:layout_weight="1"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView22"
+                android:src="@drawable/login_top_image"
+                android:adjustViewBounds="true"
+                android:background="#FFFFFF"
+                android:scaleType="fitXY" />
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/ll_submit_pass"
-                android:layout_marginBottom="50dp"
-                android:gravity="center|bottom">
+                android:id="@+id/scrollView6"
+                android:fillViewport="true">
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="false"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:showDividers="middle"
-                    android:padding="15dp">
+                    android:layout_marginBottom="50dp"
+                    android:gravity="center_vertical|center_horizontal">
 
-                    <TextView
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="My Profile"
-                        android:id="@+id/edit_profile"
-                        android:gravity="center"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-                        android:padding="10dp"
-                        android:background="@drawable/login_divider_shadow" />
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Change Academics"
-                        android:id="@+id/change_academics"
-                        android:gravity="center"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-                        android:padding="10dp"
-                        android:background="@drawable/login_divider_shadow"
-                        android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView73"
+                            android:src="@drawable/logo_icon_small"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="100dp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Change Subjects"
-                        android:id="@+id/change_subjects"
-                        android:gravity="center"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-                        android:padding="10dp"
-                        android:background="@drawable/login_divider_shadow"
-                        android:visibility="gone" />
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:showDividers="middle"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Change Password"
-                        android:id="@+id/change_pass"
-                        android:gravity="center"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-                        android:padding="10dp"
-                        android:background="@drawable/login_divider_shadow" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="My Profile"
+                                android:id="@+id/edit_profile"
+                                android:gravity="center"
+                                android:textColor="#ffffff"
+                                android:textSize="15dp"
+                                android:padding="10dp"
+                                android:background="@color/dark_app_color" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Language"
-                        android:id="@+id/language"
-                        android:gravity="center"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-                        android:padding="10dp"
-                        android:background="@drawable/login_divider_shadow" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" >
 
-                    <TextView
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/imageView75"
+                                    android:src="@drawable/horizontal_shadow"
+                                    android:scaleType="fitStart" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Change Academics"
+                                android:id="@+id/change_academics"
+                                android:gravity="center"
+                                android:textColor="#000000"
+                                android:textSize="15dp"
+                                android:padding="10dp"
+                                android:background="#107fc9"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Change Subjects"
+                                android:id="@+id/change_subjects"
+                                android:gravity="center"
+                                android:textColor="#000000"
+                                android:textSize="15dp"
+                                android:padding="10dp"
+                                android:background="#107fc9"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Change Password"
+                                android:id="@+id/change_pass"
+                                android:gravity="center"
+                                android:textColor="#ffffff"
+                                android:textSize="15dp"
+                                android:padding="10dp"
+                                android:background="@color/dark_app_color" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" >
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/imageView76"
+                                    android:src="@drawable/horizontal_shadow"
+                                    android:scaleType="fitStart" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Language"
+                                android:id="@+id/language"
+                                android:gravity="center"
+                                android:textColor="#ffffff"
+                                android:textSize="15dp"
+                                android:padding="10dp"
+                                android:background="@color/dark_app_color" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" >
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/imageView77"
+                                    android:src="@drawable/horizontal_shadow"
+                                    android:scaleType="fitStart" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Logout"
+                                android:id="@+id/logout"
+                                android:gravity="center"
+                                android:textColor="#ffffff"
+                                android:textSize="15dp"
+                                android:padding="10dp"
+                                android:background="@color/dark_app_color" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" >
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/imageView78"
+                                    android:src="@drawable/horizontal_shadow"
+                                    android:scaleType="fitStart" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView74"
+                            android:src="@drawable/logo_icon_small"
+                            android:adjustViewBounds="true"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Logout"
-                        android:id="@+id/logout"
+                        android:layout_height="40dp"
                         android:gravity="center"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-                        android:padding="10dp"
-                        android:background="@drawable/login_divider_shadow" />
+                        android:background="@color/text_black"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/home_btn"
+                            android:src="@drawable/home"
+                            android:adjustViewBounds="true" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/reward_btn"
+                            android:src="@drawable/reward_star_white_icon"
+                            android:adjustViewBounds="true"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageView85"
+                            android:src="@drawable/settings_icon_blue"
+                            android:focusableInTouchMode="false"
+                            android:adjustViewBounds="true" />
+                    </LinearLayout>
+
                 </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
+            </ScrollView>
+        </RelativeLayout>
 
     </LinearLayout>
 

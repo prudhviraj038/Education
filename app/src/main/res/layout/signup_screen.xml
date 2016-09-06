@@ -11,15 +11,16 @@
         android:background="@color/screen_top_background"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:gravity="center_vertical"
         android:paddingBottom="5dp"
-        android:gravity="center_vertical">
+        android:paddingTop="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:id="@+id/back_signup_scr"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false" />
+            android:adjustViewBounds="true" />
 
         <ImageView
             android:layout_width="50dp"
@@ -31,11 +32,12 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:id="@+id/imageView59"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false"
+            android:adjustViewBounds="true"
             android:visibility="invisible" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -102,7 +104,7 @@
                         android:layout_height="100dp"
                         android:id="@+id/profile_image"
                         android:layout_gravity="right"
-                        android:src="@drawable/logo_icon_small"
+                        android:src="@drawable/signup_ic"
                         android:layout_alignParentTop="true"
                         android:layout_toRightOf="@+id/ly_v1"
                         android:layout_toEndOf="@+id/ly_v1"
@@ -126,145 +128,14 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/user_name_ll">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView4"
-                            android:src="@drawable/name_icon"
-                            android:adjustViewBounds="true" />
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:inputType="textPersonName"
-                            android:id="@+id/et_username"
-                            android:hint="User Name"
-                            android:layout_weight="1"
-                            android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp"
-                            android:paddingLeft="10dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/pass_ll">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView5"
-                            android:src="@drawable/lock_icon" />
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:inputType="textPassword"
-                            android:id="@+id/et_password"
-                            android:layout_weight="1"
-                            android:hint="Password"
-                            android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp"
-                            android:paddingLeft="10dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView6"
-                            android:src="@drawable/name_icon" />
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:inputType="textPersonName"
-                            android:id="@+id/et_fullname"
-                            android:hint="Full Name"
-                            android:layout_weight="1"
-                            android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="#000000" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/email_ll">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView7"
-                            android:src="@drawable/email_icon" />
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:inputType="textEmailAddress"
-                            android:id="@+id/et_email"
-                            android:hint="E-Mail"
-                            android:layout_weight="1"
-                            android:textSize="15dp"
-                            android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="#000000" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView8"
-                            android:src="@drawable/mobile_icon" />
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:inputType="phone"
-                            android:id="@+id/et_mobile"
-                            android:hint="Mobile"
-                            android:textSize="15dp"
-                            android:layout_weight="1"
-                            android:background="@color/signup_field_bg"
-                            android:paddingRight="10dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="#000000" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/gove_ll">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView9"
-                            android:src="@drawable/class_ic" />
+                            android:src="@drawable/location_ic"
+                            android:adjustViewBounds="true" />
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -272,7 +143,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:layout_weight="1"
-                            android:background="@color/signup_field_bg">
+                            android:background="@drawable/blue_underline">
 
                             <TextView
                                 android:layout_width="0dp"
@@ -289,7 +160,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="20dp"
-                                android:id="@+id/imageView12"
+                                android:id="@+id/gov_drop"
                                 android:src="@drawable/down_arrow_black"
                                 android:layout_margin="5dp" />
                         </LinearLayout>
@@ -304,9 +175,10 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView15"
-                            android:src="@drawable/gove_icon" />
+                            android:src="@drawable/school_ic"
+                            android:adjustViewBounds="true" />
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -314,7 +186,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:layout_weight="1"
-                            android:background="@color/signup_field_bg" >
+                            android:background="@drawable/blue_underline" >
 
                             <TextView
                                 android:layout_width="0dp"
@@ -331,7 +203,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="20dp"
-                                android:id="@+id/imageView19"
+                                android:id="@+id/school_drop"
                                 android:src="@drawable/down_arrow_black"
                                 android:layout_margin="5dp" />
                         </LinearLayout>
@@ -346,9 +218,10 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:id="@+id/imageView20"
-                            android:src="@drawable/class_icon" />
+                            android:src="@drawable/class_icon"
+                            android:adjustViewBounds="true" />
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -356,7 +229,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:layout_weight="1"
-                            android:background="@color/signup_field_bg" >
+                            android:background="@drawable/blue_underline" >
 
                             <TextView
                                 android:layout_width="0dp"
@@ -373,10 +246,92 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="20dp"
-                                android:id="@+id/imageView24"
+                                android:id="@+id/class_drop"
                                 android:src="@drawable/down_arrow_black"
                                 android:layout_margin="5dp" />
                         </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageView6"
+                            android:src="@drawable/name_icon"
+                            android:adjustViewBounds="true" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:inputType="textPersonName"
+                            android:id="@+id/et_fullname"
+                            android:hint="Full Name"
+                            android:layout_weight="1"
+                            android:textSize="15dp"
+                            android:background="@drawable/blue_underline"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="#000000" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/email_ll">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageView7"
+                            android:src="@drawable/email_icon"
+                            android:adjustViewBounds="true" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:inputType="textEmailAddress"
+                            android:id="@+id/et_email"
+                            android:hint="E-Mail"
+                            android:layout_weight="1"
+                            android:textSize="15dp"
+                            android:background="@drawable/blue_underline"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="#000000" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageView8"
+                            android:src="@drawable/mobile_icon"
+                            android:adjustViewBounds="true" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:inputType="phone"
+                            android:id="@+id/et_mobile"
+                            android:hint="Mobile"
+                            android:textSize="15dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/blue_underline"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="#000000" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -418,6 +373,60 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/user_name_ll">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageView4"
+                            android:src="@drawable/name_icon"
+                            android:adjustViewBounds="true" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:inputType="textPersonName"
+                            android:id="@+id/et_username"
+                            android:hint="User Name"
+                            android:layout_weight="1"
+                            android:textSize="15dp"
+                            android:background="@drawable/blue_underline"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pass_ll">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageView5"
+                            android:src="@drawable/lock_icon"
+                            android:adjustViewBounds="true" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:inputType="textPassword"
+                            android:id="@+id/et_password"
+                            android:layout_weight="1"
+                            android:hint="Password"
+                            android:textSize="15dp"
+                            android:background="@drawable/blue_underline"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -431,23 +440,25 @@
                     android:id="@+id/ll_signup"
                     android:layout_marginTop="10dp">
 
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:id="@+id/imageView48"
+                        android:src="@drawable/tick_icon"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SIGN UP"
+                        android:text="next"
                         android:id="@+id/signup2"
-                        android:textSize="15dp"
+                        android:textSize="16sp"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:textColor="#ffffff"
-                        android:layout_marginRight="5dp" />
+                        android:layout_marginTop="1dp" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView48"
-                        android:src="@drawable/tick_icon"
-                        android:layout_marginRight="5dp" />
                 </LinearLayout>
 
             </LinearLayout>

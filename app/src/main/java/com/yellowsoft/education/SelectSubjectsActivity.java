@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -51,6 +52,8 @@ public class SelectSubjectsActivity extends RootActivity {
     String img_path;
     String mem_id;
     TextView chose_subject,save_changes;
+    ImageView back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +66,16 @@ public class SelectSubjectsActivity extends RootActivity {
         sub_title = new ArrayList<String>();
         chose_subject = (TextView)findViewById(R.id.choose_sub_heading);
         chose_subject.setText(Session.getword(this,"choose_subject"));
+        back = (ImageView)findViewById(R.id.back_select_subject);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         save_changes = (TextView)findViewById(R.id.select_changes);
         save_changes.setText(Session.getword(this,"savechanges"));
-        JSONObject jsonObject= null;
-        try {
-            jsonObject = new JSONObject(Session.getUserdetails(this));
-            for(int i=0;i<jsonObject.getJSONArray("subjects").length();i++) {
-                ids.add(jsonObject.getJSONArray("subjects").getJSONObject(i).getString("id"));
-                if (choices.containsKey(ids.get(i)))
-                    choices.remove(ids.get(i));
-                else {
-                    choices.put(ids.get(i), ids.get(i));
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
 
         Intent intent=getIntent();
         type = getIntent().getStringExtra("type");
@@ -118,22 +115,30 @@ public class SelectSubjectsActivity extends RootActivity {
             @Override
             public void onClick(View v) {
                 ListView lv = (ListView) findViewById(R.id.lv1);
-                lv.setAdapter(adapter);
-                lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        if (choices.containsKey(sub_id.get(position)))
-                            choices.remove(sub_id.get(position));
-                        else {
-                            choices.put(sub_id.get(position), sub_id.get(position));
+                if (lv.getVisibility()==View.VISIBLE)
+                    lv.setVisibility(View.GONE);
+                else {
+                    lv.setVisibility(View.VISIBLE);
+                    lv.setAdapter(adapter);
+                    lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            if (choices.containsKey(sub_id.get(position)))
+                                choices.remove(sub_id.get(position));
+                            else {
+                                choices.put(sub_id.get(position), sub_id.get(position));
+                            }
+                            JSONObject jsonObject = new JSONObject(choices);
+                            Log.e("choice", jsonObject.toString());
                         }
-                        JSONObject jsonObject = new JSONObject(choices);
-                        Log.e("choice", jsonObject.toString());
-                    }
-                });
+                    });
+                }
+
             }
         });
+
+
         get_sub();
     }
 
@@ -168,6 +173,7 @@ public class SelectSubjectsActivity extends RootActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait....");
         progressDialog.setCancelable(false);
+        progressDialog.show();
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override

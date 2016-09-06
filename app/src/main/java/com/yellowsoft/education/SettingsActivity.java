@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,6 +83,27 @@ public class SettingsActivity extends RootActivity {
                 Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+            }
+        });
+
+        ImageView home_btn = (ImageView) findViewById(R.id.home_btn);
+        home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this,HomeActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
+        ImageView reward_btn = (ImageView) findViewById(R.id.reward_btn);
+        reward_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this,RewardActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

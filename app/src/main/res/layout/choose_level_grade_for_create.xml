@@ -10,15 +10,16 @@
         android:background="@color/screen_top_background"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:id="@+id/imageView16"
             android:src="@drawable/back_arrow"
-            android:adjustViewBounds="false" />
+            android:adjustViewBounds="true" />
 
         <ImageView
             android:layout_width="50dp"
@@ -81,7 +82,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="CHOOSE SUBJECT"
                             android:id="@+id/cre_subject"
                             android:background="#107fc9"
@@ -89,12 +90,12 @@
                             android:gravity="center|left"
                             android:layout_marginRight="1dp"
                             android:textSize="13dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="#ffffff" />
+                            android:textColor="#ffffff"
+                            android:padding="10dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/imageView49"
                             android:src="@drawable/down_arrow"
                             android:background="#107fc9" />
@@ -127,7 +128,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="CHOOSE LEVEL"
                             android:id="@+id/cre_level"
                             android:background="#107fc9"
@@ -135,12 +136,12 @@
                             android:gravity="center|left"
                             android:layout_marginRight="1dp"
                             android:textSize="13dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="#ffffff" />
+                            android:textColor="#ffffff"
+                            android:padding="10dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/imageView51"
                             android:src="@drawable/down_arrow"
                             android:background="#107fc9" />
@@ -173,7 +174,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="CHOOSE GRADE"
                             android:id="@+id/cre_grade"
                             android:background="#107fc9"
@@ -181,12 +182,12 @@
                             android:gravity="center|left"
                             android:layout_marginRight="1dp"
                             android:textSize="13dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="#ffffff" />
+                            android:textColor="#ffffff"
+                            android:padding="10dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/imageView52"
                             android:src="@drawable/down_arrow"
                             android:background="#107fc9" />
@@ -219,7 +220,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="SEMESTER SECTIONS"
                             android:id="@+id/cre_section"
                             android:background="#107fc9"
@@ -227,12 +228,12 @@
                             android:gravity="center|left"
                             android:layout_marginRight="1dp"
                             android:textSize="13dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="#ffffff" />
+                            android:textColor="#ffffff"
+                            android:padding="10dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/imageView53"
                             android:src="@drawable/down_arrow"
                             android:background="#107fc9" />
@@ -251,23 +252,25 @@
                 android:paddingTop="10dp"
                 android:id="@+id/cre_save" >
 
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:id="@+id/imageView55"
+                    android:src="@drawable/tick_icon"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SAVE CHANGES"
+                    android:text="Next"
                     android:id="@+id/textView30"
-                    android:textSize="15dp"
+                    android:textSize="16sp"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textColor="#ffffff"
-                    android:layout_marginRight="5dp" />
+                    android:paddingTop="1dp" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView55"
-                    android:src="@drawable/tick_icon"
-                    android:layout_marginRight="5dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

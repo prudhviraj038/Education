@@ -35,6 +35,7 @@ public class Advertisement_Activity extends RootActivity {
     ListView listView;
     ArrayList<Advertisement> advertses;
     AdvertisementListAdapter advertiseListAdapter;
+
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,11 @@ public class Advertisement_Activity extends RootActivity {
                 startActivity(intent);
             }
         });
+        TextView advertisement_page_title = (TextView) findViewById(R.id.advertise_page_title);
+         TextView advertisement_enquiry = (TextView) findViewById(R.id.advertisement_enquiry);
 
+         advertisement_page_title.setText(Session.getword(this,"advetisements"));
+         advertisement_enquiry.setText(Session.getword(this,"advertisement_enquiry"));
 
         ImageView back_btn = (ImageView) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(new View.OnClickListener() {

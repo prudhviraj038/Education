@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -46,7 +47,8 @@ public class CreateQuestionActivity extends AppCompatActivity {
     ArrayList<JSONArray> pages_json;
     String book_id_id = "-1",temp="0";
     RelativeLayout rl1,rl2,rl3,rl4;
-
+    ImageView back_btn;
+    String selected_text = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,13 @@ public class CreateQuestionActivity extends AppCompatActivity {
         // upload_video.setText(Session.getword(this,""));
         write_ans = (TextView) findViewById(R.id.write_answer_heading);
         write_ans.setText(Session.getword(this, "write_y_answer"));
+        back_btn =(ImageView)findViewById(R.id.back_cre_ques_scr);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         submit = (TextView) findViewById(R.id.create_submit);
         submit.setText(Session.getword(this, "submit"));
@@ -77,11 +86,13 @@ public class CreateQuestionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CreateQuestionActivity.this);
                 builder.setTitle(Session.getword(CreateQuestionActivity.this, "books"));
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CreateQuestionActivity.this, android.R.layout.select_dialog_item, book_title);
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CreateQuestionActivity.this,  android.R.layout.select_dialog_item, book_title);
                 builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //  Toast.makeText(CreateQuestionActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
+                        selected_text = book_title.get(which);
+                        book_rev.setText(selected_text);
 
                         book_id_id = book_id.get(which);
                         show_topic(which);
@@ -295,6 +306,9 @@ public class CreateQuestionActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                   //      Toast.makeText(CreateQuestionActivity.this, book_title.get(which), Toast.LENGTH_SHORT).show();
                         book_id_id = topic_id.get(which);
+                        selected_text = selected_text+ "," + topic_title.get(which);
+                        book_rev.setText(selected_text);
+
 //                        choose_section.setText(book_title.get(which));
                         //save_changes.performClick();
                         Intent intent=new Intent(CreateQuestionActivity.this,SelectPageActivity.class);
@@ -483,6 +497,9 @@ String page_id = "";
         if(requestCode==5){
             if(data!=null)
                 book_id_id = data.getStringExtra("page_id");
+            selected_text = selected_text + "," + data.getStringExtra("page_title");
+            book_rev.setText(selected_text);
+
         }
 
     }
