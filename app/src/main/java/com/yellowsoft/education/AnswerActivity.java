@@ -43,9 +43,9 @@ import pl.droidsonroids.gif.GifImageView;
 public class AnswerActivity extends RootActivity {
     boolean cansubmit;
     String subject_id = "1";
-    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,submit_answer,ref;
+    TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,submit_answer,ref,ok_giveup,giveup;
     ImageView one,two,three,four;
-    LinearLayout submit_layout,reference_ll;
+    LinearLayout submit_layout,reference_ll,pop_giveup;
     String user_correct,api_correct,pdf_url;
     JSONObject user_details;
     int next_stage = 5;
@@ -55,9 +55,8 @@ public class AnswerActivity extends RootActivity {
     String answertype = "-1";
     String question_id = "-1";
     GifImageView gifImageView;
-    TextView pop_up_ok_btn,question_pop_btn,question_pop_title,question_pop_textview
-            ;
-    TextView pop_up_ok_btn_wrong,pop_up_continue_btn;
+    TextView pop_up_ok_btn,question_pop_btn,question_pop_title,question_pop_textview;
+    TextView pop_up_ok_btn_wrong,pop_up_continue_btn,pop_up_wrong;
     LinearLayout pop_up_layout;
     LinearLayout pop_up_layout_wrong;
     LinearLayout pop_up_layout_question;
@@ -90,7 +89,11 @@ public class AnswerActivity extends RootActivity {
         setContentView(R.layout.answer_screen);
         pop_up_ok_btn=(TextView) findViewById(R.id.pop_up_ok_btn);
         pop_up_ok_btn_wrong=(TextView) findViewById(R.id.pop_up_ok_btn_wrong);
+        pop_up_ok_btn_wrong.setText(Session.getword(this, "yes"));
         pop_up_continue_btn = (TextView) findViewById(R.id.pop_up_continue_btn);
+        pop_up_continue_btn.setText(Session.getword(this, "no_continue_exam"));
+        pop_up_wrong=(TextView) findViewById(R.id.pop_wrong_answer);
+        pop_up_wrong.setText(Session.getword(this, "message_incorrect_answer"));
         pop_up_layout_question = (LinearLayout) findViewById(R.id.question_popup);
         gifImageView = (GifImageView) findViewById(R.id.gif_anim);
         pop_up_layout = (LinearLayout) findViewById(R.id.pop_up_layout);
@@ -137,21 +140,32 @@ public class AnswerActivity extends RootActivity {
             @Override
             public void onClick(View view) {
                 pop_up_layout_wrong.setVisibility(View.GONE);
-                if(mpwrong!=null)
-                mpwrong.stop();
+//                if(mpwrong!=null)
+//                mpwrong.stop();
             }
         });
         pop_up_continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pop_up_layout_wrong.setVisibility(View.GONE);
-                if(mpwrong!=null)
-                    mpwrong.stop();
+//                if(mpwrong!=null)
+//                    mpwrong.stop();
                 setanswer();
             }
         });
 
-
+        giveup = (TextView) findViewById(R.id.pop_giveup_answer);
+        giveup.setText(Session.getword(this, "give_up_popup_msg"));
+        ok_giveup = (TextView) findViewById(R.id.pop_up_continue_give_btn);
+        ok_giveup.setText(Session.getword(this,"ok"));
+        pop_giveup = (LinearLayout) findViewById(R.id.pop_up_layout_giveup);
+        ok_giveup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop_giveup.setVisibility(View.GONE);
+                setanswer();
+            }
+        });
         user_correct = "-1";
         cansubmit=true;
         TextView give_pass = (TextView)findViewById(R.id.give_pass);
@@ -185,7 +199,8 @@ public class AnswerActivity extends RootActivity {
             @Override
             public void onClick(View v) {
                 answertype = "skipped";
-                setanswer();
+                pop_giveup.setVisibility(View.VISIBLE);
+//                setanswer();
             }
         });
         submit_layout.setOnClickListener(new View.OnClickListener() {
@@ -597,10 +612,15 @@ public class AnswerActivity extends RootActivity {
         //alertDialog.show();
         pop_up_layout_wrong.setVisibility(View.VISIBLE);
         pop_up_ok_btn_wrong.setVisibility(View.GONE);
-        if(attempt_count==1)
+        if(attempt_count==1) {
             pop_up_ok_btn_wrong.setVisibility(View.VISIBLE);
-
-        getMediaPlayerwrong().start();
+            pop_up_continue_btn.setText(Session.getword(this, "no_continue_exam"));
+            pop_up_wrong.setText(Session.getword(this, "message_incorrect_answer"));
+        }else{
+            pop_up_continue_btn.setText(Session.getword(this, "ok"));
+            pop_up_wrong.setText(Session.getword(this, "message_wrong_again"));
+        }
+        ///getMediaPlayerwrong().start();
     }
 
 

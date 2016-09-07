@@ -21,7 +21,7 @@ import java.util.Locale;
  * Created by Chinni on 14-03-2016.
  */
 public class Session {
-    public static final String SERVERURL = "http://www.clients.yellowsoft.in/education/api/";
+    public static final String SERVERURL = "http://ent-wana-gadha.com/api/";
     public static final String USERID = "education_id";
     public static final String NAME = "education_name";
     public static final String userdetails = "userdetails";

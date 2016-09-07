@@ -8,7 +8,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/screen_top_background"
+        android:background="@color/aa_app_blue"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:gravity="center_vertical"
@@ -177,7 +177,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:id="@+id/imageView15"
-                            android:src="@drawable/school_ic"
+                            android:src="@drawable/ic_school"
                             android:adjustViewBounds="true" />
 
                         <LinearLayout

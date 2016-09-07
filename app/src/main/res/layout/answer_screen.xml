@@ -651,7 +651,8 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:src="@drawable/cry_face"
-                            android:id="@+id/gif_anim_wrong" />
+                            android:id="@+id/gif_anim_wrong"
+                            android:visibility="gone" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -666,32 +667,19 @@
                             android:layout_height="wrap_content"
                             android:text="Wrong Answer"
                             android:id="@+id/pop_wrong_answer"
-                            android:textSize="25sp"
+                            android:textSize="16dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:textColor="@color/wrong_color"
-                            android:textStyle="bold|italic" />
+                            android:textColor="#000000"
+                            android:textStyle="bold|italic"
+                            android:gravity="center" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Continue Exam"
-                            android:id="@+id/pop_up_continue_btn"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:textColor="#ffffff"
-                            android:background="@drawable/pop_up_btn_rounded"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -705,13 +693,120 @@
                             android:textColor="#ffffff"
                             android:background="@drawable/pop_up_btn_rounded"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp" />
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Continue Exam"
+                            android:id="@+id/pop_up_continue_btn"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:textColor="#ffffff"
+                            android:background="@drawable/pop_up_btn_rounded"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/pop_up_transparent"
+                android:gravity="center"
+                android:padding="50dp"
+                android:id="@+id/pop_up_layout_giveup"
+                android:visibility="gone">
 
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/popup_corners"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/cry_face"
+                            android:id="@+id/gif_animmm_wrong"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wrong Answer"
+                            android:id="@+id/pop_giveup_answer"
+                            android:textSize="16sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:textColor="#000000"
+                            android:textStyle="bold|italic"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OK"
+                            android:id="@+id/pop_up_continue_give_btn"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:textColor="#ffffff"
+                            android:background="@drawable/pop_up_btn_rounded"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Try Again"
+                            android:id="@+id/pop_up_giveup_ok_btn_wrong"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:textColor="#ffffff"
+                            android:background="@drawable/pop_up_btn_rounded"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"

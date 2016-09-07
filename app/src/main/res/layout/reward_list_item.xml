@@ -111,7 +111,8 @@
                 android:text="7"
                 android:id="@+id/number_gave_tv"
                 android:textSize="16sp"
-                android:textColor="#4b4b4b" />
+                android:textColor="#4b4b4b"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -137,7 +138,8 @@
                 android:text="7"
                 android:id="@+id/number_wrong_tv"
                 android:textSize="16sp"
-                android:textColor="#4b4b4b" />
+                android:textColor="#4b4b4b"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -163,7 +165,8 @@
                 android:text="7"
                 android:id="@+id/number_correct_tv"
                 android:textSize="16sp"
-                android:textColor="#4b4b4b" />
+                android:textColor="#4b4b4b"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
