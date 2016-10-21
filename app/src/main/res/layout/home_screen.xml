@@ -289,7 +289,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ADVERTISEMENTS"
-                        android:id="@+id/sem_tv"
+                        android:id="@+id/advertisements_tv"
                         android:textSize="16dp"
                         android:textColor="#ffffff"
                         android:layout_marginLeft="5dp"

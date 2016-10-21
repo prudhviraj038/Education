@@ -7,6 +7,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInstaller;
+
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,11 +18,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,6 +36,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -58,10 +63,10 @@ public class SignupActivity extends RootActivity {
     EditText et_fullname;
     EditText et_email;
     EditText et_mobile;
-    TextView et_gove,area_tv,class_tv;
+    TextView et_gove,area_tv,class_tv,level_tv,grade_tv;
     EditText et_class;
     ImageView profile_image;
-    LinearLayout gove_ll,area_ll,class_ll;
+    LinearLayout gove_ll,area_ll,class_ll,level_ll,grade_ll;
     String type;
     TextView signup_txt;
     String area_id,gove_id,class_id,area_name,gove_name;
@@ -71,7 +76,10 @@ public class SignupActivity extends RootActivity {
     ArrayList<String> area_titles;
     ArrayList<String> class_titles;
     ArrayList<String> class_ids;
-    ImageView gov_drop,school_drop,class_drop;
+    ArrayList<String> grade;
+    ImageView gov_drop,school_drop,class_drop,grade_drop,level_drop;
+    LinearLayout academic_details;
+    TextView leve_h,level_v,grade_v,grade_h,semister_h,semister_v,other_heading,sub_heading,sub_value;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +90,9 @@ public class SignupActivity extends RootActivity {
         gov_drop = (ImageView) findViewById(R.id.gov_drop);
         school_drop = (ImageView) findViewById(R.id.school_drop);
         class_drop = (ImageView) findViewById(R.id.class_drop);
+        grade_drop = (ImageView) findViewById(R.id.grade_drop);
+        level_drop = (ImageView) findViewById(R.id.level_drop);
+
         governorates=new ArrayList<>();
         gove_titles=new ArrayList<>();
         area_titles=new ArrayList<>();
@@ -91,9 +102,12 @@ public class SignupActivity extends RootActivity {
         area_id= "";
         class_id = "";
         classs = "";
+
         gove_ll=(LinearLayout)findViewById(R.id.gove_ll);
         area_ll=(LinearLayout)findViewById(R.id.area_ll);
         class_ll=(LinearLayout) findViewById(R.id.class_ll);
+        level_ll = (LinearLayout) findViewById(R.id.level_ll);
+        grade_ll = (LinearLayout) findViewById(R.id.grade_ll);
 
         ImageView back=(ImageView)findViewById(R.id.back_signup_scr);
         TextView selectimg=(TextView)findViewById(R.id.select_image);
@@ -122,10 +136,41 @@ public class SignupActivity extends RootActivity {
         area_tv.setText(Session.getword(this,"school"));
          et_class=(EditText)findViewById(R.id.et_class);
         et_class.setHint(Session.getword(this, "class"));
+
         class_tv = (TextView) findViewById(R.id.class_tv);
         class_tv.setText(Session.getword(this, "class"));
 
-            profile_image = (ImageView) findViewById(R.id.profile_image);
+        level_tv = (TextView) findViewById(R.id.level_tv);
+        level_tv.setText(Session.getword(this, "level"));
+
+        grade_tv = (TextView) findViewById(R.id.grade_tv);
+        grade_tv.setText(Session.getword(this, "grade"));
+
+        academic_details = (LinearLayout) findViewById(R.id.other_details);
+        other_heading = (TextView) findViewById(R.id.other_heading);
+
+        leve_h = (TextView) findViewById(R.id.level_heading);
+        level_v = (TextView) findViewById(R.id.level_value);
+
+        grade_h = (TextView) findViewById(R.id.grrade_heading);
+        grade_v = (TextView) findViewById(R.id.grade_value);
+
+
+        semister_h = (TextView) findViewById(R.id.semister_heading);
+        semister_v = (TextView) findViewById(R.id.semister_value);
+
+        sub_heading = (TextView) findViewById(R.id.subjects_heading);
+        sub_value = (TextView) findViewById(R.id.subjects_value);
+
+
+        other_heading.setText(Session.getword(this,"academic_details"));
+
+        leve_h.setText(Session.getword(this,"level"));
+        grade_h.setText(Session.getword(this,"grade"));
+        semister_h.setText(Session.getword(this,"semister"));
+        sub_heading.setText(Session.getword(this,"subjects"));
+
+        profile_image = (ImageView) findViewById(R.id.profile_image);
 
         selectimg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,6 +264,44 @@ public class SignupActivity extends RootActivity {
 
         });
 
+        level_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                get_level();
+            }
+        });
+
+        grade_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                grade = new ArrayList<String>();
+                grade.add("1");
+                grade.add("2");
+                grade.add("3");
+                grade.add("4");
+                grade.add("5");
+                grade.add("6");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
+                builder.setTitle("CHOOSE GRADE");
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SignupActivity.this, android.R.layout.select_dialog_item, grade);
+                builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Toast.makeText(ChooseSubjectActivity.this, grade.get(which), Toast.LENGTH_SHORT).show();
+                        grade_id = grade.get(which);
+                        grade_tv.setText(grade.get(which));
+                    }
+                });
+
+                final AlertDialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
+                dialog.show();
+
+            }
+        });
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -231,6 +314,7 @@ public class SignupActivity extends RootActivity {
             email_ll.setVisibility(View.GONE);
             signup_txt.setText(Session.getword(this, "save"));
             signup.setVisibility(View.GONE);
+           // academic_details.setVisibility(View.VISIBLE);
 
 
         }else{
@@ -238,7 +322,7 @@ public class SignupActivity extends RootActivity {
             user_ll.setVisibility(View.VISIBLE);
             email_ll.setVisibility(View.VISIBLE);
             signup_txt.setText(Session.getword(this,"signUp"));
-
+            academic_details.setVisibility(View.GONE);
         }
         if(type.equals("change"))
         try {
@@ -249,16 +333,29 @@ public class SignupActivity extends RootActivity {
             et_mobile.setText(jsonObject.getString("phone"));
             et_gove.setText(jsonObject.getJSONObject("school").getString("governate" + Session.get_append(this)));
             area_tv.setText(jsonObject.getJSONObject("school").getString("title" + Session.get_append(this)));
-            class_tv.setText(jsonObject.getString("class"));
+            class_tv.setText(jsonObject.getString("class_name"+ Session.get_append(this)));
             et_fullname.setEnabled(false);
             et_mobile.setEnabled(false);
             et_uname.setEnabled(false);
             et_email.setEnabled(false);
+            level_tv.setText(jsonObject.getJSONObject("level").getString("title" + Session.get_append(this)));
+            grade_tv.setText(jsonObject.getString("grade"));
+            semister_v.setText(jsonObject.getJSONObject("semister").getString("title" + Session.get_append(this)));
             class_drop.setVisibility(View.INVISIBLE);
+            level_drop.setVisibility(View.INVISIBLE);
+            grade_drop.setVisibility(View.INVISIBLE);
             gov_drop.setVisibility(View.INVISIBLE);
             school_drop.setVisibility(View.INVISIBLE);
-
             Picasso.with(SignupActivity.this).load(jsonObject.getString("image")).into(profile_image);
+          //  sub_value.setText(Html.fromHtml(jsonObject.getString("subjects_csv"+ Session.get_append(this))));
+
+
+            View view = this.getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -269,6 +366,12 @@ public class SignupActivity extends RootActivity {
                 register();
             }
         });
+
+
+
+
+
+
 
     }
 
@@ -306,9 +409,13 @@ public class SignupActivity extends RootActivity {
             Toast.makeText(SignupActivity.this, Session.getword(this,"Pls_ent_gover"), Toast.LENGTH_SHORT).show();
         else if (area_id.equals(""))
             Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_ent_school"), Toast.LENGTH_SHORT).show();
-        else if (classs.equals(""))
+         else if (levels_id.equals(""))
+             Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_sele_level"), Toast.LENGTH_SHORT).show();
+         else if (classs.equals(""))
             Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_ent_class"), Toast.LENGTH_SHORT).show();
-        else if (fullname.equals(""))
+         /*else if (grade_id.equals(""))
+             Toast.makeText(SignupActivity.this,Session.getword(this,"Pls_sele_grade"), Toast.LENGTH_SHORT).show();
+         */else if (fullname.equals(""))
             Toast.makeText(SignupActivity.this,Session.getword(this,"pls_ent_fullname"), Toast.LENGTH_SHORT).show();
         else if (email.equals(""))
             Toast.makeText(SignupActivity.this, Session.getword(this,"Please enter EmailID"), Toast.LENGTH_SHORT).show();
@@ -321,7 +428,7 @@ public class SignupActivity extends RootActivity {
         else if (type.equals("normal")&&password.length() < 6)
             Toast.makeText(SignupActivity.this, Session.getword(this,"password_length"), Toast.LENGTH_SHORT).show();
          else{
-             if(type.equals("change")){
+             if(true){
                 edit_profile();
             }else{
             Intent signup_intent = new Intent(getApplicationContext(), ChooseLevelGradeSemActivity.class);
@@ -344,7 +451,7 @@ public class SignupActivity extends RootActivity {
         progressDialog.setMessage("please wait..");
         progressDialog.show();
         progressDialog.setCancelable(false);
-        String url = Session.SERVERURL+"edit-member.php";
+        String url = Session.SERVERURL+"add-member.php?";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -355,21 +462,20 @@ public class SignupActivity extends RootActivity {
                         Log.e("signup_res",response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
+                            JSONArray jsonArray = jsonObject.getJSONArray("response");
+                            jsonObject = jsonArray.getJSONObject(0);
                             if(jsonObject.getString("status").equals("Failed")){
                                 Toast.makeText(SignupActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                // Toast.makeText(SelectSubjectsActivity.this,response , Toast.LENGTH_SHORT).show();
-                               // String mem_id = jsonObject.getString("member_id");
 
-                                if(imgPath!=null)
-                                    encodeImagetoString();
-                                else{
-                                    Toast.makeText(getApplicationContext(), Session.getword(SignupActivity.this,"profile_updated"), Toast.LENGTH_LONG).show();
-                                    get_user_details();
 
-                                }
+                                Toast.makeText(getApplicationContext(), Session.getword(SignupActivity.this,"register_successfull"),
+                                        Toast.LENGTH_LONG).show();
+                                Intent in_login = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(in_login);
+                                finish();
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -388,12 +494,18 @@ public class SignupActivity extends RootActivity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("member_id",Session.getUserid(SignupActivity.this));
                 params.put("name",fullname);
                 params.put("phone",mobile);
                 params.put("governorate",area_id);
-                params.put("governorate",area_id);
                 params.put("class",classs);
+                params.put("username", uname);
+                params.put("password", password);
+                params.put("email", email);
+                params.put("level", levels_id);
+                params.put("grade", "0");
+                params.put("semister", "0");
+                params.put("subject", "0");
+
                 return params;
             }
         };
@@ -527,7 +639,74 @@ public class SignupActivity extends RootActivity {
 // Access the RequestQueue through your singleton class.
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
     }
+    ArrayList<String> level_id;
+    ArrayList<String> level_title;
+    String levels_id="";
+    String grade_id="";
+    private void get_level(){
+        level_id = new ArrayList<>();
+        level_title = new ArrayList<>();
+        String url=Session.SERVERURL+"levels.php";
+        Log.e("url--->", url);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait....");
+        progressDialog.setCancelable(false);
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                progressDialog.dismiss();
+                Log.e("response is: ", jsonObject.toString());
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray("levels");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject sub = jsonArray.getJSONObject(i);
+                        String level_name = sub.getString("title");
+                        String levels_id = sub.getString("id");
+                        level_id.add(levels_id);
+                        level_title.add(level_name);
+                    }
+                    show_level_alert();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+                Log.e("response is:", error.toString());
+                Toast.makeText(SignupActivity.this,"Server not connected",Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+
+        });
+
+// Access the RequestQueue through your singleton class.
+        AppController.getInstance().addToRequestQueue(jsObjRequest);
+
+    }
+
+    private void show_level_alert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
+        builder.setTitle(Session.getword(SignupActivity.this,"choose_levels"));
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SignupActivity.this, android.R.layout.simple_dropdown_item_1line, level_title);
+        builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Toast.makeText(ChooseSubjectActivity.this, level_title.get(which), Toast.LENGTH_SHORT).show();
+                levels_id = level_id.get(which);
+                level_tv.setText(level_title.get(which));
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
+        dialog.show();
+
+    }
 
     Bitmap bitmap;
     String encodedString;

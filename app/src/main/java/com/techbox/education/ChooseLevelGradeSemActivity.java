@@ -109,6 +109,7 @@ public class ChooseLevelGradeSemActivity extends RootActivity {
         level_lv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChooseLevelGradeSemActivity.this);
                 builder.setTitle(Session.getword(ChooseLevelGradeSemActivity.this,"choose_levels"));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChooseLevelGradeSemActivity.this, android.R.layout.simple_dropdown_item_1line, level_title);
@@ -126,6 +127,7 @@ public class ChooseLevelGradeSemActivity extends RootActivity {
                 dialog.show();
             }
         });
+
         get_level();
 
 

@@ -90,7 +90,7 @@ public class RewardListAdapter extends BaseAdapter{
         Picasso.with(context).load(rewardses.get(position).image).into(holder.img);
         holder.tv.setText(rewardses.get(position).title);
         holder.tv1.setText(rewardses.get(position).level);
-        holder.tv2.setText("GRADE 0"+rewardses.get(position).grade);
+        holder.tv2.setText(rewardses.get(position).grade);
         holder.tv3.setText(rewardses.get(position).skiped);
         holder.tv4.setText(rewardses.get(position).count);
         holder.tv5.setText(rewardses.get(position).correctt);

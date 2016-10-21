@@ -163,7 +163,8 @@
                     android:background="@drawable/blue_underline"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:maxLength="8" />
             </LinearLayout>
 
             <LinearLayout

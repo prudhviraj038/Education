@@ -44,6 +44,7 @@ import pl.droidsonroids.gif.GifImageView;
 public class AnswerActivity extends RootActivity {
     boolean cansubmit;
     String subject_id = "1";
+    String sem_id = "1";
     TextView question,ans1,ans2,ans3,ans4,que_count,give_up,que_number,submit_answer,ref,ok_giveup,giveup;
     ImageView one,two,three,four;
     LinearLayout submit_layout,reference_ll,pop_giveup;
@@ -302,6 +303,7 @@ public class AnswerActivity extends RootActivity {
 
 
         subject_id = getIntent().getStringExtra("subj_id");
+        sem_id = getIntent().getStringExtra("sem_id");
         try {
             user_details = new JSONObject(Session.getUserdetails(this));
         } catch (JSONException e) {
@@ -414,7 +416,7 @@ public class AnswerActivity extends RootActivity {
             //  JSONObject user_details = new JSONObject(Session.getUserdetails(this));
             String url = Session.SERVERURL+"question.php?user_id="+Session.getUserid(this)+"&level="+user_details.getJSONObject("level").getString("id")
                     +"&grade="+user_details.getString("grade")
-                    +"&semister="+user_details.getJSONObject("semister").getString("id")+"&subject="+subject_id;
+                    +"&semister="+sem_id+"&subject="+subject_id;
 
             Log.e("url--->", url);
             final ProgressDialog progressDialog = new ProgressDialog(this);

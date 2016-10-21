@@ -47,7 +47,7 @@ public class HomeActivity extends RootActivity {
 
     String user_id;
     ImageView reward_btn,settings_btn;
-    TextView answer,make_que,books;
+    TextView answer,make_que,books,advertisement_tv;
     LinearLayout main_layout,advertise;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,9 @@ public class HomeActivity extends RootActivity {
 
         make_que= (TextView)findViewById(R.id.make_questiona);
         make_que.setText(Session.getword(this, "make_a_questionaire"));
+
+        advertisement_tv = (TextView) findViewById(R.id.advertisements_tv);
+        advertisement_tv.setText(Session.getword(this, "advetisements"));
 
         advertise = (LinearLayout)findViewById(R.id.home_advertisment);
         advertise.setOnClickListener(new View.OnClickListener() {
@@ -216,12 +219,7 @@ public class HomeActivity extends RootActivity {
     }
 
     private void get_sub() {
-    String url = Session.SERVERURL + "subjects.php?";
-    try {
-        url = url + "user="+ URLEncoder.encode(user_id, "utf-8");
-    } catch (UnsupportedEncodingException e) {
-        e.printStackTrace();
-    }
+    String url = Session.SERVERURL + "subjects.php";
     Log.e("url--->", url);
     final ProgressDialog progressDialog = new ProgressDialog(this);
     progressDialog.setMessage("Please wait....");

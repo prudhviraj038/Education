@@ -25,7 +25,7 @@ public class Rewards implements java.io.Serializable{
             title=jsonObject.getString("name");
             image = jsonObject.getString("image");
             level = jsonObject.getString("level");
-            grade = jsonObject.getString("grade");
+            grade = jsonObject.getString("class");
             correctt = jsonObject.optString("correct", "99");
             wrong = jsonObject.optString("wrong", "99");
             skiped = jsonObject.optString("skipped", "99");

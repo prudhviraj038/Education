@@ -42,6 +42,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
     RadioButton one, two, three, four;
     JSONObject user_details;
     String subject_id = "1";
+    String sem_id = "1";
     ArrayList<String> book_id,topic_id;
     ArrayList<String> book_title,topic_title;
     ArrayList<JSONArray> tpoics_json;
@@ -282,6 +283,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
             }
         });
         subject_id = getIntent().getStringExtra("subj_id");
+        sem_id = getIntent().getStringExtra("sem_id");
     }
 
     private void show_topic(int pos) {
@@ -346,7 +348,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
         else if (correct.equals("-1"))
             Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_corr_ans"), Toast.LENGTH_SHORT).show();
         else if (book_id_id.equals("-1"))
-            Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_corr_ans"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateQuestionActivity.this, Session.getword(CreateQuestionActivity.this,"Pls_sel_ref"), Toast.LENGTH_SHORT).show();
 
 
         else {
@@ -362,7 +364,8 @@ public class CreateQuestionActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             if (progressDialog != null)
                                 progressDialog.dismiss();
-                            if (response.equals("failed")) {
+                            Log.e("add-question-response",response);
+                            if (response.equals("Failed")) {
                                 Toast.makeText(CreateQuestionActivity.this, response, Toast.LENGTH_SHORT).show();
                             } else {
                                 //Toast.makeText(CreateQuestionActivity.this, response, Toast.LENGTH_SHORT).show();
@@ -387,13 +390,13 @@ public class CreateQuestionActivity extends AppCompatActivity {
                         params.put("user_id", Session.getUserid(CreateQuestionActivity.this));
                         params.put("level", user_details.getJSONObject("level").getString("id"));
                         params.put("grade", user_details.getString("grade"));
-                        params.put("semister", user_details.getJSONObject("semister").getString("id"));
+                        params.put("semister", sem_id);
                         params.put("subject",subject_id);
                         params.put("question", questions);
                         params.put("answer1", answ1);
                         params.put("answer2", answ2);
                         params.put("answer3", answ3);
-                        params.put("answer4", answ4);
+                        params.put("answer4", "deleted");
                         params.put("reference", book_id_id);
                         params.put("correct", correct);
                         params.put("youtube", "youtube");

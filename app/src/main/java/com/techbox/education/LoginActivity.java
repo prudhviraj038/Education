@@ -52,6 +52,10 @@ public class LoginActivity extends RootActivity {
         new_here.setText(Session.getword(this, "newhere"));
         TextView sign_in = (TextView)findViewById(R.id.signin);
         sign_in.setText(Session.getword(this,"signin"));
+
+        TextView advertise_tv = (TextView) findViewById(R.id.advertisements_tv);
+        advertise_tv.setText(Session.getword(this, "advetisements"));
+
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
